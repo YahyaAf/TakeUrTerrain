@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\GestionUsersController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,3 +18,5 @@ Route::prefix('backoffice/categories')->group(function () {
     Route::get('/edit', [CategorieController::class, 'edit'])->name('categories.edit');
     Route::get('/{id}', [CategorieController::class, 'show'])->name('categories.show');
 });
+
+Route::get('/backoffice/gestion-users', [GestionUsersController::class, 'index'])->name('gestion-users.index');
