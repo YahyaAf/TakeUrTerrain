@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\GestionUsersController;
 
@@ -20,3 +21,9 @@ Route::prefix('backoffice/categories')->group(function () {
 });
 
 Route::get('/backoffice/gestion-users', [GestionUsersController::class, 'index'])->name('gestion-users.index');
+
+
+Route::get('/backoffice/roles', [RoleController::class, 'index'])->name('roles.index');
+Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
+Route::get('/backoffice/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
+Route::put('/backoffice/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
