@@ -5,6 +5,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\GestionUsersController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,3 +35,14 @@ Route::prefix('permissions')->name('permissions.')->group(function() {
     Route::get('/create', [PermissionController::class, 'create'])->name('create');
     Route::get('/{permissionId}/edit', [PermissionController::class, 'edit'])->name('edit');
 });
+
+
+
+// Authentication Routes
+Route::prefix('auth')->name('auth.')->group(function() {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::get('/forget-password', [AuthController::class, 'showForgetPasswordForm'])->name('forget-password');
+    Route::get('/reset-password', [AuthController::class, 'showResetPasswordForm'])->name('reset-password');
+});
+
