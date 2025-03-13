@@ -29,12 +29,14 @@
                     <p class="text-gray-600">Connectez-vous à votre compte</p>
                 </div>
 
-                <form class="space-y-6">
+                <form method="POST" action="{{ route('auth.login.post') }}" class="space-y-6">
+                    @csrf
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             <i class="fas fa-envelope mr-2 text-blue-500"></i>Adresse Email
                         </label>
-                        <input 
+                        <input
+                            name="email"
                             type="email" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
@@ -46,7 +48,8 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             <i class="fas fa-lock mr-2 text-blue-500"></i>Mot de passe
                         </label>
-                        <input 
+                        <input
+                            name="password"
                             type="password" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
