@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\GestionUsersController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\backOffice\RoleController;
+use App\Http\Controllers\backOffice\CategorieController;
+use App\Http\Controllers\backOffice\PermissionController;
+use App\Http\Controllers\backOffice\GestionUsersController;
+use App\Http\Controllers\auth\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,10 +30,10 @@ Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.crea
 Route::get('/backoffice/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
 Route::put('/backoffice/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
 
-Route::prefix('permissions')->name('permissions.')->group(function() {
-    Route::get('/', [PermissionController::class, 'index'])->name('index');
-    Route::get('/create', [PermissionController::class, 'create'])->name('create');
-    Route::get('/{permissionId}/edit', [PermissionController::class, 'edit'])->name('edit');
+Route::prefix('backoffice')->name('permissions.')->group(function() {
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('index');
+    Route::get('/permissions/create', [PermissionController::class, 'create'])->name('create');
+    Route::get('/permissions/{permissionId}/edit', [PermissionController::class, 'edit'])->name('edit');
 });
 
 
