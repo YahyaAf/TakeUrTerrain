@@ -29,55 +29,85 @@
                     <p class="text-gray-600">Rejoignez Terrain Reservation</p>
                 </div>
 
-                <form class="space-y-6">
+                <form method="POST" action="{{ route('auth.register.post') }}" class="space-y-6">
+                    @csrf
+                    @if ($errors->any())
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                            <strong class="font-bold">Oups !</strong>
+                            <ul class="mt-2 list-disc pl-6">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+            
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             <i class="fas fa-user mr-2 text-blue-500"></i>Nom Complet
                         </label>
                         <input 
+                            name="name"
+                            value="{{ old('name') }}" 
                             type="text" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
                             placeholder="Votre nom et prénom"
                         >
+                        @error('name')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
-
+                
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             <i class="fas fa-envelope mr-2 text-blue-500"></i>Adresse Email
                         </label>
                         <input 
+                            name="email"
+                            value="{{ old('email') }}" 
                             type="email" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
                             placeholder="vous@exemple.com"
                         >
+                        @error('email')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
-
+                
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             <i class="fas fa-lock mr-2 text-blue-500"></i>Mot de passe
                         </label>
                         <input 
+                            name="password"
                             type="password" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
                             placeholder="Créez un mot de passe sécurisé"
                         >
+                        @error('password')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
-
+                
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             <i class="fas fa-lock mr-2 text-blue-500"></i>Confirmer le mot de passe
                         </label>
                         <input 
+                            name="password_confirmation"
                             type="password" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
                             placeholder="Répétez le mot de passe"
                         >
+                        @error('password_confirmation')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
-
+                
                     <div>
                         <button 
                             type="submit" 
@@ -86,7 +116,7 @@
                             S'inscrire
                         </button>
                     </div>
-
+                
                     <div class="text-center">
                         <p class="text-sm text-gray-600">
                             Vous avez déjà un compte ? 
@@ -95,7 +125,7 @@
                             </a>
                         </p>
                     </div>
-                </form>
+                </form>                
             </div>
         </div>
         

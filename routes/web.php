@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\backOffice\RoleController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\backOffice\PermissionController;
 use App\Http\Controllers\backOffice\GestionUsersController;
-use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +43,7 @@ Route::prefix('backoffice')->name('permissions.')->group(function() {
 Route::prefix('auth')->name('auth.')->group(function() {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
     Route::get('/forget-password', [AuthController::class, 'showForgetPasswordForm'])->name('forget-password');
     Route::get('/reset-password', [AuthController::class, 'showResetPasswordForm'])->name('reset-password');
 });
