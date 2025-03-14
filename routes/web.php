@@ -10,13 +10,14 @@ use App\Http\Controllers\auth\ForgetPasswordController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\backOffice\PermissionController;
 use App\Http\Controllers\backOffice\GestionUsersController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::middleware(['auth'])->group(function () {
-    
+
     Route::get('/dashboard', function () {
         return view('backOffice.dashboard');
     })->name('dashboard');
@@ -44,8 +45,9 @@ Route::middleware(['auth'])->group(function () {
     
 });
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::prefix('auth')->name('auth.')->group(function() {
+
+Route::prefix('auth')->group(function() {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.post');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');

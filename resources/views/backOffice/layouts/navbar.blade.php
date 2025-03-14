@@ -35,7 +35,7 @@
             <!-- Dropdown Menu -->
             <div id="dropdownMenu" class="absolute right-0 hidden bg-white shadow-lg rounded-md mt-2 w-48">
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                <form action="{{ route('auth.logout') }}" method="POST">
+                <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         Logout

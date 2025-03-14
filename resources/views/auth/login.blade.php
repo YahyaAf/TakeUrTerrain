@@ -29,7 +29,7 @@
                     <p class="text-gray-600">Connectez-vous à votre compte</p>
                 </div>
 
-                <form method="POST" action="{{ route('auth.login.post') }}" class="space-y-6">
+                <form method="POST" action="{{ route('login.post') }}" class="space-y-6">
                     @csrf
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -77,7 +77,7 @@
                     <div class="text-center">
                         <p class="text-sm text-gray-600">
                             Vous n'avez pas de compte ? 
-                            <a href="{{ route('auth.register') }}" class="font-medium text-blue-600 hover:text-blue-500">
+                            <a href="{{ route('register') }}" class="font-medium text-blue-600 hover:text-blue-500">
                                 Inscrivez-vous
                             </a>
                         </p>

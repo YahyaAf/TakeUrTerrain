@@ -29,7 +29,7 @@
                     <p class="text-gray-600">Rejoignez Terrain Reservation</p>
                 </div>
 
-                <form method="POST" action="{{ route('auth.register.post') }}" class="space-y-6">
+                <form method="POST" action="{{ route('register.post') }}" class="space-y-6">
                     @csrf
                     @if ($errors->any())
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
