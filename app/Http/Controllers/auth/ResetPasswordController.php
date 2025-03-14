@@ -11,9 +11,9 @@ use App\Models\User;
 
 class ResetPasswordController extends Controller
 {
-    public function showResetPasswordForm($token)
+    public function showResetPasswordForm($token, $email)
     {
-        return view('auth.reset-password', ['token' => $token]);
+        return view('auth.reset-password', ['token' => $token, 'email' => $email]);
     }
 
     public function submitResetPasswordForm(Request $request)

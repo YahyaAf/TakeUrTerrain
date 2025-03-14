@@ -44,7 +44,8 @@
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
                             placeholder="vous@exemple.com"
-                            value="{{ old('email') }}"
+                            value="{{ $email ?? old('email') }}"
+                            readonly
                         >
                         @error('email')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
