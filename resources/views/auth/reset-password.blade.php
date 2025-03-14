@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,7 @@
 <body class="bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen flex items-center justify-center p-6">
     <div class="container mx-auto">
         <div class="grid md:grid-cols-2 bg-white shadow-2xl rounded-2xl overflow-hidden max-w-4xl mx-auto">
+            
             <div class="hidden md:block bg-cover bg-center" style="background-image: url('/api/placeholder/600/800')">
                 <div class="h-full bg-black bg-opacity-40 flex items-center justify-center p-12">
                     <div class="text-white text-center">
@@ -29,8 +30,9 @@
                     <p class="text-gray-600">Créez un nouveau mot de passe sécurisé</p>
                 </div>
 
-                <form class="space-y-6">
-                    <input type="hidden" name="token" value="">
+                <form method="POST" action="{{ route('password.update') }}" class="space-y-6">
+                    @csrf
+                    <input type="hidden" name="token" value="{{ request()->route('token') }}">
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -38,10 +40,15 @@
                         </label>
                         <input 
                             type="email" 
+                            name="email" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
                             placeholder="vous@exemple.com"
+                            value="{{ old('email') }}"
                         >
+                        @error('email')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
@@ -50,10 +57,14 @@
                         </label>
                         <input 
                             type="password" 
+                            name="password" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
                             placeholder="Créez un nouveau mot de passe"
                         >
+                        @error('password')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
@@ -62,6 +73,7 @@
                         </label>
                         <input 
                             type="password" 
+                            name="password_confirmation" 
                             required 
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-[1.01]"
                             placeholder="Répétez le nouveau mot de passe"
@@ -80,7 +92,7 @@
                     <div class="text-center">
                         <p class="text-sm text-gray-600">
                             Vous vous souvenez de votre mot de passe ? 
-                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500">
+                            <a href="{{ route('auth.login') }}" class="font-medium text-blue-600 hover:text-blue-500">
                                 Connectez-vous
                             </a>
                         </p>

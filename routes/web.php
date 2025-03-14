@@ -5,6 +5,8 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\backOffice\RoleController;
+use App\Http\Controllers\auth\ResetPasswordController;
+use App\Http\Controllers\auth\ForgetPasswordController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\backOffice\PermissionController;
 use App\Http\Controllers\backOffice\GestionUsersController;
@@ -47,7 +49,20 @@ Route::prefix('auth')->name('auth.')->group(function() {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
-    Route::get('/forget-password', [AuthController::class, 'showForgetPasswordForm'])->name('forget-password');
-    Route::get('/reset-password', [AuthController::class, 'showResetPasswordForm'])->name('reset-password');
+    // Route::get('/forget-password', [AuthController::class, 'showForgetPasswordForm'])->name('forget-password');
+    // Route::get('/reset-password', [AuthController::class, 'showResetPasswordForm'])->name('reset-password');
+
+    // Route::get('/forget-password', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('password.request');
+    // Route::post('/forget-password', [ForgetPasswordController::class, 'submitForgetPasswordForm'])->name('password.email');
+
+    // Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetPasswordForm'])->name('password.reset');
+    // Route::post('/reset-password', [ResetPasswordController::class, 'submitResetPasswordForm'])->name('password.update');
 });
+
+Route::get('/forget-password', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('password.request');
+Route::post('/forget-password', [ForgetPasswordController::class, 'submitForgetPasswordForm'])->name('password.email');
+
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'submitResetPasswordForm'])->name('password.update');
+
 
