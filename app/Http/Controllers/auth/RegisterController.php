@@ -9,7 +9,6 @@ use App\Services\Auth\RegisterService;
 class RegisterController extends Controller
 {
     protected RegisterService $registerService;
-
     public function __construct(RegisterService $registerService)
     {
         $this->registerService = $registerService;

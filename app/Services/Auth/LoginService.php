@@ -15,7 +15,7 @@ class LoginService
 
     public function login(array $credentials): bool
     {
-        return $this->loginRepository->login($credentials);
+        return $this->loginRepository->attemptLogin($credentials);
     }
 
     public function logout(): void

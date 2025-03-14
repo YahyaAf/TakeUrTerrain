@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginRepository
 {
-    public function login(array $credentials): bool
+    public function attemptLogin(array $credentials): bool
     {
         return Auth::attempt($credentials);
     }
