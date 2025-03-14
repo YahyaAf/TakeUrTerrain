@@ -4,14 +4,21 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Services\Auth\LoginService;
 
 class LoginController extends Controller
 {
+    protected LoginService $loginService;
+
+    public function __construct(LoginService $loginService)
+    {
+        $this->loginService = $loginService;
+    }
+
     public function login(LoginRequest $request)
     {
-        if (Auth::attempt([
+        if ($this->loginService->login([
             'email' => $request->email,
             'password' => $request->password
         ])) {
@@ -24,7 +31,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        $this->loginService->logout();
         return redirect()->route('login')->with('success', 'You have been logged out successfully.');
     }
 }
