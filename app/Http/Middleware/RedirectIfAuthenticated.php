@@ -16,7 +16,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if (auth()->check()) {
-            return redirect()->route('dashboard'); 
+            return redirect()->route('home'); 
         }
 
         return $next($request);
