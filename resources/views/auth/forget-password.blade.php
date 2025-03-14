@@ -17,7 +17,6 @@
 
     <div class="container mx-auto">
         <div class="grid md:grid-cols-2 bg-white shadow-2xl rounded-2xl overflow-hidden max-w-4xl mx-auto">
-            <!-- Section gauche avec image -->
             <div class="hidden md:block bg-cover bg-center" style="background-image: url('/images/forgot-password-bg.jpg');">
                 <div class="h-full bg-black bg-opacity-40 flex items-center justify-center p-12">
                     <div class="text-white text-center">
@@ -30,9 +29,15 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Formulaire de réinitialisation -->
+        
             <div class="p-8 md:p-12 flex flex-col justify-center">
+                @if (session('status'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-6 flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span>{{ session('status') }}</span>
+                    </div>
+                @endif
+                
                 <div class="mb-8 text-center">
                     <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Mot de Passe Oublié ?</h1>
                     <p class="text-gray-600">Réinitialisez votre mot de passe en toute sécurité</p>
@@ -53,6 +58,9 @@
                             placeholder="vous@exemple.com"
                             aria-label="Entrez votre adresse email"
                         >
+                        @error('email')
+                            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
