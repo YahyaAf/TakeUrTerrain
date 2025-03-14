@@ -58,17 +58,8 @@
                     </div>
 
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input 
-                                type="checkbox" 
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                            >
-                            <label class="ml-2 block text-sm text-gray-900">
-                                Se souvenir de moi
-                            </label>
-                        </div>
                         <div>
-                            <a href="#" class="text-sm text-blue-600 hover:text-blue-500">
+                            <a href="{{ route('password.request') }}" class="text-sm text-blue-600 hover:text-blue-500">
                                 Mot de passe oublié ?
                             </a>
                         </div>
@@ -86,7 +77,7 @@
                     <div class="text-center">
                         <p class="text-sm text-gray-600">
                             Vous n'avez pas de compte ? 
-                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500">
+                            <a href="{{ route('auth.register') }}" class="font-medium text-blue-600 hover:text-blue-500">
                                 Inscrivez-vous
                             </a>
                         </p>

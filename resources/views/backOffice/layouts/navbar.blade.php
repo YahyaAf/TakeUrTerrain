@@ -22,16 +22,33 @@
                 </svg>
             </button>
         </div>
-        <div class="flex items-center">
-            <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
-                {{-- <span>{{ substr(Auth::user()->name, 0, 1) }}</span> --}}
-            </div>
-            <div class="ml-2">
-                {{-- <span class="text-sm">{{ Auth::user()->name }}</span> --}}
-                <svg class="h-4 w-4 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {{-- dropdown --}}
+        <div class="relative">
+            <div class="flex items-center cursor-pointer" onclick="toggleDropdown()">
+                <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                    <span class="font-semibold">A</span>
+                </div>
+                <svg class="h-4 w-4 inline-block ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
+            </div>
+            <!-- Dropdown Menu -->
+            <div id="dropdownMenu" class="absolute right-0 hidden bg-white shadow-lg rounded-md mt-2 w-48">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                <form action="{{ route('auth.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Logout
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function toggleDropdown() {
+        const dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.classList.toggle("hidden");
+    }
+</script>
