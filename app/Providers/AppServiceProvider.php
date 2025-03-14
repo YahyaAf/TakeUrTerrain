@@ -2,11 +2,15 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Repositories\Auth\RegisterRepository;
-use App\Services\Auth\RegisterService;
-use App\Repositories\Auth\LoginRepository;
 use App\Services\Auth\LoginService;
+use App\Services\Auth\RegisterService;
+use Illuminate\Support\ServiceProvider;
+use App\Repositories\Auth\LoginRepository;
+use App\Services\Auth\ResetPasswordService;
+use App\Services\Auth\ForgetPasswordService;
+use App\Repositories\Auth\RegisterRepository;
+use App\Repositories\Auth\ResetPasswordRepository;
+use App\Repositories\Auth\ForgetPasswordRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +33,22 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(LoginService::class, function ($app) {
             return new LoginService($app->make(LoginRepository::class));
+        });
+
+        $this->app->bind(ForgetPasswordRepository::class, function () {
+            return new ForgetPasswordRepository();
+        });
+        
+        $this->app->bind(ForgetPasswordService::class, function ($app) {
+            return new ForgetPasswordService($app->make(ForgetPasswordRepository::class));
+        });
+
+        $this->app->bind(ResetPasswordRepository::class, function () {
+            return new ResetPasswordRepository();
+        });
+        
+        $this->app->bind(ResetPasswordService::class, function ($app) {
+            return new ResetPasswordService($app->make(ResetPasswordRepository::class));
         });
     }
 
