@@ -2,75 +2,60 @@
 
 namespace App\Http\Controllers\backOffice;
 
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
-    /**
-     * Display the list of roles.
-     *
-     * @return \Illuminate\View\View
-     */
     public function index()
     {
-        // Static example of roles (replace with database data later)
-        $roles = [
-            ['name' => 'Administrateur', 'description' => 'Gestion complète de l\'application', 'status' => 'active'],
-            ['name' => 'Modérateur', 'description' => 'Modération des utilisateurs et contenus', 'status' => 'active'],
-            ['name' => 'Utilisateur', 'description' => 'Accès limité aux fonctionnalités', 'status' => 'inactive'],
-            ['name' => 'Support', 'description' => 'Assistance technique aux utilisateurs', 'status' => 'active'],
-            ['name' => 'Visiteur', 'description' => 'Accès public aux contenus', 'status' => 'inactive'],
-        ];
-
+        $roles = Role::with('permissions')->get();
         return view('backOffice.roles.index', compact('roles'));
     }
 
-    /**
-     * Show the form to create a new role.
-     *
-     * @return \Illuminate\View\View
-     */
     public function create()
     {
-        return view('backOffice.roles.create');
+        $permissions = Permission::all();
+        return view('backOffice.roles.create', compact('permissions'));
     }
 
-    /**
-     * Show the form to edit the role.
-     *
-     * @param  int  $roleId
-     * @return \Illuminate\View\View
-     */
-    public function edit($roleId)
+    public function store(Request $request)
     {
-        // Example role data, this should be fetched from the database
-        $role = (object)[
-            'id' => $roleId,
-            'name' => 'Administrateur'
-        ];
-
-        return view('backOffice.roles.edit', compact('role'));
-    }
-
-    /**
-     * Update the role in the database.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $roleId
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(Request $request, $roleId)
-    {
-        // Validation for the form data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|unique:roles,name|max:255',
+            'permissions' => 'array'
         ]);
 
-        // Find the role by ID and update it in the database (simulate with static data)
-        // In a real scenario, use: Role::find($roleId)->update(['name' => $request->name]);
+        $role = Role::create(['name' => $request->name]);
+        $role->permissions()->sync($request->permissions);
 
-        // After updating, redirect back to the roles page with a success message
-        return redirect()->route('roles.index')->with('success', 'Rôle mis à jour avec succès');
+        return redirect()->route('roles.index')->with('success', 'Rôle ajouté avec succès.');
+    }
+
+    public function edit(Role $role)
+    {
+        $permissions = Permission::all();
+        return view('backOffice.roles.edit', compact('role', 'permissions'));
+    }
+
+    public function update(Request $request, Role $role)
+    {
+        $request->validate([
+            'name' => 'required|unique:roles,name,' . $role->id . '|max:255',
+            'permissions' => 'array'
+        ]);
+
+        $role->update(['name' => $request->name]);
+        $role->permissions()->sync($request->permissions);
+
+        return redirect()->route('roles.index')->with('success', 'Rôle mis à jour.');
+    }
+
+    public function destroy(Role $role)
+    {
+        $role->delete();
+        return redirect()->route('roles.index')->with('success', 'Rôle supprimé.');
     }
 }

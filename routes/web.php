@@ -30,11 +30,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/backoffice/gestion-users', [GestionUsersController::class, 'index'])->name('gestion-users.index');
-
-    Route::get('/backoffice/roles', [RoleController::class, 'index'])->name('roles.index');
-    Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
-    Route::get('/backoffice/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
-    Route::put('/backoffice/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+   
+    Route::prefix('backoffice')->group(function() {
+        Route::resource('roles', RoleController::class);
+    });
 
     Route::prefix('backoffice')->group(function() {
         Route::resource('permissions', PermissionController::class);
