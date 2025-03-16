@@ -36,13 +36,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/backoffice/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
     Route::put('/backoffice/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
 
-    Route::prefix('backoffice')->name('permissions.')->group(function() {
-        Route::get('/permissions', [PermissionController::class, 'index'])->name('index');
-        Route::get('/permissions/create', [PermissionController::class, 'create'])->name('create');
-        Route::get('/permissions/{permissionId}/edit', [PermissionController::class, 'edit'])->name('edit');
+    Route::prefix('backoffice')->group(function() {
+        Route::resource('permissions', PermissionController::class);
     });
 
-    
 });
 
 Route::prefix('auth')->group(function() {
