@@ -205,7 +205,7 @@
                 <!-- Sport Card 2 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                        <img class="h-64 w-full object-cover object-center" src="/api/placeholder/600/400" alt="Basketball">
+                        <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1577471488278-16eec37ffcc2?q=80&w=2070&auto=format&fit=crop" alt="Basketball">
                         <div class="sport-overlay opacity-0 absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent transition-opacity duration-300 flex items-end">
                             <div class="p-6">
                                 <h3 class="text-white text-xl font-bold">Basketball</h3>
@@ -221,7 +221,7 @@
                 <!-- Sport Card 3 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                        <img class="h-64 w-full object-cover object-center" src="/api/placeholder/600/400" alt="Tennis">
+                        <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?q=80&w=2070&auto=format&fit=crop" alt="Tennis">
                         <div class="sport-overlay opacity-0 absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent transition-opacity duration-300 flex items-end">
                             <div class="p-6">
                                 <h3 class="text-white text-xl font-bold">Tennis</h3>
@@ -237,7 +237,7 @@
                 <!-- Sport Card 4 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                        <img class="h-64 w-full object-cover object-center" src="/api/placeholder/600/400" alt="Volleyball">
+                        <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=2007&auto=format&fit=crop" alt="Volleyball">
                         <div class="sport-overlay opacity-0 absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent transition-opacity duration-300 flex items-end">
                             <div class="p-6">
                                 <h3 class="text-white text-xl font-bold">Volleyball</h3>
@@ -267,7 +267,7 @@
                 <div class="p-4 lg:w-1/3 md:w-1/2">
                     <div class="h-full court-card bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
                         <div class="relative">
-                            <img class="h-56 w-full object-cover object-center" src="/api/placeholder/600/400" alt="Elite Football Arena">
+                            <img class="h-56 w-full object-cover object-center" src="https://images.pexels.com/photos/270085/pexels-photo-270085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Elite Football Arena">
                             <div class="absolute top-4 right-4 bg-white py-1 px-3 rounded-full">
                                 <span class="text-sm font-bold text-cyan-600">⭐ 4.9</span>
                             </div>
@@ -297,7 +297,7 @@
                 <div class="p-4 lg:w-1/3 md:w-1/2">
                     <div class="h-full court-card bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
                         <div class="relative">
-                            <img class="h-56 w-full object-cover object-center" src="/api/placeholder/600/400" alt="Grand Slam Tennis">
+                            <img class="h-56 w-full object-cover object-center" src="https://cdn.pixabay.com/photo/2016/05/09/11/09/tennis-1381230_1280.jpg" alt="Grand Slam Tennis">
                             <div class="absolute top-4 right-4 bg-white py-1 px-3 rounded-full">
                                 <span class="text-sm font-bold text-cyan-600">⭐ 4.8</span>
                             </div>
@@ -327,7 +327,7 @@
                 <div class="p-4 lg:w-1/3 md:w-1/2">
                     <div class="h-full court-card bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
                         <div class="relative">
-                            <img class="h-56 w-full object-cover object-center" src="/api/placeholder/600/400" alt="Pro Basketball Arena">
+                            <img class="h-56 w-full object-cover object-center" src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2069&auto=format&fit=crop" alt="Pro Basketball Arena">
                             <div class="absolute top-4 right-4 bg-white py-1 px-3 rounded-full">
                                 <span class="text-sm font-bold text-cyan-600">⭐ 4.7</span>
                             </div>
@@ -460,7 +460,7 @@
                         </svg>
                         <p class="leading-relaxed mb-6 text-gray-600">SportsPitch has completely transformed how I book courts. No more waiting in lines or making phone calls. Their tennis courts are world-class and always well-maintained.</p>
                         <div class="inline-flex items-center">
-                            <img alt="testimonial" src="/api/placeholder/100/100" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                            <img alt="testimonial" src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
                             <div class="flex-grow flex flex-col pl-4">
                                 <span class="title-font font-medium text-gray-900">Sarah Johnson</span>
                                 <span class="text-gray-500 text-sm">Tennis Enthusiast</span>
@@ -477,7 +477,7 @@
                         </svg>
                         <p class="leading-relaxed mb-6 text-gray-600">Our basketball team uses SportsPitch for all our practices. The booking system is seamless, and we love the modern facilities. Highly recommended for any serious team!</p>
                         <div class="inline-flex items-center">
-                            <img alt="testimonial" src="/api/placeholder/100/100" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                            <img alt="testimonial" src="https://randomuser.me/api/portraits/women/45.jpg" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
                             <div class="flex-grow flex flex-col pl-4">
                                 <span class="title-font font-medium text-gray-900">Michael Torres</span>
                                 <span class="text-gray-500 text-sm">Basketball Coach</span>
@@ -494,7 +494,7 @@
                         </svg>
                         <p class="leading-relaxed mb-6 text-gray-600">The ease of booking on SportsPitch is unmatched. I love that I can see real-time availability and the football pitch conditions. Great value for the quality provided!</p>
                         <div class="inline-flex items-center">
-                            <img alt="testimonial" src="/api/placeholder/100/100" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                            <img alt="testimonial" src="https://randomuser.me/api/portraits/men/76.jpg" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
                             <div class="flex-grow flex flex-col pl-4">
                                 <span class="title-font font-medium text-gray-900">Emma Liu</span>
                                 <span class="text-gray-500 text-sm">Football Player</span>
@@ -647,52 +647,6 @@
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                             </svg>
                         </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- App Download Section -->
-    <section class="py-16 bg-gradient-to-r from-cyan-600 to-blue-600 relative overflow-hidden">
-        <!-- Background Design Elements -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-10">
-            <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-white"></div>
-            <div class="absolute bottom-10 right-20 w-48 h-48 rounded-full bg-white"></div>
-            <div class="absolute top-1/2 left-1/3 w-16 h-16 rounded-full bg-white"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-wrap items-center">
-                <div class="w-full lg:w-1/2 mb-10 lg:mb-0">
-                    <h2 class="text-4xl font-bold text-white mb-4">Take SportsPitch With You</h2>
-                    <p class="text-cyan-100 text-lg mb-8">Download our mobile app to book courts on the go, receive instant notifications, and manage your reservations.</p>
-                    <div class="flex flex-wrap">
-                        <a href="#" class="flex items-center bg-black text-white rounded-xl px-6 py-3 mr-4 mb-4 hover:bg-gray-900 transition duration-300">
-                            <svg class="w-8 h-8 mr-3" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.5646 6.43871C16.1942 4.70499 14.04 3.66285 11.684 3.66285C7.35385 3.66285 3.81487 7.12801 3.81487 11.5752C3.81487 12.941 4.12754 14.2678 4.69423 15.4454L3.69849 20.4258L8.76299 19.4538C9.8998 19.9741 11.158 20.2522 12.4544 20.2522H12.4929C16.8201 20.2522 20.5132 16.7858 20.5132 12.3386C20.5132 10.0421 19.3655 7.84973 17.5646 6.43871ZM11.684 18.9636C10.5364 18.9636 9.42695 18.7004 8.43121 18.2038L8.12002 18.0258L5.13436 18.6083L5.72024 15.7111L5.52296 15.3866C4.96834 14.3559 4.6956 12.9796 4.6956 11.5752C4.6956 7.65832 7.69418 4.52859 11.722 4.52859C13.7251 4.52859 15.5645 5.40429 16.7506 6.85693C17.9383 8.31115 18.5625 10.175 18.5625 12.3386C18.5241 16.2932 15.7126 18.9636 11.684 18.9636ZM15.7126 13.5903C15.5153 13.4906 14.354 12.9193 14.1951 12.8581C14.0361 12.7969 13.9139 12.7673 13.7934 12.9647C13.6729 13.162 13.2164 13.694 13.1342 13.8139C13.052 13.9352 12.9698 13.9473 12.7724 13.8476C11.2431 13.0847 10.2459 12.4869 9.24869 10.7506C8.98696 10.3303 9.49063 10.3643 9.9549 9.45019C10.0371 9.32887 10.0371 9.22764 10.0755 9.12949C10.1139 9.03134 10.1139 8.87121 10.0755 8.74989C10.0371 8.62857 9.53193 7.46812 9.37146 7.07674C9.21247 6.69703 9.05348 6.74822 8.97128 6.74822C8.88909 6.74822 8.76692 6.74822 8.64623 6.74822C8.52554 6.74822 8.32826 6.78776 8.16779 6.98407C8.00732 7.18037 7.39206 7.75213 7.39206 8.91258C7.39206 10.073 8.24798 11.1948 8.37016 11.316C8.49085 11.4373 9.51012 13.0996 11.1581 13.9376C12.3069 14.5354 12.7738 14.5966 13.3789 14.5C13.7934 14.4388 14.7508 13.9257 14.9113 13.4624C15.0717 12.9988 15.0717 12.6074 15.0333 12.5462C14.9949 12.485 14.8742 12.4484 14.6768 12.3884C14.4795 12.3284 15.7126 13.5903 15.7126 13.5903Z"/>
-                            </svg>
-                            <div>
-                                <div class="text-xs">Get it on</div>
-                                <div class="text-xl font-semibold">App Store</div>
-                            </div>
-                        </a>
-                        <a href="#" class="flex items-center bg-black text-white rounded-xl px-6 py-3 mb-4 hover:bg-gray-900 transition duration-300">
-                            <svg class="w-8 h-8 mr-3" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.5225 11.5915L14.6928 10.0346L6.3875 5.3175C6.2175 5.2215 6.0405 5.1705 5.8618 5.1705C5.2658 5.1705 4.7798 5.6565 4.7798 6.2525V18.6545C4.7798 19.0125 4.9538 19.3995 5.2455 19.5735C5.3985 19.6695 5.5755 19.7205 5.7525 19.7205C5.9295 19.7205 6.1065 19.6695 6.2595 19.5735L17.6115 13.4525C17.8955 13.2755 18.0725 12.9855 18.0725 12.6615C18.0708 12.2715 17.8598 11.9265 17.5225 11.5915Z"/>
-                            </svg>
-                            <div>
-                                <div class="text-xs">Download on</div>
-                                <div class="text-xl font-semibold">Google Play</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
-                    <div class="relative">
-                        <img src="/api/placeholder/380/760" alt="Mobile App" class="w-64 relative z-10 rounded-3xl shadow-2xl">
-                        <!-- Phone decoration elements -->
-                        <div class="absolute -top-4 -left-4 w-64 h-full border-2 border-cyan-200 rounded-3xl"></div>
-                        <div class="absolute -bottom-4 -right-4 w-64 h-full border-2 border-cyan-200 rounded-3xl"></div>
                     </div>
                 </div>
             </div>
