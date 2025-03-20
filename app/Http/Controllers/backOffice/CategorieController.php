@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\backOffice;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\backOffice\CategoryRequest;
 
 class CategorieController extends Controller
 {
     public function index()
     {
-        return view('BackOffice.Categories.index');
+        $categories = Category::all();
+        return view('BackOffice.Categories.index',compact('categories'));
     }
 
     public function create()
@@ -17,13 +20,32 @@ class CategorieController extends Controller
         return view('BackOffice.Categories.create');
     }
 
-    public function edit($id)
+    public function store(CategoryRequest $request)
     {
-        return view('BackOffice.Categories.edit', compact('id'));
+        Category::create($request->validated());
+        return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès');
     }
 
-    public function show($id)
+    public function edit(Category $category)
     {
-        return view('BackOffice.Categories.show', compact('id'));
+        return view('BackOffice.Categories.edit', compact('category'));
     }
+
+    public function show(Category $category)
+    {
+        return view('BackOffice.Categories.show', compact('category'));
+    }
+
+    public function update(CategoryRequest $request, Category $category)
+    {
+        $category->update($request->validated());
+        return redirect()->route('categories.index')->with('success', 'Catégorie mise à jour avec succès');
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès');
+    }
+
 }
