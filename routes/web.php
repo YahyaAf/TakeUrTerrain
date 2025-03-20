@@ -3,14 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\backOffice\RoleController;
 use App\Http\Controllers\auth\ResetPasswordController;
+use App\Http\Controllers\BackOffice\SponsorController;
 use App\Http\Controllers\auth\ForgetPasswordController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\backOffice\PermissionController;
 use App\Http\Controllers\backOffice\GestionUsersController;
-use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +27,10 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/categories', CategorieController::class);
     });
 
+    Route::prefix('dashboard')->group(function () {
+        Route::resource('sponsors', SponsorController::class);
+    });
+    
     Route::get('/dashboard/gestion-users', [GestionUsersController::class, 'index'])->name('gestion-users.index');
    
     Route::prefix('dashboard')->group(function() {
