@@ -10,45 +10,28 @@
         </a>
     </div>
 
+    <!-- Affichage dynamique des catégories -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Catégorie 1 -->
+        @foreach ($categories as $category)
         <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center relative">
             <div class="w-16 h-16 bg-blue-500 text-white flex items-center justify-center rounded-full text-xl font-bold">
-                📘
+                📁
             </div>
-            <h2 class="mt-4 text-xl font-semibold text-gray-800">Technologie</h2>
-            <p class="text-gray-500 text-center mt-2">Les dernières innovations et tendances en tech.</p>
+            <h2 class="mt-4 text-xl font-semibold text-gray-800">{{ $category->name }}</h2>
             <div class="mt-4 flex space-x-4">
-                <a href="{{ route('categories.edit') }}" class="text-green-500 hover:text-green-700"><i class="fas fa-edit"></i></a>
-                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                <a href="{{ route('categories.edit', $category->id) }}" class="text-green-500 hover:text-green-700">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <form action="{{ route('categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
             </div>
         </div>
-
-        <!-- Catégorie 2 -->
-        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center relative">
-            <div class="w-16 h-16 bg-green-500 text-white flex items-center justify-center rounded-full text-xl font-bold">
-                🌿
-            </div>
-            <h2 class="mt-4 text-xl font-semibold text-gray-800">Nature</h2>
-            <p class="text-gray-500 text-center mt-2">Explorez la beauté et les merveilles de la nature.</p>
-            <div class="mt-4 flex space-x-4">
-                <a href="#" class="text-green-500 hover:text-green-700"><i class="fas fa-edit"></i></a>
-                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-            </div>
-        </div>
-
-        <!-- Catégorie 3 -->
-        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center relative">
-            <div class="w-16 h-16 bg-red-500 text-white flex items-center justify-center rounded-full text-xl font-bold">
-                🎨
-            </div>
-            <h2 class="mt-4 text-xl font-semibold text-gray-800">Art</h2>
-            <p class="text-gray-500 text-center mt-2">Découvrez les œuvres et talents artistiques.</p>
-            <div class="mt-4 flex space-x-4">
-                <a href="#" class="text-green-500 hover:text-green-700"><i class="fas fa-edit"></i></a>
-                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection
