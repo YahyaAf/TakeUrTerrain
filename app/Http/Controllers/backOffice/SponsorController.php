@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\BackOffice;
 
-use App\Http\Controllers\Controller;
 use App\Models\Sponsor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\backOffice\SponsorRequest;
+use App\Http\Requests\backOffice\UpdateSponsorRequest;
 
 class SponsorController extends Controller
 {
@@ -20,17 +22,12 @@ class SponsorController extends Controller
         return view('backOffice.sponsors.create');
     }
 
-    public function store(Request $request)
+    public function store(SponsorRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
         $logoPath = $request->file('logo')->store('sponsors', 'public');
 
         Sponsor::create([
-            'name' => $validated['name'],
+            'name' => $request->name,
             'logo' => $logoPath,
         ]);
 
@@ -47,22 +44,17 @@ class SponsorController extends Controller
         return view('backOffice.sponsors.edit', compact('sponsor'));
     }
 
-    public function update(Request $request, Sponsor $sponsor)
+    public function update(UpdateSponsorRequest $request, Sponsor $sponsor)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $sponsor->name = $validated['name'];
+        $sponsor->name = $request->name;
 
         if ($request->hasFile('logo')) {
             if ($sponsor->logo) {
                 Storage::disk('public')->delete($sponsor->logo);
             }
+
             $sponsor->logo = $request->file('logo')->store('sponsors', 'public');
         }
-
         $sponsor->save();
 
         return redirect()->route('sponsors.index')->with('success', 'Sponsor mis à jour avec succès !');
