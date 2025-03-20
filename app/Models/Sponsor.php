@@ -13,4 +13,10 @@ class Sponsor extends Model
         'name',
         'logo'
     ];
+
+    public function terrains()
+    {
+        return $this->belongsToMany(Terrain::class);
+    }
+
 }

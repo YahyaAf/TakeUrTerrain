@@ -12,4 +12,9 @@ class Tag extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function terrains()
+    {
+        return $this->belongsToMany(Terrain::class);
+    }
 }
