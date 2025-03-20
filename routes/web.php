@@ -22,20 +22,17 @@ Route::middleware(['auth'])->group(function () {
         return view('backOffice.dashboard');
     })->name('dashboard');
 
-    Route::prefix('backoffice/categories')->group(function () {
-        Route::get('/', [CategorieController::class, 'index'])->name('categories.index');
-        Route::get('/create', [CategorieController::class, 'create'])->name('categories.create');
-        Route::get('/edit', [CategorieController::class, 'edit'])->name('categories.edit');
-        Route::get('/{id}', [CategorieController::class, 'show'])->name('categories.show');
+    Route::prefix('dashboard')->group(function () {
+        Route::resource('/categories', CategorieController::class);
     });
 
-    Route::get('/backoffice/gestion-users', [GestionUsersController::class, 'index'])->name('gestion-users.index');
+    Route::get('/dashboard/gestion-users', [GestionUsersController::class, 'index'])->name('gestion-users.index');
    
-    Route::prefix('backoffice')->group(function() {
+    Route::prefix('dashboard')->group(function() {
         Route::resource('roles', RoleController::class);
     });
 
-    Route::prefix('backoffice')->group(function() {
+    Route::prefix('dashboard')->group(function() {
         Route::resource('permissions', PermissionController::class);
     });
 
