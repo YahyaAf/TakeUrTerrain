@@ -5,6 +5,7 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\backOffice\TagController;
 use App\Http\Controllers\backOffice\RoleController;
 use App\Http\Controllers\auth\ResetPasswordController;
 use App\Http\Controllers\BackOffice\SponsorController;
@@ -39,6 +40,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('dashboard')->group(function() {
         Route::resource('permissions', PermissionController::class);
+    });
+
+    Route::prefix('dashboard/tags')->group(function () {
+        Route::get('/', [TagController::class, 'index'])->name('tags.index');
+        Route::get('/create', [TagController::class, 'create'])->name('tags.create');
+        Route::post('/', [TagController::class, 'store'])->name('tags.store');
+        Route::get('/{tag}/edit', [TagController::class, 'edit'])->name('tags.edit');
+        Route::put('/{tag}', [TagController::class, 'update'])->name('tags.update');
+        Route::delete('/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
     });
 
 });

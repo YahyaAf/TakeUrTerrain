@@ -5,18 +5,19 @@ namespace App\Http\Controllers\backOffice;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\backOffice\TagRequest;
+use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
     public function index()
     {
         $tags = Tag::all();
-        return view('tags.index', compact('tags'));
+        return view('backOffice.tags.index', compact('tags'));
     }
 
     public function create()
     {
-        return view('tags.create');
+        return view('backOffice.tags.create');
     }
 
     public function store(TagRequest $request)
@@ -28,7 +29,7 @@ class TagController extends Controller
 
     public function edit(Tag $tag)
     {
-        return view('tags.edit', compact('tag'));
+        return view('backOffice.tags.edit', compact('tag'));
     }
 
     public function update(TagRequest $request, Tag $tag)
