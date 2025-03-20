@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\backOffice\CategoryRequest;
+use App\Http\Requests\backOffice\UpdateCategoryRequest;
 
 class CategorieController extends Controller
 {
@@ -36,7 +37,7 @@ class CategorieController extends Controller
         return view('BackOffice.Categories.show', compact('category'));
     }
 
-    public function update(CategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
         return redirect()->route('categories.index')->with('success', 'Catégorie mise à jour avec succès');
