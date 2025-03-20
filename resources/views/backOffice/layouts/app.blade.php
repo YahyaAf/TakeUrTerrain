@@ -15,15 +15,23 @@
     </style>
 </head>
 <body class="bg-gray-100">
+    <div class="flex min-h-screen">
+        <div class="w-64 bg-white shadow-md flex-shrink-0">
+            @include('backOffice.layouts.sidebar')
+        </div>
 
-    @include('backOffice.layouts.sidebar') 
-
-    <div class="flex-1 overflow-auto">
-        @include('backOffice.layouts.navbar') 
-        @yield('content')
+        <div class="flex-1 flex flex-col">
+            <div class="bg-white shadow-sm">
+                @include('backOffice.layouts.navbar')
+            </div>
+            
+            <div class="p-4 flex-1 overflow-auto">
+                @yield('content')     
+            </div>
+        </div>
     </div>
+    
     <script>
-        // Worldwide Sales Chart
         const worldwideSalesCtx = document.getElementById('worldwideSalesChart').getContext('2d');
         const worldwideSalesChart = new Chart(worldwideSalesCtx, {
             type: 'bar',
@@ -62,7 +70,6 @@
             }
         });
 
-        // Sales & Revenue Chart
         const salesRevenueCtx = document.getElementById('salesRevenueChart').getContext('2d');
         const salesRevenueChart = new Chart(salesRevenueCtx, {
             type: 'line',
