@@ -29,4 +29,9 @@ class Terrain extends Model
     {
         return $this->belongsToMany(Sponsor::class);
     }
+
+    public function categorie()
+    {
+        return $this->belongsTo(Category::class, 'categorie_id');
+    }
 }

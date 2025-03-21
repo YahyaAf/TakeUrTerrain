@@ -15,8 +15,8 @@ class TerrainController extends Controller
 {
     public function index()
     {
-        $terrains = Terrain::all(); 
-        return view('backOffice.terrains.index', compact('terrains')); 
+        $terrains = Terrain::with('categorie', 'tags', 'sponsors')->get();
+        return view('backOffice.terrains.index', compact('terrains'));
     }
 
     public function create()
