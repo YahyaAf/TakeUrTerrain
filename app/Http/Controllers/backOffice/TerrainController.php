@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\backOffice;
 
-use App\Models\Terrain;
 use App\Models\Tag;
 use App\Models\Sponsor;
+use App\Models\Terrain;
 use Illuminate\Http\Request;
+use App\Http\Requests\backOffice\TerrainRequest;
+use App\Http\Requests\backOffice\UpdateTerrainRequest;
 
 class TerrainController extends Controller
 {
@@ -22,20 +24,8 @@ class TerrainController extends Controller
         return view('terrains.create', compact('tags', 'sponsors'));
     }
 
-    public function store(Request $request)
+    public function store(TerrainRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'photo' => 'required|string',
-            'prix' => 'required|numeric',
-            'categorie' => 'required|string',
-            'statut' => 'required|string|in:disponible,réservé,indisponible',
-            'adresse' => 'required|string',
-            'tags' => 'array|exists:tags,id', 
-            'sponsors' => 'array|exists:sponsors,id', 
-        ]);
-
         $terrain = Terrain::create($request->only([
             'name', 'description', 'photo', 'prix', 'categorie', 'statut', 'adresse'
         ]));
@@ -48,8 +38,9 @@ class TerrainController extends Controller
             $terrain->sponsors()->attach($request->sponsors);
         }
 
-        return redirect()->route('terrains.index')->with('success', 'Terrain created successfully!');
+        return redirect()->route('terrains.index')->with('success', 'Terrain créé avec succès!');
     }
+
 
     public function show(Terrain $terrain)
     {
@@ -63,20 +54,8 @@ class TerrainController extends Controller
         return view('terrains.edit', compact('terrain', 'tags', 'sponsors'));
     }
 
-    public function update(Request $request, Terrain $terrain)
+    public function update(UpdateTerrainRequest $request, Terrain $terrain)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'photo' => 'required|string',
-            'prix' => 'required|numeric',
-            'categorie' => 'required|string',
-            'statut' => 'required|string|in:disponible,réservé,indisponible',
-            'adresse' => 'required|string',
-            'tags' => 'array|exists:tags,id',
-            'sponsors' => 'array|exists:sponsors,id',
-        ]);
-
         $terrain->update($request->only([
             'name', 'description', 'photo', 'prix', 'categorie', 'statut', 'adresse'
         ]));
@@ -89,8 +68,9 @@ class TerrainController extends Controller
             $terrain->sponsors()->sync($request->sponsors);
         }
 
-        return redirect()->route('terrains.index')->with('success', 'Terrain updated successfully!');
+        return redirect()->route('terrains.index')->with('success', 'Terrain mis à jour avec succès!');
     }
+
 
     public function destroy(Terrain $terrain)
     {
