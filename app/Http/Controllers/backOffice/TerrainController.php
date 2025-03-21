@@ -5,7 +5,9 @@ namespace App\Http\Controllers\backOffice;
 use App\Models\Tag;
 use App\Models\Sponsor;
 use App\Models\Terrain;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\backOffice\TerrainRequest;
 use App\Http\Requests\backOffice\UpdateTerrainRequest;
 
@@ -14,26 +16,37 @@ class TerrainController extends Controller
     public function index()
     {
         $terrains = Terrain::all(); 
-        return view('terrains.index', compact('terrains')); 
+        return view('backOffice.terrains.index', compact('terrains')); 
     }
 
     public function create()
     {
         $tags = Tag::all(); 
         $sponsors = Sponsor::all(); 
-        return view('terrains.create', compact('tags', 'sponsors'));
+        $categories = Category::all(); 
+        return view('backOffice.terrains.create', compact('tags', 'sponsors','categories'));
     }
 
     public function store(TerrainRequest $request)
     {
-        $terrain = Terrain::create($request->only([
-            'name', 'description', 'photo', 'prix', 'categorie', 'statut', 'adresse'
-        ]));
+        $photoPath = null;
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('terrains', 'public');
+        }
+
+        $terrain = Terrain::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'photo' => $photoPath,
+            'prix' => $request->prix,
+            'categorie_id' => $request->categorie_id,
+            'disponibility' => $request->disponibility,
+            'adresse' => $request->adresse,
+        ]);
 
         if ($request->has('tags')) {
             $terrain->tags()->attach($request->tags);
         }
-
         if ($request->has('sponsors')) {
             $terrain->sponsors()->attach($request->sponsors);
         }
@@ -44,14 +57,14 @@ class TerrainController extends Controller
 
     public function show(Terrain $terrain)
     {
-        return view('terrains.show', compact('terrain'));
+        return view('backOffice.terrains.show', compact('terrain'));
     }
 
     public function edit(Terrain $terrain)
     {
         $tags = Tag::all(); 
         $sponsors = Sponsor::all(); 
-        return view('terrains.edit', compact('terrain', 'tags', 'sponsors'));
+        return view('backOffice.terrains.edit', compact('terrain', 'tags', 'sponsors'));
     }
 
     public function update(UpdateTerrainRequest $request, Terrain $terrain)

@@ -24,10 +24,10 @@ class UpdateTerrainRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'photo' => 'required|string',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'prix' => 'required|numeric',
-            'categorie' => 'required|exists:categories,id', 
-            'statut' => 'required|string|in:disponible,indisponible',
+            'categorie_id' => 'required|exists:categories,id', 
+            'disponibility' => 'required|string|in:disponible,indisponible',
             'adresse' => 'required|string',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',

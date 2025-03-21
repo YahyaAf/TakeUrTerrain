@@ -9,6 +9,7 @@ use App\Http\Controllers\backOffice\TagController;
 use App\Http\Controllers\backOffice\RoleController;
 use App\Http\Controllers\auth\ResetPasswordController;
 use App\Http\Controllers\BackOffice\SponsorController;
+use App\Http\Controllers\backOffice\TerrainController;
 use App\Http\Controllers\auth\ForgetPasswordController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\backOffice\PermissionController;
@@ -49,6 +50,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{tag}/edit', [TagController::class, 'edit'])->name('tags.edit');
         Route::put('/{tag}', [TagController::class, 'update'])->name('tags.update');
         Route::delete('/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
+    });
+
+    Route::prefix('dashboard')->group(function() {
+        Route::resource('terrains', TerrainController::class);
     });
 
 });
