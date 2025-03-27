@@ -15,7 +15,8 @@ class Terrain extends Model
         'photo',
         'categorie_id',
         'prix', 
-        'categorie', 
+        'categorie',
+        'disponibility',
         'statut', 
         'adresse',
     ];

@@ -57,32 +57,48 @@ class TerrainController extends Controller
 
     public function show(Terrain $terrain)
     {
+        $terrain->load(['tags', 'sponsors', 'categorie']);
         return view('backOffice.terrains.show', compact('terrain'));
     }
+
 
     public function edit(Terrain $terrain)
     {
         $tags = Tag::all(); 
         $sponsors = Sponsor::all(); 
-        return view('backOffice.terrains.edit', compact('terrain', 'tags', 'sponsors'));
+        $categories = Category::all(); 
+        return view('backOffice.terrains.edit', compact('terrain', 'tags', 'sponsors','categories'));
     }
 
     public function update(UpdateTerrainRequest $request, Terrain $terrain)
     {
-        $terrain->update($request->only([
-            'name', 'description', 'photo', 'prix', 'categorie', 'statut', 'adresse'
-        ]));
-
-        if ($request->has('tags')) {
-            $terrain->tags()->sync($request->tags);
+        $photoPath = $terrain->photo;
+        if ($request->hasFile('photo')) {
+            if ($terrain->photo) {
+                Storage::disk('public')->delete($terrain->photo);
+            }
+            $photoPath = $request->file('photo')->store('terrains', 'public');
         }
 
-        if ($request->has('sponsors')) {
-            $terrain->sponsors()->sync($request->sponsors);
-        }
+        $terrain->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'photo' => $photoPath,
+            'prix' => $request->prix,
+            'categorie_id' => $request->categorie_id,
+            'disponibility' => $request->disponibility,
+            'adresse' => $request->adresse,
+        ]);
+
+        $terrain->tags()->sync($request->tags ?? []);
+
+
+        $terrain->sponsors()->sync($request->sponsors ?? []);
 
         return redirect()->route('terrains.index')->with('success', 'Terrain mis à jour avec succès!');
     }
+
+
 
 
     public function destroy(Terrain $terrain)
