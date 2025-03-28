@@ -61,6 +61,13 @@
             </svg>
             <span>Tags</span>
         </a>
+
+        <a href="{{ route('terrains.index') }}" class="flex items-center px-4 py-2.5 mb-1 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            <span>Terrains</span>
+        </a>
         
         <div class="mb-2 mt-6 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Administration</div>
         
@@ -85,27 +92,12 @@
             <span>Permissions</span>
         </a>
     </div>
-    
-    <!-- Footer with logout -->
-    <div class="absolute bottom-0 w-full border-t border-gray-100 p-4">
-        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-           class="flex items-center px-4 py-2.5 rounded-lg text-red-600 hover:bg-red-50 transition-colors duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-            <span>Déconnexion</span>
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-            @csrf
-        </form>
-    </div>
 </div>
 
 <!-- Add this for mobile responsiveness -->
 <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
 
 <script>
-    // Add this to your main JS file or inline
     document.addEventListener('DOMContentLoaded', function() {
         const sidebarToggle = document.getElementById('sidebar-toggle');
         const sidebar = document.getElementById('sidebar');
@@ -124,7 +116,6 @@
             overlay.addEventListener('click', toggleSidebar);
         }
         
-        // Close sidebar by default on mobile
         if (window.innerWidth < 1024) {
             sidebar.classList.add('-translate-x-full');
         }
