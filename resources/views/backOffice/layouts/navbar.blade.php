@@ -34,22 +34,39 @@
        
         <div class="relative" x-data="{ open: false }">
             <div class="flex items-center space-x-2 cursor-pointer" @click="open = !open">
-                <div class="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-md">
-                    <span class="font-semibold text-base">A</span>
+                <div class="h-10 w-10 rounded-full overflow-hidden shadow-md">
+                    @if(Auth::user()->photo)
+                        <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="Photo de profil" class="h-10 w-10 object-cover rounded-full">
+                    @else
+                        <div class="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                            <span class="font-semibold text-base">{{ substr(Auth::user()->name ?? 'A', 0, 1) }}</span>
+                        </div>
+                    @endif
                 </div>
                 <div class="hidden md:block">
-                    <div class="text-sm font-medium text-gray-700">Admin User</div>
+                    <div class="text-sm font-medium text-gray-700">{{ Auth::user()->name ?? 'Admin User' }}</div>
                     <div class="text-xs text-gray-500">Administrator</div>
                 </div>
                 <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
             </div>
-            
+        
             <div id="dropdownMenu" class="absolute right-0 hidden bg-white shadow-lg rounded-lg mt-2 w-48 py-1 z-10 border border-gray-200">
-                <div class="px-4 py-2 border-b border-gray-100">
-                    <p class="text-sm font-semibold text-gray-700">Admin User</p>
-                    <p class="text-xs text-gray-500">admin@example.com</p>
+                <div class="px-4 py-2 border-b border-gray-100 flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full overflow-hidden shadow-md">
+                        @if(Auth::user()->photo)
+                            <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="Photo de profil" class="h-10 w-10 object-cover rounded-full">
+                        @else
+                            <div class="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                                <span class="font-semibold text-base">{{ substr(Auth::user()->name ?? 'A', 0, 1) }}</span>
+                            </div>
+                        @endif
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-700">{{ Auth::user()->name ?? 'Admin User' }}</p>
+                        <p class="text-xs text-gray-500">{{ Auth::user()->email ?? 'admin@example.com' }}</p>
+                    </div>
                 </div>
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     <i class="fas fa-user mr-2 text-gray-400"></i> My Profile
@@ -65,7 +82,7 @@
                     </button>
                 </form>
             </div>
-        </div>
+        </div>        
     </div>
 </div>
 
