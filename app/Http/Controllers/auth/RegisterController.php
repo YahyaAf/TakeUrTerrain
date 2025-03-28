@@ -27,4 +27,5 @@ class RegisterController extends Controller
         return redirect()->route('dashboard')->with('success', 'Compte créé avec succès, en attente de validation.');
     }
 
+
 }

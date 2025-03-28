@@ -45,7 +45,7 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="text-sm font-medium text-gray-700">{{ Auth::user()->name ?? 'Admin User' }}</div>
-                    <div class="text-xs text-gray-500">Administrator</div>
+                    <div class="text-xs text-gray-500">{{ Auth::user()->roles->first()->name ?? 'Aucun rôle' }}</div>
                 </div>
                 <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />

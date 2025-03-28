@@ -25,7 +25,9 @@
             </div>
             <div>
                 <p class="font-medium text-gray-800">{{ Auth::user()->name ?? 'Admin User' }}</p>
-                <p class="text-xs font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-0.5 inline-block mt-1">Admin</p>
+                <p class="text-xs font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-0.5 inline-block mt-1">
+                    {{ Auth::user()->roles->first()->name ?? 'Aucun rôle' }}
+                </p>                
             </div>
         </div>
     </div>
