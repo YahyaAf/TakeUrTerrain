@@ -14,16 +14,24 @@
     <!-- User profile -->
     <div class="p-4 border-b border-gray-100">
         <div class="flex items-center space-x-3">
-            <div class="h-10 w-10 rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 flex items-center justify-center text-white shadow-md">
-                <span>{{ substr(Auth::user()->name ?? 'A', 0, 1) }}</span>
+            <div class="h-10 w-10 rounded-full overflow-hidden shadow-md">
+                @if(Auth::user()->photo)
+                    <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="Photo de profil" class="h-10 w-10 object-cover rounded-full">
+                @else
+                    <div class="h-10 w-10 rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 flex items-center justify-center text-white">
+                        <span>{{ substr(Auth::user()->name ?? 'A', 0, 1) }}</span>
+                    </div>
+                @endif
             </div>
             <div>
                 <p class="font-medium text-gray-800">{{ Auth::user()->name ?? 'Admin User' }}</p>
-                <p class="text-xs font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-0.5 inline-block mt-1">Admin</p>
+                <p class="text-xs font-medium text-gray-500 bg-gray-100 rounded-full px-2 py-0.5 inline-block mt-1">
+                    {{ Auth::user()->roles->first()->name ?? 'Aucun rôle' }}
+                </p>                
             </div>
         </div>
     </div>
-
+    
     <!-- Navigation -->
     <div class="py-4 px-2">
         <div class="mb-2 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Main</div>

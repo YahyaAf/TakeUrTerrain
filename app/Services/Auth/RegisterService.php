@@ -21,4 +21,5 @@ class RegisterService
         Auth::login($user);
         return $user;
     }
+
 }

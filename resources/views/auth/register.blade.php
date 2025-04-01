@@ -29,7 +29,7 @@
                     <p class="text-gray-600">Rejoignez Terrain Reservation</p>
                 </div>
 
-                <form method="POST" action="{{ route('register.post') }}" class="space-y-6">
+                <form method="POST" action="{{ route('register.post') }}" enctype="multipart/form-data" class="space-y-6">
                     @csrf
                     @if ($errors->any())
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
@@ -72,6 +72,16 @@
                             placeholder="vous@exemple.com"
                         >
                         @error('email')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-envelope mr-2 text-blue-500"></i>Photo
+                        </label>
+                        <input type="file" name="photo" accept="image/*">
+                        @error('photo')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
