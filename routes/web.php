@@ -32,8 +32,12 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::resource('sponsors', SponsorController::class);
     });
-    
-    Route::get('/dashboard/gestion-users', [GestionUsersController::class, 'index'])->name('gestion-users.index');
+
+    Route::prefix('dashboard')->middleware('auth')->group(function () {
+        Route::get('gestion-users', [GestionUsersController::class, 'index'])->name('backOffice.gestionUsers.index');
+        Route::get('gestion-users/{id}/edit', [GestionUsersController::class, 'edit'])->name('backOffice.gestionUsers.edit');
+        Route::put('gestion-users/{id}', [GestionUsersController::class, 'update'])->name('backOffice.gestionUsers.update');
+    });
    
     Route::prefix('dashboard')->group(function() {
         Route::resource('roles', RoleController::class);
