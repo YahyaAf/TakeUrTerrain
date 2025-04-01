@@ -33,10 +33,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('sponsors', SponsorController::class);
     });
 
-    Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::prefix('dashboard')->group(function () {
         Route::get('gestion-users', [GestionUsersController::class, 'index'])->name('backOffice.gestionUsers.index');
         Route::get('gestion-users/{id}/edit', [GestionUsersController::class, 'edit'])->name('backOffice.gestionUsers.edit');
         Route::put('gestion-users/{id}', [GestionUsersController::class, 'update'])->name('backOffice.gestionUsers.update');
+        Route::delete('gestion-users/{id}', [GestionUsersController::class, 'destroy'])->name('backOffice.gestionUsers.destroy');
     });
    
     Route::prefix('dashboard')->group(function() {

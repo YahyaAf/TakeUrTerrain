@@ -11,13 +11,13 @@ class GestionUsersController extends Controller
 {
     public function index()
     {
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->get(); 
         return view('backOffice.gestionUsers.index', compact('users'));
     }
 
     public function edit($id)
     {
-        $user = User::findOrFail($id); 
+        $user = User::findOrFail($id);
         $roles = Role::all(); 
         return view('backOffice.gestionUsers.edit', compact('user', 'roles'));
     }
@@ -27,15 +27,29 @@ class GestionUsersController extends Controller
         $request->validate([
             'role' => 'required|exists:roles,id', 
             'statut' => 'required', 
+            'banned' => 'required|boolean',
         ]);
 
-        $user = User::findOrFail($id);
-
+        $user = User::findOrFail($id); 
+        
         $user->roles()->sync([$request->role]);
 
         $user->statut = $request->statut;
+
+        $user->banned = $request->banned; 
         $user->save();
 
-        return redirect()->route('backOffice.gestionUsers.index')->with('success', 'Utilisateur mis à jour avec succès');
+        return redirect()->route('backOffice.gestionUsers.index')
+                        ->with('success', 'Utilisateur mis à jour avec succès');
+    }
+
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id); 
+        $user->delete();
+        return redirect()->route('backOffice.gestionUsers.index')
+                         ->with('success', 'Utilisateur supprimé avec succès');
     }
 }
+
