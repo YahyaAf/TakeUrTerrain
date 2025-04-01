@@ -11,6 +11,8 @@ class Terrain extends Model
 
     protected $fillable = [
         'name',
+        'latitude',
+        'longitude',
         'description',
         'photo',
         'categorie_id',

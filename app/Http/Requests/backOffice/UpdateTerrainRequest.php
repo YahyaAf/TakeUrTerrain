@@ -24,6 +24,8 @@ class UpdateTerrainRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'latitude'=>'required|numeric',
+            'longitude'=>'required|numeric',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'prix' => 'required|numeric',
             'categorie_id' => 'required|exists:categories,id', 

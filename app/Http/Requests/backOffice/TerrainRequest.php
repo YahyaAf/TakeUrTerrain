@@ -25,6 +25,8 @@ class TerrainRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'latitude'=>'required|numeric',
+            'longitude'=>'required|numeric',
             'prix' => 'required|numeric',
             'categorie_id' => 'required|exists:categories,id', 
             'disponibility' => 'required|string|in:disponible,indisponible', 

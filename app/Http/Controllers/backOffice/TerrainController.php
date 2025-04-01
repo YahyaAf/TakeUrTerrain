@@ -37,6 +37,8 @@ class TerrainController extends Controller
         $terrain = Terrain::create([
             'name' => $request->name,
             'description' => $request->description,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
             'photo' => $photoPath,
             'prix' => $request->prix,
             'categorie_id' => $request->categorie_id,
@@ -83,6 +85,8 @@ class TerrainController extends Controller
         $terrain->update([
             'name' => $request->name,
             'description' => $request->description,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
             'photo' => $photoPath,
             'prix' => $request->prix,
             'categorie_id' => $request->categorie_id,
