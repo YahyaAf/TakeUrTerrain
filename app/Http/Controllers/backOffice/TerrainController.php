@@ -4,18 +4,26 @@ namespace App\Http\Controllers\backOffice;
 
 use App\Models\Tag;
 use App\Models\Sponsor;
-use App\Models\Terrain;
 use App\Models\Category;
+use App\Models\Terrain;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\Terrain\TerrainService;
 use App\Http\Requests\backOffice\TerrainRequest;
 use App\Http\Requests\backOffice\UpdateTerrainRequest;
 
 class TerrainController extends Controller
 {
+    protected $terrainService;
+
+    public function __construct(TerrainService $terrainService)
+    {
+        $this->terrainService = $terrainService;
+    }
+
     public function index()
     {
-        $terrains = Terrain::with('categorie', 'tags', 'sponsors')->get();
+        $terrains = $this->terrainService->getAllTerrains();
         return view('backOffice.terrains.index', compact('terrains'));
     }
 
@@ -24,27 +32,12 @@ class TerrainController extends Controller
         $tags = Tag::all(); 
         $sponsors = Sponsor::all(); 
         $categories = Category::all(); 
-        return view('backOffice.terrains.create', compact('tags', 'sponsors','categories'));
+        return view('backOffice.terrains.create', compact('tags', 'sponsors', 'categories'));
     }
 
     public function store(TerrainRequest $request)
     {
-        $photoPath = null;
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('terrains', 'public');
-        }
-
-        $terrain = Terrain::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'photo' => $photoPath,
-            'prix' => $request->prix,
-            'categorie_id' => $request->categorie_id,
-            'disponibility' => $request->disponibility,
-            'adresse' => $request->adresse,
-        ]);
+        $terrain = $this->terrainService->createTerrain($request->all());
 
         if ($request->has('tags')) {
             $terrain->tags()->attach($request->tags);
@@ -56,61 +49,37 @@ class TerrainController extends Controller
         return redirect()->route('terrains.index')->with('success', 'Terrain créé avec succès!');
     }
 
-
-    public function show(Terrain $terrain)
+    public function show($id)
     {
-        $terrain->load(['tags', 'sponsors', 'categorie']);
+        $terrain = $this->terrainService->getTerrainById($id);
         return view('backOffice.terrains.show', compact('terrain'));
     }
 
-
     public function edit(Terrain $terrain)
     {
-        $tags = Tag::all(); 
-        $sponsors = Sponsor::all(); 
-        $categories = Category::all(); 
-        return view('backOffice.terrains.edit', compact('terrain', 'tags', 'sponsors','categories'));
+        $tags = Tag::all();
+        $sponsors = Sponsor::all();
+        $categories = Category::all();
+        return view('backOffice.terrains.edit', compact('terrain', 'tags', 'sponsors', 'categories'));
     }
 
     public function update(UpdateTerrainRequest $request, Terrain $terrain)
     {
-        $photoPath = $terrain->photo;
-        if ($request->hasFile('photo')) {
-            if ($terrain->photo) {
-                Storage::disk('public')->delete($terrain->photo);
-            }
-            $photoPath = $request->file('photo')->store('terrains', 'public');
-        }
-
-        $terrain->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'photo' => $photoPath,
-            'prix' => $request->prix,
-            'categorie_id' => $request->categorie_id,
-            'disponibility' => $request->disponibility,
-            'adresse' => $request->adresse,
-        ]);
+        $this->terrainService->updateTerrain($terrain, $request->all());
 
         $terrain->tags()->sync($request->tags ?? []);
-
-
         $terrain->sponsors()->sync($request->sponsors ?? []);
 
         return redirect()->route('terrains.index')->with('success', 'Terrain mis à jour avec succès!');
     }
 
-
-
-
     public function destroy(Terrain $terrain)
     {
-        $terrain->tags()->detach(); 
-        $terrain->sponsors()->detach(); 
-        $terrain->delete();
+        $this->terrainService->deleteTerrain($terrain);
 
-        return redirect()->route('terrains.index')->with('success', 'Terrain deleted successfully!');
+        $terrain->tags()->detach();
+        $terrain->sponsors()->detach();
+
+        return redirect()->route('terrains.index')->with('success', 'Terrain supprimé avec succès!');
     }
 }
