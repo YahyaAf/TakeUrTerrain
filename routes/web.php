@@ -14,6 +14,7 @@ use App\Http\Controllers\auth\ForgetPasswordController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\backOffice\PermissionController;
 use App\Http\Controllers\backOffice\GestionUsersController;
+use App\Http\Controllers\frontOffice\CategoryTerrainController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -60,6 +61,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('dashboard')->group(function() {
         Route::resource('terrains', TerrainController::class);
     });
+
+    Route::get('/terrains', [CategoryTerrainController::class, 'index'])->name('frontOffice.terrains.index');
 
 });
 

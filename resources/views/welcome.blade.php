@@ -38,9 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-1/2 lg:py-6 text-center">
-                <img class="w-full md:w-4/5 z-50 mx-auto animate-float custom-shadow rounded-2xl" src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1000&auto=format&fit=crop" alt="Sports court visualization">
-            </div>
+            
         </div>
         
         <div class="w-full text-gray-50">
@@ -239,79 +237,116 @@
     </section>
 
     <!-- How It Works -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col text-center w-full mb-12">
-                <p class="font-medium text-cyan-600 uppercase tracking-wide mb-2">Simple Process</p>
-                <h2 class="text-4xl font-bold mb-2 text-gray-800">How It Works</h2>
-                <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-600">Book your favorite sports court in just three easy steps</p>
-            </div>
-            <div class="flex flex-wrap -m-4">
-                <!-- Step 1 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-2xl h-full bg-white p-8 flex-col shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 mr-4 inline-flex items-center justify-center rounded-full bg-cyan-100 text-cyan-600 flex-shrink-0">
-                                <span class="text-xl font-bold">1</span>
-                            </div>
-                            <h2 class="text-gray-900 text-lg font-medium">Search & Discover</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="text-gray-600 text-base">Find the perfect court by location, sport type, price range and available amenities.</p>
-                            <div class="mt-4 text-cyan-600 inline-flex items-center">
-                                Browse Courts
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+    <section class="py-20 bg-gradient-to-br from-cyan-50 to-blue-50 relative overflow-hidden">
+        <!-- Background decorations -->
+        <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-cyan-100 opacity-30 -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-blue-100 opacity-30 translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+          <!-- Section Header -->
+          <div class="flex flex-col items-center mb-16">
+            <span class="inline-block px-4 py-1 rounded-full bg-cyan-100 text-cyan-700 font-semibold text-sm tracking-wider uppercase mb-3">Simple Process</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2 relative">
+              How It <span class="text-cyan-600">Works</span>
+              <div class="absolute h-1 w-20 bg-cyan-500 bottom-0 left-1/2 transform -translate-x-1/2 mt-4"></div>
+            </h2>
+            <p class="text-gray-600 max-w-2xl text-center mt-6">Reserve your favorite sports court in just three simple steps and get ready to play!</p>
+          </div>
+          
+          <!-- Process Steps -->
+          <div class="flex flex-col md:flex-row gap-8">
+            <!-- Step 1 -->
+            <div class="flex-1 group">
+              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
+                <!-- Background accent -->
+                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
+                
+                <!-- Icon & Number -->
+                <div class="flex items-center justify-between mb-6 relative">
+                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-search text-xl"></i>
+                  </div>
+                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">01</span>
                 </div>
                 
-                <!-- Step 2 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-2xl h-full bg-white p-8 flex-col shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 mr-4 inline-flex items-center justify-center rounded-full bg-cyan-100 text-cyan-600 flex-shrink-0">
-                                <span class="text-xl font-bold">2</span>
-                            </div>
-                            <h2 class="text-gray-900 text-lg font-medium">Book & Pay</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="text-gray-600 text-base">Select your preferred date and time slot, then complete your booking with secure payment.</p>
-                            <div class="mt-4 text-cyan-600 inline-flex items-center">
-                                View Payment Options
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Content -->
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Search & Discover</h3>
+                <p class="text-gray-600 mb-6">Find the perfect court by location, sport type, price range and available amenities.</p>
+                
+                <!-- Action Button -->
+                <div class="relative">
+                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
+                    Browse Courts
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="flex-1 group">
+              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
+                <!-- Background accent -->
+                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
+                
+                <!-- Icon & Number -->
+                <div class="flex items-center justify-between mb-6 relative">
+                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-calendar-check text-xl"></i>
+                  </div>
+                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">02</span>
                 </div>
                 
-                <!-- Step 3 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-2xl h-full bg-white p-8 flex-col shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 mr-4 inline-flex items-center justify-center rounded-full bg-cyan-100 text-cyan-600 flex-shrink-0">
-                                <span class="text-xl font-bold">3</span>
-                            </div>
-                            <h2 class="text-gray-900 text-lg font-medium">Play & Enjoy</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="text-gray-600 text-base">Receive instant confirmation and check-in details. Just show up and enjoy your game!</p>
-                            <div class="mt-4 text-cyan-600 inline-flex items-center">
-                                Read FAQs
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Content -->
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Book & Pay</h3>
+                <p class="text-gray-600 mb-6">Select your preferred date and time slot, then complete your booking with secure payment.</p>
+                
+                <!-- Action Button -->
+                <div class="relative">
+                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
+                    View Payment Options
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
                 </div>
+              </div>
             </div>
+            
+            <!-- Step 3 -->
+            <div class="flex-1 group">
+              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
+                <!-- Background accent -->
+                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
+                
+                <!-- Icon & Number -->
+                <div class="flex items-center justify-between mb-6 relative">
+                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-basketball-ball text-xl"></i>
+                  </div>
+                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">03</span>
+                </div>
+                
+                <!-- Content -->
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Play & Enjoy</h3>
+                <p class="text-gray-600 mb-6">Receive instant confirmation and check-in details. Just show up and enjoy your game!</p>
+                
+                <!-- Action Button -->
+                <div class="relative">
+                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
+                    Read FAQs
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
     <!-- Testimonials Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
@@ -371,31 +406,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="py-12 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden">
-                <!-- Decorative elements -->
-                <div class="absolute -right-12 -top-12 w-40 h-40 rounded-full bg-cyan-50"></div>
-                <div class="absolute -left-12 -bottom-12 w-40 h-40 rounded-full bg-blue-50"></div>
-                
-                <div class="relative z-10">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Stay Updated</h3>
-                        <p class="text-gray-600">Subscribe to our newsletter for exclusive offers, new court openings and sports tips.</p>
-                    </div>
-                    <form class="flex flex-col md:flex-row gap-4">
-                        <input type="email" placeholder="Enter your email" class="flex-grow px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                        <button type="submit" class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-300 whitespace-nowrap">
-                            Subscribe Now
-                        </button>
-                    </form>
-                    <p class="text-xs text-gray-500 mt-4 text-center">We respect your privacy. Unsubscribe at any time.</p>
                 </div>
             </div>
         </div>
