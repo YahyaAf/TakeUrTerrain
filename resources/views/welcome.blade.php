@@ -1,13 +1,12 @@
 @extends('frontOffice.layouts.app')
 
 @section('content')
-    <div class="pt-24 bg-gradient-to-r from-cyan-500 to-blue-500" style="background-image: url('https://images.unsplash.com/photo-1552168324-d612d77725e3?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-blend-mode: overlay;">
+    <div class="pt-24 bg-gradient-to-r from-cyan-500 to-blue-500" style="background-image: url('{{ asset('img/1338700.png') }}'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;">
         <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <div class="flex flex-col w-full lg:w-1/2 justify-center items-start pt-12 pb-24 px-6">
                 <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl mb-4 text-white">Book Your Court in Seconds</h1>
                 <p class="leading-normal mb-8 text-xl text-white opacity-80">Reserve premium sports courts for football, basketball, tennis and more - anytime, anywhere.</p>
                 
-                <!-- Search Box -->
                 <div class="glass-effect rounded-2xl p-6 shadow-xl w-full max-w-lg">
                     <h3 class="font-bold text-lg mb-4 text-white">Find Available Courts</h3>
                     <div class="flex flex-col space-y-4">
@@ -44,16 +43,16 @@
             </div>
         </div>
         
-        <!-- Wave Separator -->
-        <div class="w-full">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-24 transform rotate-180">
-                <path fill="#f9fafb" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+        <div class="w-full text-gray-50">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-24 transform rotate-180 fill-current">
+                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
             </svg>
         </div>
+        
     </div>
 
     <!-- Sport Categories -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-gray-50" >
         <div class="container mx-auto px-4">
             <div class="flex flex-col text-center w-full mb-12">
                 <p class="font-medium text-cyan-600 uppercase tracking-wide mb-2">Find Your Game</p>
@@ -61,7 +60,6 @@
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-600">Premium courts available for all your favorite sports</p>
             </div>
             <div class="flex flex-wrap -m-4">
-                <!-- Sport Card 1 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1556056504-5c7696c4c28d?q=80&w=2076&auto=format&fit=crop" alt="Football">
@@ -76,8 +74,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Sport Card 2 -->
+            
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1577471488278-16eec37ffcc2?q=80&w=2070&auto=format&fit=crop" alt="Basketball">
@@ -93,7 +90,6 @@
                     </div>
                 </div>
                 
-                <!-- Sport Card 3 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?q=80&w=2070&auto=format&fit=crop" alt="Tennis">
@@ -109,7 +105,6 @@
                     </div>
                 </div>
                 
-                <!-- Sport Card 4 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=2007&auto=format&fit=crop" alt="Volleyball">
