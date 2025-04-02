@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\backOffice;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\backOffice\UpdateUserRequest;
 
 class GestionUsersController extends Controller
 {
@@ -22,20 +23,13 @@ class GestionUsersController extends Controller
         return view('backOffice.gestionUsers.edit', compact('user', 'roles'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $request->validate([
-            'role' => 'required|exists:roles,id', 
-            'statut' => 'required', 
-            'banned' => 'required|boolean',
-        ]);
-
         $user = User::findOrFail($id); 
         
         $user->roles()->sync([$request->role]);
 
         $user->statut = $request->statut;
-
         $user->banned = $request->banned; 
         $user->save();
 
