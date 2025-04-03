@@ -9,17 +9,14 @@ use App\Http\Controllers\Controller;
 
 class CategoryTerrainController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $categories = Category::all();
-
-        if ($request->has('category')) {
-            $terrains = Terrain::where('categorie_id', $request->category)->get();
-        } else {
-            $terrains = Terrain::all();
-        }
+        $terrains = Terrain::with(['sponsors', 'tags', 'categorie'])->paginate(9); 
 
         return view('frontOffice.terrains.index', compact('terrains', 'categories'));
     }
+
+
 }
 
