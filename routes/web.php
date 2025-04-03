@@ -11,9 +11,11 @@ use App\Http\Controllers\auth\ResetPasswordController;
 use App\Http\Controllers\BackOffice\SponsorController;
 use App\Http\Controllers\backOffice\TerrainController;
 use App\Http\Controllers\auth\ForgetPasswordController;
+use App\Http\Controllers\frontOffice\ContactController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\backOffice\PermissionController;
 use App\Http\Controllers\backOffice\GestionUsersController;
+use App\Http\Controllers\frontOffice\CategoryTerrainController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -60,6 +62,11 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('dashboard')->group(function() {
         Route::resource('terrains', TerrainController::class);
     });
+
+    Route::get('/terrains', [CategoryTerrainController::class, 'index'])->name('frontOffice.terrains.index');
+    Route::get('/terrains/{id}', [CategoryTerrainController::class, 'show'])->name('frontOffice.terrains.show');
+
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 
 });
 

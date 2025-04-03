@@ -1,13 +1,12 @@
 @extends('frontOffice.layouts.app')
 
 @section('content')
-    <div class="pt-24 bg-gradient-to-r from-cyan-500 to-blue-500" style="background-image: url('https://images.unsplash.com/photo-1552168324-d612d77725e3?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-blend-mode: overlay;">
+    <div class="pt-24 bg-gradient-to-r from-cyan-500 to-blue-500" style="background-image: url('{{ asset('img/1338700.png') }}'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;">
         <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <div class="flex flex-col w-full lg:w-1/2 justify-center items-start pt-12 pb-24 px-6">
                 <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl mb-4 text-white">Book Your Court in Seconds</h1>
                 <p class="leading-normal mb-8 text-xl text-white opacity-80">Reserve premium sports courts for football, basketball, tennis and more - anytime, anywhere.</p>
                 
-                <!-- Search Box -->
                 <div class="glass-effect rounded-2xl p-6 shadow-xl w-full max-w-lg">
                     <h3 class="font-bold text-lg mb-4 text-white">Find Available Courts</h3>
                     <div class="flex flex-col space-y-4">
@@ -39,21 +38,19 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-1/2 lg:py-6 text-center">
-                <img class="w-full md:w-4/5 z-50 mx-auto animate-float custom-shadow rounded-2xl" src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1000&auto=format&fit=crop" alt="Sports court visualization">
-            </div>
+            
         </div>
         
-        <!-- Wave Separator -->
-        <div class="w-full">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-24 transform rotate-180">
-                <path fill="#f9fafb" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+        <div class="w-full text-gray-50">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-24 transform rotate-180 fill-current">
+                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
             </svg>
         </div>
+        
     </div>
 
     <!-- Sport Categories -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-gray-50" >
         <div class="container mx-auto px-4">
             <div class="flex flex-col text-center w-full mb-12">
                 <p class="font-medium text-cyan-600 uppercase tracking-wide mb-2">Find Your Game</p>
@@ -61,7 +58,6 @@
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-600">Premium courts available for all your favorite sports</p>
             </div>
             <div class="flex flex-wrap -m-4">
-                <!-- Sport Card 1 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1556056504-5c7696c4c28d?q=80&w=2076&auto=format&fit=crop" alt="Football">
@@ -76,8 +72,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Sport Card 2 -->
+            
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1577471488278-16eec37ffcc2?q=80&w=2070&auto=format&fit=crop" alt="Basketball">
@@ -93,7 +88,6 @@
                     </div>
                 </div>
                 
-                <!-- Sport Card 3 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?q=80&w=2070&auto=format&fit=crop" alt="Tennis">
@@ -109,7 +103,6 @@
                     </div>
                 </div>
                 
-                <!-- Sport Card 4 -->
                 <div class="p-4 md:w-1/4 sm:w-1/2">
                     <div class="sport-card relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                         <img class="h-64 w-full object-cover object-center" src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=2007&auto=format&fit=crop" alt="Volleyball">
@@ -244,79 +237,116 @@
     </section>
 
     <!-- How It Works -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col text-center w-full mb-12">
-                <p class="font-medium text-cyan-600 uppercase tracking-wide mb-2">Simple Process</p>
-                <h2 class="text-4xl font-bold mb-2 text-gray-800">How It Works</h2>
-                <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-600">Book your favorite sports court in just three easy steps</p>
-            </div>
-            <div class="flex flex-wrap -m-4">
-                <!-- Step 1 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-2xl h-full bg-white p-8 flex-col shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 mr-4 inline-flex items-center justify-center rounded-full bg-cyan-100 text-cyan-600 flex-shrink-0">
-                                <span class="text-xl font-bold">1</span>
-                            </div>
-                            <h2 class="text-gray-900 text-lg font-medium">Search & Discover</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="text-gray-600 text-base">Find the perfect court by location, sport type, price range and available amenities.</p>
-                            <div class="mt-4 text-cyan-600 inline-flex items-center">
-                                Browse Courts
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+    <section class="py-20 bg-gradient-to-br from-cyan-50 to-blue-50 relative overflow-hidden">
+        <!-- Background decorations -->
+        <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-cyan-100 opacity-30 -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-blue-100 opacity-30 translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+          <!-- Section Header -->
+          <div class="flex flex-col items-center mb-16">
+            <span class="inline-block px-4 py-1 rounded-full bg-cyan-100 text-cyan-700 font-semibold text-sm tracking-wider uppercase mb-3">Simple Process</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2 relative">
+              How It <span class="text-cyan-600">Works</span>
+              <div class="absolute h-1 w-20 bg-cyan-500 bottom-0 left-1/2 transform -translate-x-1/2 mt-4"></div>
+            </h2>
+            <p class="text-gray-600 max-w-2xl text-center mt-6">Reserve your favorite sports court in just three simple steps and get ready to play!</p>
+          </div>
+          
+          <!-- Process Steps -->
+          <div class="flex flex-col md:flex-row gap-8">
+            <!-- Step 1 -->
+            <div class="flex-1 group">
+              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
+                <!-- Background accent -->
+                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
+                
+                <!-- Icon & Number -->
+                <div class="flex items-center justify-between mb-6 relative">
+                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-search text-xl"></i>
+                  </div>
+                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">01</span>
                 </div>
                 
-                <!-- Step 2 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-2xl h-full bg-white p-8 flex-col shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 mr-4 inline-flex items-center justify-center rounded-full bg-cyan-100 text-cyan-600 flex-shrink-0">
-                                <span class="text-xl font-bold">2</span>
-                            </div>
-                            <h2 class="text-gray-900 text-lg font-medium">Book & Pay</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="text-gray-600 text-base">Select your preferred date and time slot, then complete your booking with secure payment.</p>
-                            <div class="mt-4 text-cyan-600 inline-flex items-center">
-                                View Payment Options
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Content -->
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Search & Discover</h3>
+                <p class="text-gray-600 mb-6">Find the perfect court by location, sport type, price range and available amenities.</p>
+                
+                <!-- Action Button -->
+                <div class="relative">
+                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
+                    Browse Courts
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="flex-1 group">
+              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
+                <!-- Background accent -->
+                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
+                
+                <!-- Icon & Number -->
+                <div class="flex items-center justify-between mb-6 relative">
+                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-calendar-check text-xl"></i>
+                  </div>
+                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">02</span>
                 </div>
                 
-                <!-- Step 3 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-2xl h-full bg-white p-8 flex-col shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 mr-4 inline-flex items-center justify-center rounded-full bg-cyan-100 text-cyan-600 flex-shrink-0">
-                                <span class="text-xl font-bold">3</span>
-                            </div>
-                            <h2 class="text-gray-900 text-lg font-medium">Play & Enjoy</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="text-gray-600 text-base">Receive instant confirmation and check-in details. Just show up and enjoy your game!</p>
-                            <div class="mt-4 text-cyan-600 inline-flex items-center">
-                                Read FAQs
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Content -->
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Book & Pay</h3>
+                <p class="text-gray-600 mb-6">Select your preferred date and time slot, then complete your booking with secure payment.</p>
+                
+                <!-- Action Button -->
+                <div class="relative">
+                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
+                    View Payment Options
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
                 </div>
+              </div>
             </div>
+            
+            <!-- Step 3 -->
+            <div class="flex-1 group">
+              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
+                <!-- Background accent -->
+                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
+                
+                <!-- Icon & Number -->
+                <div class="flex items-center justify-between mb-6 relative">
+                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-basketball-ball text-xl"></i>
+                  </div>
+                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">03</span>
+                </div>
+                
+                <!-- Content -->
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Play & Enjoy</h3>
+                <p class="text-gray-600 mb-6">Receive instant confirmation and check-in details. Just show up and enjoy your game!</p>
+                
+                <!-- Action Button -->
+                <div class="relative">
+                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
+                    Read FAQs
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
     <!-- Testimonials Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
@@ -376,178 +406,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing & Membership -->
-    <section class="py-16 bg-gradient-to-b from-cyan-50 to-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col text-center w-full mb-12">
-                <p class="font-medium text-cyan-600 uppercase tracking-wide mb-2">Flexible Options</p>
-                <h2 class="text-4xl font-bold mb-2 text-gray-800">Membership Plans</h2>
-                <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-600">Choose the plan that best fits your sporting needs</p>
-            </div>
-            
-            <div class="flex flex-wrap -m-4">
-                <!-- Pricing Card 1 -->
-                <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                    <div class="h-full p-6 rounded-2xl shadow-lg flex flex-col relative overflow-hidden bg-white">
-                        <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-cyan-600 uppercase">Basic</h2>
-                        <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">Free</h1>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Access to search all courts
-                        </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Standard booking
-                        </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Email support
-                        </p>
-                        <button class="flex items-center mt-auto text-white bg-cyan-500 border-0 py-3 px-4 w-full focus:outline-none hover:bg-cyan-600 rounded-lg transition duration-300">Sign Up
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Pricing Card 2 -->
-                <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                    <div class="h-full p-6 rounded-2xl shadow-lg flex flex-col relative overflow-hidden bg-white">
-                        <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-cyan-600 uppercase">Basic</h2>
-                        <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">Free</h1>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Access to search all courts
-                        </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Standard booking
-                        </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Email support
-                        </p>
-                        <button class="flex items-center mt-auto text-white bg-cyan-500 border-0 py-3 px-4 w-full focus:outline-none hover:bg-cyan-600 rounded-lg transition duration-300">Sign Up
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                    <div class="h-full p-6 rounded-2xl shadow-lg flex flex-col relative overflow-hidden bg-white">
-                        <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-cyan-600 uppercase">Basic</h2>
-                        <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">Free</h1>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Access to search all courts
-                        </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Standard booking
-                        </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Email support
-                        </p>
-                        <button class="flex items-center mt-auto text-white bg-cyan-500 border-0 py-3 px-4 w-full focus:outline-none hover:bg-cyan-600 rounded-lg transition duration-300">Sign Up
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                    <div class="h-full p-6 rounded-2xl shadow-lg flex flex-col relative overflow-hidden bg-white">
-                        <h2 class="text-sm tracking-widest title-font mb-1 font-medium text-cyan-600 uppercase">Basic</h2>
-                        <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">Free</h1>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Access to search all courts
-                        </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Standard booking
-                        </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-cyan-500 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Email support
-                        </p>
-                        <button class="flex items-center mt-auto text-white bg-cyan-500 border-0 py-3 px-4 w-full focus:outline-none hover:bg-cyan-600 rounded-lg transition duration-300">Sign Up
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="py-12 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden">
-                <!-- Decorative elements -->
-                <div class="absolute -right-12 -top-12 w-40 h-40 rounded-full bg-cyan-50"></div>
-                <div class="absolute -left-12 -bottom-12 w-40 h-40 rounded-full bg-blue-50"></div>
-                
-                <div class="relative z-10">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Stay Updated</h3>
-                        <p class="text-gray-600">Subscribe to our newsletter for exclusive offers, new court openings and sports tips.</p>
-                    </div>
-                    <form class="flex flex-col md:flex-row gap-4">
-                        <input type="email" placeholder="Enter your email" class="flex-grow px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                        <button type="submit" class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-300 whitespace-nowrap">
-                            Subscribe Now
-                        </button>
-                    </form>
-                    <p class="text-xs text-gray-500 mt-4 text-center">We respect your privacy. Unsubscribe at any time.</p>
                 </div>
             </div>
         </div>
