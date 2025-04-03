@@ -28,18 +28,8 @@
                     </a>
                 </li>
                 <li class="mr-3">
-                    <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="">
-                        Basketball
-                    </a>
-                </li>
-                <li class="mr-3">
-                    <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="">
-                        Football
-                    </a>
-                </li>
-                <li class="mr-3">
-                    <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="">
-                        Tennis
+                    <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="{{ route('frontOffice.terrains.index') }}">
+                        Terrains
                     </a>
                 </li>
                 <li class="mr-3">

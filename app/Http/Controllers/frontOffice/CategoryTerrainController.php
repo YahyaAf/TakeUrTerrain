@@ -17,6 +17,13 @@ class CategoryTerrainController extends Controller
         return view('frontOffice.terrains.index', compact('terrains', 'categories'));
     }
 
+    public function show($id)
+    {
+        $terrain = Terrain::with(['sponsors', 'tags', 'categorie'])->findOrFail($id);
+
+        return view('frontOffice.terrains.show', compact('terrain'));
+    }
+
 
 }
 

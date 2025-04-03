@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/terrains', [CategoryTerrainController::class, 'index'])->name('frontOffice.terrains.index');
+    Route::get('/terrains/{id}', [CategoryTerrainController::class, 'show'])->name('frontOffice.terrains.show');
 
 });
 
