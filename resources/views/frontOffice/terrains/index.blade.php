@@ -2,10 +2,10 @@
 
 @section('content')
 <section >
-    <div class="  from-cyan-600 to-blue-700 py-60 " style="background-image: url('img/téléchargé.png'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;">
+    <div class="from-cyan-600 to-blue-700 py-60 " style="background-image: url('img/lionel-messi-football-barcelona-hd-wallpaper-preview.jpg'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;">
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-10">
-                <h1 class="text-4xl md:text-5xl font-bold text-black mb-4">Réservez Votre Terrain</h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Réservez Votre Terrain</h1>
                 <p class="text-xl max-w-2xl mx-auto text-white">Découvrez nos terrains disponibles et réservez dès maintenant pour votre prochaine activité sportive</p>
             </div>
         </div>

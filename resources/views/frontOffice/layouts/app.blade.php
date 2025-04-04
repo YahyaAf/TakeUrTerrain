@@ -84,10 +84,9 @@
     </style>
 </head>
 <body class="bg-gray-50 font-sans leading-normal tracking-normal">
-    <div class="w-64 bg-white shadow-md flex-shrink-0">
+    <div>
         @include('frontOffice.layouts.header')
     </div>
-
     <div>
         @yield('content')    
     </div>

@@ -1,6 +1,7 @@
 @extends('frontOffice.layouts.app')
 @section('content')
-<section class="bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen flex items-center justify-center p-6" style="background-image: url('img/1338700.png'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;">
+{{-- style="background-image: url('img/1338700.png'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;" --}}
+<section class="bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen flex items-center justify-center p-6">
     <div class="container mx-auto mt-20">
         <div class="grid md:grid-cols-2 bg-white shadow-2xl rounded-2xl overflow-hidden max-w-4xl mx-auto">
             <div class="hidden md:block bg-cover bg-center" style="background-image: url('/api/placeholder/600/800')">
