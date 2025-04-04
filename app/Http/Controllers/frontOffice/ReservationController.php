@@ -50,10 +50,13 @@ class ReservationController extends Controller
                                                                 ->where('heure_fin', '>', $heureFin);
                                                     });
                                             })
-                                            ->exists();
+                                            ->first(); 
 
         if ($existingReservation) {
-            return redirect()->back()->with('error', 'Le terrain est déjà réservé pour cette date et cette heure.');
+            $start = Carbon::parse($existingReservation->heure_debut)->format('H:i');
+            $end = Carbon::parse($existingReservation->heure_fin)->format('H:i');
+
+            return redirect()->back()->with('error', "Le terrain est déjà réservé ce jour-là entre $start et $end.");
         }
 
         $amount = $prix * $creneaux;
