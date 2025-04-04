@@ -33,6 +33,11 @@
                     </a>
                 </li>
                 <li class="mr-3">
+                    <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="{{ route('tickets.index') }}">
+                        Tickets
+                    </a>
+                </li>
+                <li class="mr-3">
                     <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="{{ route('contact.index') }}">
                         Contact
                     </a>

@@ -1,52 +1,33 @@
 @extends('frontOffice.layouts.app')
 
 @section('content')
-    <div class="pt-24 bg-gradient-to-r from-cyan-500 to-blue-500" style="background-image: url('{{ asset('img/1338700.png') }}'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;">
+    <div class="pt-24 bg-gradient-to-r from-cyan-500 to-blue-500" style="background-image: url('{{ asset('img/test4.jpg') }}'); background-size: 100% 100%; background-position: center; background-repeat: no-repeat;">
         <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <div class="flex flex-col w-full lg:w-1/2 justify-center items-start pt-12 pb-24 px-6">
                 <h1 class="font-bold text-4xl md:text-5xl lg:text-6xl mb-4 text-white">Book Your Court in Seconds</h1>
                 <p class="leading-normal mb-8 text-xl text-white opacity-80">Reserve premium sports courts for football, basketball, tennis and more - anytime, anywhere.</p>
                 
                 <div class="glass-effect rounded-2xl p-6 shadow-xl w-full max-w-lg">
-                    <h3 class="font-bold text-lg mb-4 text-white">Find Available Courts</h3>
+                    <h3 class="font-bold text-lg mb-4 text-white">About Our Courts</h3>
                     <div class="flex flex-col space-y-4">
                         <div class="flex flex-row space-x-4">
                             <div class="w-full">
-                                <label class="block text-sm font-medium text-white opacity-90">Location</label>
-                                <input type="text" class="mt-1 block w-full border-0 rounded-lg shadow-sm focus:ring-cyan-500 focus:border-cyan-500 p-3" placeholder="City, Region or ZIP">
+                                <h4 class="block text-sm font-medium text-white opacity-90 mb-2">Premium Locations</h4>
+                                <p class="mt-1 block w-full bg-white/10 backdrop-blur-sm rounded-lg p-3 text-white">
+                                    Our courts are strategically located across major cities, providing easy access for all sports enthusiasts. Each location is carefully selected to offer the best experience.
+                                </p>
                             </div>
                         </div>
-                        <div class="flex flex-row space-x-4">
-                            <div class="w-1/2">
-                                <label class="block text-sm font-medium text-white opacity-90">Sport Type</label>
-                                <select class="mt-1 block w-full border-0 rounded-lg shadow-sm focus:ring-cyan-500 focus:border-cyan-500 p-3">
-                                    <option>All Sports</option>
-                                    <option>Football</option>
-                                    <option>Basketball</option>
-                                    <option>Tennis</option>
-                                    <option>Volleyball</option>
-                                </select>
-                            </div>
-                            <div class="w-1/2">
-                                <label class="block text-sm font-medium text-white opacity-90">Date</label>
-                                <input type="date" class="mt-1 block w-full border-0 rounded-lg shadow-sm focus:ring-cyan-500 focus:border-cyan-500 p-3">
-                            </div>
-                        </div>
-                        <button class="mt-4 w-full bg-white text-cyan-600 font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                            Find Courts
-                        </button>
                     </div>
                 </div>
+                </div>
             </div>
-            
+            <div class="w-full text-gray-50">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-24 transform rotate-180 fill-current">
+                    <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+                </svg>
+            </div>
         </div>
-        
-        <div class="w-full text-gray-50">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-24 transform rotate-180 fill-current">
-                <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
-            </svg>
-        </div>
-        
     </div>
 
     <!-- Sport Categories -->
