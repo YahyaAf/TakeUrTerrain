@@ -21,13 +21,9 @@
                         <p><span class="font-medium">📍 Localisation:</span> {{ $ticket->terrain->adresse ?? 'Non définie' }}</p>
                         <p><span class="font-medium">👤 Utilisateur:</span> {{ $ticket->reservation->client->name ?? 'N/A' }}</p>
                         <p><span class="font-medium">📅 Date de réservation:</span> {{ $ticket->reservation->date_reservation ?? $ticket->reservation_date }}</p>
+                        <p><span class="font-medium">🕒 Heure de début:</span> {{ \Carbon\Carbon::parse($ticket->reservation->heure_debut)->format('H:i') }}</p>
+                        <p><span class="font-medium">🕔 Heure de fin:</span> {{ \Carbon\Carbon::parse($ticket->reservation->heure_fin)->format('H:i') }}</p>
                         <p><span class="font-medium">💰 Prix:</span> {{ $ticket->price }} €</p>
-                        <p><span class="font-medium">💳 Paiement:</span> 
-                            <span class="px-2 py-1 rounded text-white 
-                                {{ $ticket->payment_status === 'success' ? 'bg-green-500' : 'bg-red-500' }}">
-                                {{ ucfirst($ticket->payment_status) }}
-                            </span>
-                        </p>
                     </div>
 
                     <div class="mt-4">

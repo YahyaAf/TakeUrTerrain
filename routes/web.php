@@ -75,6 +75,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/cancel/{id}', [ReservationController::class, 'paymentCancel'])->name('payment.cancel');
 
     Route::get('/mes-tickets', [TicketController::class, 'index'])->name('tickets.index');
+    Route::get('/tickets/{id}/pdf', [TicketController::class, 'downloadPDF'])->name('ticket.pdf');
+
 
 
 });
