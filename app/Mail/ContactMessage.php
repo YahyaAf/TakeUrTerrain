@@ -12,20 +12,20 @@ class ContactMessage extends Mailable
 
     public $name;
     public $email;
-    public $message;
+    public $contactMessage;
 
     /**
      * Create a new message instance.
      *
      * @param $name
      * @param $email
-     * @param $message
+     * @param $contactMessage
      */
-    public function __construct($name, $email, $message)
+    public function __construct($name, $email, $contactMessage)
     {
         $this->name = $name;
         $this->email = $email;
-        $this->message = $message;
+        $this->contactMessage = $contactMessage;
     }
 
     /**
@@ -41,3 +41,4 @@ class ContactMessage extends Mailable
                     ->view('emails.contact');
     }
 }
+

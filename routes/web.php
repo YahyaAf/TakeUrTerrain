@@ -69,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/terrains/{id}', [CategoryTerrainController::class, 'show'])->name('frontOffice.terrains.show');
 
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
     Route::post('/checkout', [ReservationController::class, 'createCheckoutSession'])->name('checkout');
     Route::get('/payment/success/{id}', [ReservationController::class, 'paymentSuccess'])->name('payment.success');
