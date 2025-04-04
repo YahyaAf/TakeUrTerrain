@@ -1,4 +1,4 @@
-<nav class="fixed w-full z-30 top-0 bg-gradient-to-r from-cyan-500/90 via-blue-500/90 to-cyan-600/90 backdrop-filter backdrop-blur-md shadow-lg">
+<nav class=" w-full z-30 top-0 bg-gradient-to-r from-cyan-500/90 via-blue-500/90 to-cyan-600/90 backdrop-filter backdrop-blur-md shadow-lg bg-black">
     <div class="w-full container mx-auto flex flex-wrap items-center justify-between py-3">
         <div class="pl-4 flex items-center">
             <a class="flex items-center text-2xl font-bold text-white no-underline hover:scale-105 transition duration-300" href="{{ route('home') }}">

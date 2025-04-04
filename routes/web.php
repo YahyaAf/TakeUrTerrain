@@ -10,11 +10,13 @@ use App\Http\Controllers\backOffice\RoleController;
 use App\Http\Controllers\auth\ResetPasswordController;
 use App\Http\Controllers\BackOffice\SponsorController;
 use App\Http\Controllers\backOffice\TerrainController;
+use App\Http\Controllers\frontOffice\TicketController;
 use App\Http\Controllers\auth\ForgetPasswordController;
 use App\Http\Controllers\frontOffice\ContactController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\backOffice\PermissionController;
 use App\Http\Controllers\backOffice\GestionUsersController;
+use App\Http\Controllers\frontOffice\ReservationController;
 use App\Http\Controllers\frontOffice\CategoryTerrainController;
 
 Route::get('/', function () {
@@ -67,6 +69,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/terrains/{id}', [CategoryTerrainController::class, 'show'])->name('frontOffice.terrains.show');
 
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+
+    Route::post('/checkout', [ReservationController::class, 'createCheckoutSession'])->name('checkout');
+    Route::get('/payment/success/{id}', [ReservationController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment/cancel/{id}', [ReservationController::class, 'paymentCancel'])->name('payment.cancel');
+
+    Route::get('/mes-tickets', [TicketController::class, 'index'])->name('tickets.index');
+    Route::get('/tickets/{id}/pdf', [TicketController::class, 'downloadPDF'])->name('ticket.pdf');
+
+
 
 });
 
