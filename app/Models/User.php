@@ -64,4 +64,10 @@ class User extends Authenticatable
     {
         return $this->roles->flatMap->permissions->contains('name', $permission);
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'client_id');
+    }
+
 }

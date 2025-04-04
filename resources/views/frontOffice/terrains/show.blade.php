@@ -131,6 +131,36 @@
                 @endforeach
             </div>
         </div>
+        <!-- Formulaire de Réservation -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-10">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Réserver ce terrain</h2>
+        
+            <form action="{{ route('checkout') }}" method="POST">
+                @csrf
+                <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
+        
+                <div class="mb-4">
+                    <label for="date_reservation" class="block text-gray-700 font-medium mb-2">Date de réservation</label>
+                    <input type="date" id="date_reservation" name="date_reservation" class="w-full border-gray-300 rounded-lg p-3 focus:ring focus:ring-blue-300" required>
+                </div>
+        
+                <div class="mb-4">
+                    <label for="heure_debut" class="block text-gray-700 font-medium mb-2">Heure de début</label>
+                    <input type="time" id="heure_debut" name="heure_debut" class="w-full border-gray-300 rounded-lg p-3 focus:ring focus:ring-blue-300" required>
+                </div>
+        
+                <div class="mb-4">
+                    <label for="heure_fin" class="block text-gray-700 font-medium mb-2">Heure de fin</label>
+                    <input type="time" id="heure_fin" name="heure_fin" class="w-full border-gray-300 rounded-lg p-3 focus:ring focus:ring-blue-300" required>
+                </div>
+        
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                    Réserver et Payer
+                </button>
+            </form>
+        </div>
+        
+
     </div>
 </section>
 

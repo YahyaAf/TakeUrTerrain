@@ -37,4 +37,10 @@ class Terrain extends Model
     {
         return $this->belongsTo(Category::class, 'categorie_id');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
 }
