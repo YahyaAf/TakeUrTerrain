@@ -9,11 +9,11 @@
                 <p class="text-xl max-w-2xl mx-auto text-white">Découvrez nos terrains disponibles et réservez dès maintenant pour votre prochaine activité sportive</p>
             </div>
         </div>
-        <div class="absolute inset-0 overflow-hidden">
+        {{-- <div class="absolute inset-0 overflow-hidden">
             <svg class="absolute left-0 bottom-0 opacity-10" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0,0 C300,150 500,0 900,200 C1300,400 1500,100 1920,300 L1920,1080 L0,1080 Z" fill="white"/>
             </svg>
-        </div>
+        </div> --}}
     </div>
 
     <section class="py-20 bg-gradient-to-b from-cyan-50 to-blue-100">
