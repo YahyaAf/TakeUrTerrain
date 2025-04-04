@@ -20,24 +20,44 @@ class ReservationController extends Controller
 
     public function createCheckoutSession(Request $request)
     {
-        // Validation des données
         $request->validate([
             'terrain_id' => 'required|exists:terrains,id',
-            'date_reservation' => 'required|date',
+            'date_reservation' => 'required|date|after_or_equal:today', 
             'heure_debut' => 'required|date_format:H:i',
-            'heure_fin' => 'required|date_format:H:i',
+            'heure_fin' => 'required|date_format:H:i|after:heure_debut', 
         ]);
-    
+
         $terrain = Terrain::findOrFail($request->terrain_id);
-        $prix = $terrain->prix; 
-    
+        $prix = $terrain->prix;
+
         $heureDebut = Carbon::createFromFormat('H:i', $request->heure_debut);
         $heureFin = Carbon::createFromFormat('H:i', $request->heure_fin);
-    
+
         $creneaux = $heureDebut->diffInHours($heureFin);
-        
-        $amount = $prix * $creneaux; 
-    
+
+        if ($creneaux > 2) {
+            return redirect()->back()->with('error', 'Le créneau ne peut pas dépasser 2 heures.');
+        }
+
+        $existingReservation = Reservation::where('terrain_id', $request->terrain_id)
+                                            ->where('date_reservation', $request->date_reservation)
+                                            ->where('status', 'confirmée')
+                                            ->where(function ($query) use ($heureDebut, $heureFin) {
+                                                $query->whereBetween('heure_debut', [$heureDebut, $heureFin])
+                                                    ->orWhereBetween('heure_fin', [$heureDebut, $heureFin])
+                                                    ->orWhere(function($query) use ($heureDebut, $heureFin) {
+                                                        $query->where('heure_debut', '<', $heureDebut)
+                                                                ->where('heure_fin', '>', $heureFin);
+                                                    });
+                                            })
+                                            ->exists();
+
+        if ($existingReservation) {
+            return redirect()->back()->with('error', 'Le terrain est déjà réservé pour cette date et cette heure.');
+        }
+
+        $amount = $prix * $creneaux;
+
         $reservation = Reservation::create([
             'terrain_id' => $request->terrain_id,
             'client_id' => auth()->id(),
@@ -46,9 +66,9 @@ class ReservationController extends Controller
             'heure_fin' => $request->heure_fin,
             'creneaux' => $creneaux,
         ]);
-    
+
         Stripe::setApiKey(env('STRIPE_SECRET'));
-    
+
         $session = Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
@@ -77,6 +97,7 @@ class ReservationController extends Controller
 
         return redirect($session->url);
     }
+
 
     public function paymentSuccess($id)
     {

@@ -133,25 +133,43 @@
         </div>
         <!-- Formulaire de Réservation -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-10">
+
+            @if(session('error'))
+                <div class="bg-red-100 text-red-500 border border-red-500 rounded-lg p-4 mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
             <h2 class="text-2xl font-bold text-gray-900 mb-4">Réserver ce terrain</h2>
         
             <form action="{{ route('checkout') }}" method="POST">
                 @csrf
                 <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
         
+                <!-- Date de réservation -->
                 <div class="mb-4">
                     <label for="date_reservation" class="block text-gray-700 font-medium mb-2">Date de réservation</label>
                     <input type="date" id="date_reservation" name="date_reservation" class="w-full border-gray-300 rounded-lg p-3 focus:ring focus:ring-blue-300" required>
+                    @error('date_reservation')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
         
+                <!-- Heure de début -->
                 <div class="mb-4">
                     <label for="heure_debut" class="block text-gray-700 font-medium mb-2">Heure de début</label>
                     <input type="time" id="heure_debut" name="heure_debut" class="w-full border-gray-300 rounded-lg p-3 focus:ring focus:ring-blue-300" required>
+                    @error('heure_debut')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
         
+                <!-- Heure de fin -->
                 <div class="mb-4">
                     <label for="heure_fin" class="block text-gray-700 font-medium mb-2">Heure de fin</label>
                     <input type="time" id="heure_fin" name="heure_fin" class="w-full border-gray-300 rounded-lg p-3 focus:ring focus:ring-blue-300" required>
+                    @error('heure_fin')
+                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
         
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
@@ -159,6 +177,7 @@
                 </button>
             </form>
         </div>
+        
         
 
     </div>
