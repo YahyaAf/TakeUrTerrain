@@ -10,6 +10,7 @@ use App\Http\Controllers\backOffice\RoleController;
 use App\Http\Controllers\auth\ResetPasswordController;
 use App\Http\Controllers\BackOffice\SponsorController;
 use App\Http\Controllers\backOffice\TerrainController;
+use App\Http\Controllers\frontOffice\TicketController;
 use App\Http\Controllers\auth\ForgetPasswordController;
 use App\Http\Controllers\frontOffice\ContactController;
 use App\Http\Controllers\backOffice\CategorieController;
@@ -72,6 +73,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout', [ReservationController::class, 'createCheckoutSession'])->name('checkout');
     Route::get('/payment/success/{id}', [ReservationController::class, 'paymentSuccess'])->name('payment.success');
     Route::get('/payment/cancel/{id}', [ReservationController::class, 'paymentCancel'])->name('payment.cancel');
+
+    Route::get('/mes-tickets', [TicketController::class, 'index'])->name('tickets.index');
 
 
 });
