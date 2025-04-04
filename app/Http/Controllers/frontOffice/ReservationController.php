@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontOffice;
 use Carbon\Carbon;
 use Stripe\Charge;
 use Stripe\Stripe;
+use App\Models\Ticket;
 use App\Models\Payment;
 use App\Models\Terrain;
 use App\Models\Reservation;
@@ -105,6 +106,7 @@ class ReservationController extends Controller
     public function paymentSuccess($id)
     {
         $reservation = Reservation::findOrFail($id);
+        
         $reservation->update([
             'status' => 'confirmée',
             'payment_status' => 'payé',
@@ -112,12 +114,22 @@ class ReservationController extends Controller
 
         $payment = Payment::where('reservation_id', $reservation->id)->first();
         if ($payment) {
-            $payment->status = 'success'; 
+            $payment->status = 'success';
             $payment->save();
+
+            Ticket::create([
+                'reservation_id'   => $reservation->id,
+                'terrain_id'       => $reservation->terrain_id,
+                'payment_id'       => $payment->id,
+                'user_id'          => $reservation->client_id, 
+                'price'            => $payment->amount,
+            ]);
+            
         }
 
         return redirect()->route('home')->with('success', 'Paiement réussi ! Réservation confirmée.');
     }
+
 
 
     public function paymentCancel($id)
