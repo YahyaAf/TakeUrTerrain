@@ -39,14 +39,22 @@
                             </span>
                             <div class="flex items-center">
                                 <div class="flex items-center text-yellow-400">
+                                    @php
+                                        $note = round($moyennes[$terrain->id] ?? 0);
+                                    @endphp
+                            
                                     @for($i = 0; $i < 5; $i++)
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 {{ $i < 4 ? 'text-yellow-400' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 24 24">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 {{ $i < $note ? 'text-yellow-400' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                                         </svg>
                                     @endfor
                                 </div>
-                                <span class="text-xs font-medium text-gray-600 ml-1">4.5</span>
+                            
+                                <span class="text-xs font-medium text-gray-600 ml-1">
+                                    {{ number_format($moyennes[$terrain->id] ?? 0, 1) }}
+                                </span>
                             </div>
+                            
                         </div>
                         
                         <h2 class="text-xl font-bold text-gray-800 mb-2">{{ $terrain->name }}</h2>

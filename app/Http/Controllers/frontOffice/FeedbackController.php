@@ -28,4 +28,16 @@ class FeedbackController extends Controller
         return view('terrains.show', compact('terrain'));
     }
 
+    public function getAverageRating($terrain_id)
+    {
+        $terrain = Terrain::with('feedbacks')->findOrFail($terrain_id);
+
+        $average = $terrain->feedbacks->avg('note');
+
+        return response()->json([
+            'terrain_id' => $terrain_id,
+            'average_rating' => round($average, 1)
+        ]);
+    }
+
 }

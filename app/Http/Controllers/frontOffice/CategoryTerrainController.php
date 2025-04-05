@@ -12,10 +12,17 @@ class CategoryTerrainController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $terrains = Terrain::with(['sponsors', 'tags', 'categorie'])->paginate(9); 
 
-        return view('frontOffice.terrains.index', compact('terrains', 'categories'));
+        $terrains = Terrain::with(['sponsors', 'tags', 'categorie', 'feedbacks'])->paginate(9);
+
+        $moyennes = [];
+        foreach ($terrains as $terrain) {
+            $moyennes[$terrain->id] = round($terrain->feedbacks->avg('note'), 1); 
+        }
+
+        return view('frontOffice.terrains.index', compact('terrains', 'categories', 'moyennes'));
     }
+
 
     public function show($id)
     {

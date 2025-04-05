@@ -81,6 +81,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
     Route::get('/user/feedbacks', [FeedbackController::class, 'show'])->name('user.feedbacks');
+    
 
 
 
