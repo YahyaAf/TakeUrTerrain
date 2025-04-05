@@ -24,7 +24,7 @@ class RegisterController extends Controller
 
         $this->registerService->register($data);
 
-        return redirect()->route('dashboard')->with('success', 'Compte créé avec succès, en attente de validation.');
+        return redirect()->route('home')->with('success', 'Compte créé avec succès, en attente de validation.');
     }
 
 
