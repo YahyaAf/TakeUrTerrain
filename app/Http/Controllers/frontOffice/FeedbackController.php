@@ -40,4 +40,17 @@ class FeedbackController extends Controller
         ]);
     }
 
+    public function delete($id)
+    {
+        $feedback = Feedback::findOrFail($id);
+
+        if ($feedback->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'You are not authorized to delete this comment.');
+        }
+
+        $feedback->delete();
+        
+        return redirect()->back()->with('success', 'Your comment has been deleted.');
+    }
+
 }

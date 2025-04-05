@@ -176,6 +176,16 @@
                     User: {{ $feedback->user->name }} 
                 </span>
                 <span class="text-yellow-500 font-bold">★ {{ $feedback->note }}</span>
+
+                @if($feedback->user_id === Auth::id())
+                    <form action="{{ route('feedback.delete', $feedback->id) }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:text-red-800">
+                            <i class="fas fa-trash-alt"></i> 
+                        </button>
+                    </form>
+                @endif
             </div>
             <p class="text-gray-700">{{ $feedback->commentaire }}</p>
             <p class="text-xs text-gray-500 mt-1">Posted on {{ $feedback->created_at->format('d M Y') }}</p>
@@ -184,6 +194,7 @@
         <p class="text-gray-600">No feedback available for this terrain yet.</p>
     @endforelse
 </div>
+
 
 
 <div class="p-3 text-right">
