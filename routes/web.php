@@ -80,6 +80,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tickets/{id}/pdf', [TicketController::class, 'downloadPDF'])->name('ticket.pdf');
 
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+    Route::get('/user/feedbacks', [FeedbackController::class, 'show'])->name('user.feedbacks');
+
 
 
 

@@ -165,6 +165,27 @@
     @endauth
 </div>
 
+<div class="bg-white rounded-lg shadow-md p-6 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">{{ $terrain->name }}</h2>
+
+    <h3 class="text-lg font-semibold text-gray-800">Feedbacks:</h3>
+    @forelse ($terrain->feedbacks as $feedback)
+        <div class="mb-4 border p-4 rounded bg-gray-100">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-bold text-gray-800">
+                    User: {{ $feedback->user->name }} 
+                </span>
+                <span class="text-yellow-500 font-bold">★ {{ $feedback->note }}</span>
+            </div>
+            <p class="text-gray-700">{{ $feedback->commentaire }}</p>
+            <p class="text-xs text-gray-500 mt-1">Posted on {{ $feedback->created_at->format('d M Y') }}</p>
+        </div>
+    @empty
+        <p class="text-gray-600">No feedback available for this terrain yet.</p>
+    @endforelse
+</div>
+
+
 <div class="p-3 text-right">
     <a href="{{ route('home') }}" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
         <i class="fas fa-home mr-2"></i> Retour à l'accueil

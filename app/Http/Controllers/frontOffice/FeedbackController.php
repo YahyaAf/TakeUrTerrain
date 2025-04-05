@@ -21,4 +21,11 @@ class FeedbackController extends Controller
 
         return redirect()->back()->with('success', 'Merci pour votre avis !');
     }
+
+    public function show($id)
+    {
+        $terrain = Terrain::with('feedbacks.user')->findOrFail($id);
+        return view('terrains.show', compact('terrain'));
+    }
+
 }
