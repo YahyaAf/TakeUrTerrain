@@ -43,4 +43,10 @@ class Terrain extends Model
         return $this->hasMany(Reservation::class);
     }
 
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+
 }

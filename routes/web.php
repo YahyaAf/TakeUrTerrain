@@ -14,6 +14,7 @@ use App\Http\Controllers\frontOffice\TicketController;
 use App\Http\Controllers\auth\ForgetPasswordController;
 use App\Http\Controllers\frontOffice\ContactController;
 use App\Http\Controllers\backOffice\CategorieController;
+use App\Http\Controllers\frontOffice\FeedbackController;
 use App\Http\Controllers\backOffice\PermissionController;
 use App\Http\Controllers\backOffice\GestionUsersController;
 use App\Http\Controllers\frontOffice\ReservationController;
@@ -77,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/mes-tickets', [TicketController::class, 'index'])->name('tickets.index');
     Route::get('/tickets/{id}/pdf', [TicketController::class, 'downloadPDF'])->name('ticket.pdf');
+
+    Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
 
 
