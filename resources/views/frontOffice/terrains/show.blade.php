@@ -121,6 +121,82 @@
         </div>
     </div>
 </section>
+<div class="bg-white rounded-lg shadow-md p-6 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">Laissez un commentaire</h2>
+
+    @auth
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form action="{{ route('feedback.store') }}" method="POST">
+            @csrf
+            <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
+
+            <div class="mb-4">
+                <label for="commentaire" class="block text-sm font-medium text-gray-700 mb-1">Votre commentaire</label>
+                <textarea name="commentaire" id="commentaire" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300 resize-none" required></textarea>
+                @error('commentaire')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-4">
+                <label for="note" class="block text-sm font-medium text-gray-700 mb-1">Note (1 à 5)</label>
+                <select name="note" id="note" class="w-20 px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+                    <option value="">--</option>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+                @error('rating')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
+                Envoyer
+            </button>
+        </form>
+    @else
+        <p class="text-gray-600">Vous devez <a href="{{ route('login') }}" class="text-blue-600 hover:underline">vous connecter</a> pour laisser un commentaire.</p>
+    @endauth
+</div>
+
+<div class="bg-white rounded-lg shadow-md p-6 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">{{ $terrain->name }}</h2>
+
+    <h3 class="text-lg font-semibold text-gray-800">Feedbacks:</h3>
+    @forelse ($terrain->feedbacks as $feedback)
+        <div class="mb-4 border p-4 rounded bg-gray-100">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-bold text-gray-800">
+                    User: {{ $feedback->user->name }} 
+                </span>
+                <span class="text-yellow-500 font-bold">★ {{ $feedback->note }}</span>
+
+                @if($feedback->user_id === Auth::id())
+                    <form action="{{ route('feedback.delete', $feedback->id) }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:text-red-800">
+                            <i class="fas fa-trash-alt"></i> 
+                        </button>
+                    </form>
+                @endif
+            </div>
+            <p class="text-gray-700">{{ $feedback->commentaire }}</p>
+            <p class="text-xs text-gray-500 mt-1">Posted on {{ $feedback->created_at->format('d M Y') }}</p>
+        </div>
+    @empty
+        <p class="text-gray-600">No feedback available for this terrain yet.</p>
+    @endforelse
+</div>
+
+
+
 <div class="p-3 text-right">
     <a href="{{ route('home') }}" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
         <i class="fas fa-home mr-2"></i> Retour à l'accueil
