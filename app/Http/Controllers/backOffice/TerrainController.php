@@ -85,9 +85,10 @@ class TerrainController extends Controller
 
     public function publication()
     {
-        $terrains = $this->terrainService->getAllTerrains();
+        $terrains = $this->terrainService->getAllTerrains()->sortByDesc('created_at');
         return view('backOffice.publications.index', compact('terrains'));
     }
+
 
     public function accept($id)
     {
