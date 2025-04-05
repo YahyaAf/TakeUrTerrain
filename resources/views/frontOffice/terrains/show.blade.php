@@ -122,79 +122,145 @@
     </div>
 </section>
 <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">Laissez un commentaire</h2>
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Avis sur {{ $terrain->name }}</h2>
+        <div class="flex items-center">
+            <div class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full font-medium flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.799-2.034c-.784-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <span>{{ $terrain->feedbacks->avg('note') ? number_format($terrain->feedbacks->avg('note'), 1) : '0' }} / 5</span>
+            </div>
+            <span class="ml-2 text-gray-500 text-sm">({{ $terrain->feedbacks->count() }} avis)</span>
+        </div>
+    </div>
 
     @auth
         @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
-                {{ session('success') }}
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    {{ session('success') }}
+                </div>
             </div>
         @endif
 
-        <form action="{{ route('feedback.store') }}" method="POST">
+        <form action="{{ route('feedback.store') }}" method="POST" class="bg-gray-50 p-5 rounded-lg mb-8">
             @csrf
             <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
+            
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Partagez votre expérience</h3>
+            
+            <div class="mb-4">
+                <div class="flex items-center mb-1">
+                    <label for="note" class="block text-sm font-medium text-gray-700 mr-3">Votre note</label>
+                    <div class="flex items-center space-x-1">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <label for="star{{ $i }}" class="cursor-pointer">
+                                <input type="radio" id="star{{ $i }}" name="note" value="{{ $i }}" class="hidden" required>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 star-rating" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.799-2.034c-.784-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            </label>
+                        @endfor
+                    </div>
+                </div>
+                @error('note')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
             <div class="mb-4">
                 <label for="commentaire" class="block text-sm font-medium text-gray-700 mb-1">Votre commentaire</label>
-                <textarea name="commentaire" id="commentaire" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300 resize-none" required></textarea>
+                <textarea name="commentaire" id="commentaire" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300 focus:border-blue-300 resize-none" placeholder="Partagez votre expérience avec ce terrain..." required></textarea>
                 @error('commentaire')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
-            <div class="mb-4">
-                <label for="note" class="block text-sm font-medium text-gray-700 mb-1">Note (1 à 5)</label>
-                <select name="note" id="note" class="w-20 px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
-                    <option value="">--</option>
-                    @for ($i = 1; $i <= 5; $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-                @error('rating')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
-                Envoyer
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" />
+                </svg>
+                Publier mon avis
             </button>
         </form>
     @else
-        <p class="text-gray-600">Vous devez <a href="{{ route('login') }}" class="text-blue-600 hover:underline">vous connecter</a> pour laisser un commentaire.</p>
-    @endauth
-</div>
-
-<div class="bg-white rounded-lg shadow-md p-6 mb-8">
-    <h2 class="text-xl font-bold text-gray-900 mb-4">{{ $terrain->name }}</h2>
-
-    <h3 class="text-lg font-semibold text-gray-800">Feedbacks:</h3>
-    @forelse ($terrain->feedbacks as $feedback)
-        <div class="mb-4 border p-4 rounded bg-gray-100">
-            <div class="flex justify-between items-center mb-2">
-                <span class="text-sm font-bold text-gray-800">
-                    User: {{ $feedback->user->name }} 
-                </span>
-                <span class="text-yellow-500 font-bold">★ {{ $feedback->note }}</span>
-
-                @if($feedback->user_id === Auth::id())
-                    <form action="{{ route('feedback.delete', $feedback->id) }}" method="POST" class="inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-red-600 hover:text-red-800">
-                            <i class="fas fa-trash-alt"></i> 
-                        </button>
-                    </form>
-                @endif
+        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm text-blue-800">Vous devez <a href="{{ route('login') }}" class="font-medium underline hover:text-blue-600">vous connecter</a> pour laisser un commentaire.</p>
+                </div>
             </div>
-            <p class="text-gray-700">{{ $feedback->commentaire }}</p>
-            <p class="text-xs text-gray-500 mt-1">Posted on {{ $feedback->created_at->format('d M Y') }}</p>
         </div>
-    @empty
-        <p class="text-gray-600">No feedback available for this terrain yet.</p>
-    @endforelse
-</div>
+    @endauth
 
+    <div class="border-t border-gray-200 pt-6">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-semibold text-gray-800">Tous les avis ({{ $terrain->feedbacks->count() }})</h3>
+            <div class="text-sm text-gray-500">
+                <!-- Filter options could go here in the future -->
+            </div>
+        </div>
+
+        @forelse ($terrain->feedbacks->sortByDesc('created_at') as $feedback)
+            <div class="mb-6 border-b border-gray-100 pb-6 last:border-b-0 last:pb-0">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="flex items-start">
+                        <div class="h-10 w-10 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center mr-3">
+                            {{ strtoupper(substr($feedback->user->name, 0, 1)) }}
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-900">{{ $feedback->user->name }}</h4>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <span>{{ $feedback->created_at->format('d M Y') }}</span>
+                                <span class="mx-2">•</span>
+                                <div class="flex items-center">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 {{ $i <= $feedback->note ? 'text-yellow-500' : 'text-gray-300' }}" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.799-2.034c-.784-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    @if($feedback->user_id === Auth::id())
+                        <div class="flex items-center">
+                            <form action="{{ route('feedback.delete', $feedback->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-gray-400 hover:text-red-600 transition duration-200" title="Supprimer l'avis">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    @endif
+                </div>
+                
+                <div class="text-gray-700 mt-2 whitespace-pre-line">{{ $feedback->commentaire }}</div>
+            </div>
+        @empty
+            <div class="bg-gray-50 rounded-lg p-8 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+                <p class="text-gray-600 mb-2">Aucun avis disponible pour ce terrain.</p>
+                <p class="text-gray-500 text-sm">Soyez le premier à partager votre expérience !</p>
+            </div>
+        @endforelse
+    </div>
+</div>
 
 
 <div class="p-3 text-right">
@@ -373,6 +439,31 @@
         @endif
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stars = document.querySelectorAll('.star-rating');
+        const ratingInputs = document.querySelectorAll('input[name="note"]');
+        
+        function updateStars(rating) {
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('text-yellow-500');
+                    star.classList.remove('text-gray-300');
+                } else {
+                    star.classList.add('text-gray-300');
+                    star.classList.remove('text-yellow-500');
+                }
+            });
+        }
+        updateStars(0);
+    
+        ratingInputs.forEach((input, index) => {
+            input.addEventListener('change', function() {
+                updateStars(index + 1);
+            });
+        });
+    });
+    </script>
 
 <style>
     .custom-popup .leaflet-popup-content-wrapper {
