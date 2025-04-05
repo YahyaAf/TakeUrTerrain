@@ -127,7 +127,7 @@ class ReservationController extends Controller
             
         }
 
-        return redirect()->route('home')->with('success', 'Paiement réussi ! Réservation confirmée.');
+        return redirect()->route('tickets.index')->with('success', 'Paiement réussi ! Réservation confirmée.');
     }
 
 

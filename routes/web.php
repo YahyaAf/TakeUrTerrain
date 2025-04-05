@@ -82,6 +82,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
     Route::get('/user/feedbacks', [FeedbackController::class, 'show'])->name('user.feedbacks');
     Route::delete('/feedback/{id}', [FeedbackController::class, 'delete'])->name('feedback.delete');
+
+    Route::get('dashboard/publications', [TerrainController::class, 'publication'])->name('publications.index');
+    Route::get('dashboard/publications/{id}/accept', [TerrainController::class, 'accept'])->name('publications.accept');
+    Route::get('dashboard/publications/{id}/refuse', [TerrainController::class, 'refuse'])->name('publications.refuse');
     
 });
 

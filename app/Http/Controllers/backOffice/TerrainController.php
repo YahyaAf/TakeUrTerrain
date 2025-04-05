@@ -82,4 +82,31 @@ class TerrainController extends Controller
 
         return redirect()->route('terrains.index')->with('success', 'Terrain supprimé avec succès!');
     }
+
+    public function publication()
+    {
+        $terrains = $this->terrainService->getAllTerrains()->sortByDesc('created_at');
+        return view('backOffice.publications.index', compact('terrains'));
+    }
+
+
+    public function accept($id)
+    {
+        $terrain = Terrain::findOrFail($id);
+
+        $terrain->statut = 'accepted';
+        $terrain->save();
+
+        return redirect()->route('publications.index')->with('message', 'Terrain has been accepted successfully.');
+    }
+
+    public function refuse($id)
+    {
+        $terrain = Terrain::findOrFail($id);
+
+        $terrain->statut = 'refuse';
+        $terrain->save();
+
+        return redirect()->route('publications.index')->with('message', 'Terrain has been refused.');
+    }
 }

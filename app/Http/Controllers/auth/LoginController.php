@@ -22,7 +22,7 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ])) {
-            return redirect()->intended(route('dashboard'))->with('success', 'You are logged in successfully!');
+            return redirect()->intended(route('home'))->with('success', 'You are logged in successfully!');
         }
         return back()->withErrors([
             'email' => 'The provided credentials are incorrect.',
