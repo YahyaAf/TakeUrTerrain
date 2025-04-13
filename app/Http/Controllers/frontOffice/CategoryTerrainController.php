@@ -29,6 +29,10 @@ class CategoryTerrainController extends Controller
             $query->where('categorie_id', $request->categorie_id);
         }
 
+        if ($request->filled('prix_max')) {
+            $query->where('prix', '<=', $request->prix_max);
+        }
+
         $terrains = $query->paginate(9);
 
         $moyennes = [];
@@ -39,6 +43,7 @@ class CategoryTerrainController extends Controller
 
         return view('frontOffice.terrains.index', compact('terrains', 'categories', 'moyennes'));
     }
+
 
 
 

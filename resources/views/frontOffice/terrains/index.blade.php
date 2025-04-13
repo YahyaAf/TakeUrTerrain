@@ -38,7 +38,15 @@
                         </option>
                     @endforeach
                 </select>
-        
+
+                <input
+                    type="number"
+                    name="prix_max"
+                    value="{{ request('prix_max') }}"
+                    placeholder="Prix maximum"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                        
                 <button
                     type="submit"
                     class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
