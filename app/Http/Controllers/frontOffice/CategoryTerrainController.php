@@ -9,13 +9,27 @@ use App\Http\Controllers\Controller;
 
 class CategoryTerrainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::all();
-        $terrains = Terrain::with(['sponsors', 'tags', 'categorie', 'feedbacks'])
-                ->where('statut', 'accepted')
-                ->where('disponibility', 'disponible') 
-                ->paginate(9);
+
+        $query = Terrain::with(['sponsors', 'tags', 'categorie', 'feedbacks'])
+            ->where('statut', 'accepted')
+            ->where('disponibility', 'disponible');
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        if ($request->filled('adresse')) {
+            $query->where('adresse', 'like', '%' . $request->adresse . '%');
+        }
+
+        if ($request->filled('categorie_id')) {
+            $query->where('categorie_id', $request->categorie_id);
+        }
+
+        $terrains = $query->paginate(9);
 
         $moyennes = [];
         foreach ($terrains as $terrain) {
@@ -25,6 +39,7 @@ class CategoryTerrainController extends Controller
 
         return view('frontOffice.terrains.index', compact('terrains', 'categories', 'moyennes'));
     }
+
 
 
     public function show($id)

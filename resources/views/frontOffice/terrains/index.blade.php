@@ -9,11 +9,46 @@
                 <p class="text-xl max-w-2xl mx-auto text-white">Découvrez nos terrains disponibles et réservez dès maintenant pour votre prochaine activité sportive</p>
             </div>
         </div>
-        {{-- <div class="absolute inset-0 overflow-hidden">
-            <svg class="absolute left-0 bottom-0 opacity-10" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,0 C300,150 500,0 900,200 C1300,400 1500,100 1920,300 L1920,1080 L0,1080 Z" fill="white"/>
-            </svg>
-        </div> --}}
+        <form method="GET" action="{{ route('frontOffice.terrains.index') }}" class="mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <input
+                    type="text"
+                    name="name"
+                    value="{{ request('name') }}"
+                    placeholder="Rechercher par nom"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+        
+                <input
+                    type="text"
+                    name="adresse"
+                    value="{{ request('adresse') }}"
+                    placeholder="Rechercher par adresse"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+        
+                <select
+                    name="categorie_id"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="">Toutes les catégories</option>
+                    @foreach ($categories as $categorie)
+                        <option value="{{ $categorie->id }}" {{ request('category_id') == $categorie->id ? 'selected' : '' }}>
+                            {{ $categorie->name }}
+                        </option>
+                    @endforeach
+                </select>
+        
+                <button
+                    type="submit"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+                >
+                    Rechercher
+                </button>
+            </div>
+        </form>
+        
+        
     </div>
 
     <section class="py-20 bg-gradient-to-b from-cyan-50 to-blue-100">
