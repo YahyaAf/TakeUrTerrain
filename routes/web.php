@@ -12,7 +12,9 @@ use App\Http\Controllers\BackOffice\SponsorController;
 use App\Http\Controllers\backOffice\TerrainController;
 use App\Http\Controllers\frontOffice\TicketController;
 use App\Http\Controllers\auth\ForgetPasswordController;
+use App\Http\Controllers\backOffice\ProfilesController;
 use App\Http\Controllers\frontOffice\ContactController;
+use App\Http\Controllers\frontOffice\ProfileController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\frontOffice\FeedbackController;
 use App\Http\Controllers\backOffice\PermissionController;
@@ -86,6 +88,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard/publications', [TerrainController::class, 'publication'])->name('publications.index');
     Route::get('dashboard/publications/{id}/accept', [TerrainController::class, 'accept'])->name('publications.accept');
     Route::get('dashboard/publications/{id}/refuse', [TerrainController::class, 'refuse'])->name('publications.refuse');
+
+    Route::get('/mon-profil', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('dashboard/mon-profil', [ProfilesController::class, 'index'])->name('backOffice.profile.index');
+    Route::put('dashboard/profil/update', [ProfilesController::class, 'update'])->name('backOffice.profile.update');
+
     
 });
 

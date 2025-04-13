@@ -72,20 +72,12 @@
                                 <p class="text-sm font-bold text-gray-800">{{ Auth::user()->email }}</p>
                             </div>
                             <div class="py-1">
-                                <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition duration-150">
+                                <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition duration-150">
                                     <div class="flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                         </svg>
                                         Profile
-                                    </div>
-                                </a>
-                                <a href="" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition duration-150">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
-                                        My Bookings
                                     </div>
                                 </a>
                                 <div class="border-t border-gray-100 my-1"></div>

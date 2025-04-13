@@ -1,16 +1,16 @@
 <div class="bg-white shadow-sm flex justify-between items-center py-3 px-6">
     <div class="relative">
-        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        {{-- <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-        </span>
-        <input type="text" class="py-2 pl-10 pr-4 block w-64 rounded-lg bg-gray-100 border-transparent focus:bg-white focus:border-gray-300 focus:ring-0 transition duration-200" placeholder="Search">
+        </span> --}}
+        {{-- <input type="text" class="py-2 pl-10 pr-4 block w-64 rounded-lg bg-gray-100 border-transparent focus:bg-white focus:border-gray-300 focus:ring-0 transition duration-200" placeholder="Search"> --}}
     </div>
     
     <div class="flex items-center space-x-6">
 
-        <div class="relative">
+        {{-- <div class="relative">
             <button class="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition duration-200">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -29,7 +29,7 @@
             </button>
            
             <span class="absolute top-0 right-0 h-5 w-5 flex items-center justify-center bg-red-500 text-white text-xs font-bold rounded-full">8</span>
-        </div>
+        </div> --}}
         
        
         <div class="relative" x-data="{ open: false }">
@@ -68,11 +68,8 @@
                         <p class="text-xs text-gray-500">{{ Auth::user()->email ?? 'admin@example.com' }}</p>
                     </div>
                 </div>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+                <a href="{{ route('backOffice.profile.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     <i class="fas fa-user mr-2 text-gray-400"></i> My Profile
-                </a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
-                    <i class="fas fa-cog mr-2 text-gray-400"></i> Settings
                 </a>
                 <div class="border-t border-gray-100 mt-1"></div>
                 <form action="{{ route('logout') }}" method="POST">
