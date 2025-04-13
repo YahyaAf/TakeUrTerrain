@@ -75,5 +75,11 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class);
     }
 
+    public function terrains()
+    {
+        return $this->hasMany(Terrain::class);
+    }
+
+
 
 }

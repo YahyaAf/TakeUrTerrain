@@ -25,16 +25,18 @@ class TerrainRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'latitude'=>'required|numeric',
-            'longitude'=>'required|numeric',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
             'prix' => 'required|numeric',
-            'categorie_id' => 'required|exists:categories,id', 
-            'disponibility' => 'required|string|in:disponible,indisponible', 
+            'categorie_id' => 'required|exists:categories,id',
+            'disponibility' => 'required|string|in:disponible,indisponible',
             'adresse' => 'required|string',
             'tags' => 'nullable|array',
-            'tags.*' => 'exists:tags,id', 
+            'tags.*' => 'exists:tags,id',
             'sponsors' => 'nullable|array',
-            'sponsors.*' => 'exists:sponsors,id', 
+            'sponsors.*' => 'exists:sponsors,id',
+            'user_id' => 'nullable|exists:users,id',
         ];
     }
+
 }
