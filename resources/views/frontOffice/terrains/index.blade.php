@@ -125,7 +125,6 @@
                             {{ $terrain->adresse }}
                         </p>
                         
-                        <!-- Features -->
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -166,7 +165,6 @@
                 @endforeach
             </div>
             
-            <!-- Pagination with improved styling -->
             <div class="mt-16 flex justify-center">
                 <div class="inline-flex rounded-md shadow-sm">
                     {{ $terrains->onEachSide(1)->links('pagination::tailwind') }}
