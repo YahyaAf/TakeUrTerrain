@@ -12,7 +12,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = auth()->user(); // on récupère l'utilisateur connecté
+        $user = auth()->user(); 
         return view('frontOffice.profiles.index', compact('user'));
     }
 
@@ -21,7 +21,6 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        // Validation des champs
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
@@ -29,13 +28,10 @@ class ProfileController extends Controller
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
-        // Mise à jour du nom et email
         $user->name = $request->name;
         $user->email = $request->email;
 
-        // Mise à jour de la photo
         if ($request->hasFile('photo')) {
-            // Supprimer l'ancienne si elle existe
             if ($user->photo) {
                 Storage::disk('public')->delete($user->photo);
             }
@@ -44,7 +40,6 @@ class ProfileController extends Controller
             $user->photo = $photoPath;
         }
 
-        // Mise à jour du mot de passe si rempli
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
