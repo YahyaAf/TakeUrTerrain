@@ -13,8 +13,10 @@ class CategoryTerrainController extends Controller
     {
         $categories = Category::all();
         $terrains = Terrain::with(['sponsors', 'tags', 'categorie', 'feedbacks'])
-                   ->where('statut', 'accepted')
-                   ->paginate(9);
+                ->where('statut', 'accepted')
+                ->where('disponibility', 'disponible') 
+                ->paginate(9);
+
         $moyennes = [];
         foreach ($terrains as $terrain) {
             $average = $terrain->feedbacks->avg('note');
@@ -23,6 +25,7 @@ class CategoryTerrainController extends Controller
 
         return view('frontOffice.terrains.index', compact('terrains', 'categories', 'moyennes'));
     }
+
 
     public function show($id)
     {
