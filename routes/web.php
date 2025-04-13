@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('dashboard/profil/update', [ProfilesController::class, 'update'])->name('backOffice.profile.update');
 
     Route::get('dashboard/reservations', [GetReservation::class, 'reservation'])->name('backOffice.reservations.index');
-    Route::get('/payments', [GetReservation::class, 'payment'])->name('backOffice.payments.index');
+    Route::get('dashboard/payments', [GetReservation::class, 'payment'])->name('backOffice.payments.index');
 
     
 });

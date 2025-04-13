@@ -22,7 +22,7 @@
                 <tbody class="bg-white divide-y divide-gray-100">
                     @foreach ($reservations as $reservation)
                         <tr>
-                            <td class="px-6 py-4 text-sm text-gray-700">{{ $reservation->user->name }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-700">{{ $reservation->client->name }}</td>
                             <td class="px-6 py-4 text-sm text-gray-700">{{ $reservation->terrain->name }}</td>
                             <td class="px-6 py-4 text-sm text-gray-700">{{ $reservation->date_reservation }}</td>
                             <td class="px-6 py-4 text-sm text-gray-700">{{ $reservation->heure_debut }} - {{ $reservation->heure_fin }}</td>
