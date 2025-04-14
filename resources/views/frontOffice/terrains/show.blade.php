@@ -27,10 +27,7 @@
             </div>
         </div>
     </div>
-    {{-- @foreach ($reservations as $reservation)
-    <p>{{ $reservation->date_reservation }} {{ $reservation->heure_debut }} -> {{ $reservation->date_reservation }}T{{ $reservation->heure_fin }}</p>
-    @endforeach --}}
-
+  
     <div class="container mx-auto px-4 py-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
             <div>
@@ -551,6 +548,8 @@
             initialView: 'timeGridWeek',
             allDaySlot: false,
             height: 'auto',
+            slotMinTime: "08:00:00", // 👈 show times starting at 08:00
+            slotMaxTime: "23:00:00", // 👈 show times until 23:00
             events: [
                 @foreach ($reservations as $reservation)
                     @php
@@ -591,6 +590,7 @@
         calendar.render();
     });
 </script>
+
 
 
 
