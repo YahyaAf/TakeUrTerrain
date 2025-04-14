@@ -19,17 +19,4 @@ class GetReservation extends Controller
 
         return view('backOffice.reservations.reservation', compact('reservations'));
     }
-
-    public function payment()
-    {
-        $reservations = Reservation::with(['payment', 'client', 'terrain'])
-            ->whereHas('terrain', function ($query) {
-                $query->where('user_id', Auth::id());
-            })
-            ->whereHas('payment') 
-            ->latest()
-            ->get();
-
-        return view('backOffice.reservations.payment', compact('reservations'));
-    }
 }
