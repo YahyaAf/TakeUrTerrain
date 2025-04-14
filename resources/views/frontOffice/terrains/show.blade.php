@@ -288,37 +288,36 @@
             </div>
         @endif
 
-        <form action="{{ route('checkout') }}" method="POST">
+        <form action="{{ route('checkout') }}" method="POST" id="reservationForm">
             @csrf
             <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
+            
             <div class="mb-4">
                 <label for="date_reservation" class="block text-gray-700 font-medium mb-1">Date de réservation</label>
-                <input type="date" id="date_reservation" name="date_reservation" class="w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-300" required>
-                @error('date_reservation')
-                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-                @enderror
+                <input type="date" id="date_reservation" name="date_reservation" class="w-full border border-gray-300 rounded-lg p-2" required>
             </div>
-
+        
             <div class="mb-4">
                 <label for="heure_debut" class="block text-gray-700 font-medium mb-1">Heure de début</label>
-                <input type="time" id="heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-300" required>
-                @error('heure_debut')
-                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-                @enderror
+                <input type="time" id="heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2" required>
             </div>
-    
+        
             <div class="mb-4">
-                <label for="heure_fin" class="block text-gray-700 font-medium mb-1">Heure de fin</label>
-                <input type="time" id="heure_fin" name="heure_fin" class="w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-300" required>
-                @error('heure_fin')
-                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-                @enderror
+                <label for="creneaux" class="block text-gray-700 font-medium mb-1">Durée</label>
+                <select name="creneaux" id="creneaux" class="w-full border border-gray-300 rounded-lg p-2" required>
+                    <option value="1">1 heure</option>
+                    <option value="2">2 heures</option>
+                </select>
+                
             </div>
-    
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+        
+            <div class="mb-2 text-sm text-gray-500" id="calculated_end"></div>
+        
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
                 Réserver et Payer
             </button>
         </form>
+        
     </div>
 </div>
 

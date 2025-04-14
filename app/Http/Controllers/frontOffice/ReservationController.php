@@ -25,20 +25,22 @@ class ReservationController extends Controller
             'terrain_id' => 'required|exists:terrains,id',
             'date_reservation' => 'required|date|after_or_equal:today', 
             'heure_debut' => 'required|date_format:H:i',
-            'heure_fin' => 'required|date_format:H:i|after:heure_debut', 
+            'creneaux' => 'required|in:1,2',
         ]);
 
         $terrain = Terrain::findOrFail($request->terrain_id);
         $prix = $terrain->prix;
 
         $heureDebut = Carbon::createFromFormat('H:i', $request->heure_debut);
-        $heureFin = Carbon::createFromFormat('H:i', $request->heure_fin);
-
-        $creneaux = $heureDebut->diffInHours($heureFin);
-
+        $creneaux = (int) $request->creneaux;
+        
+    
         if ($creneaux > 2) {
             return redirect()->back()->with('error', 'Le créneau ne peut pas dépasser 2 heures.');
         }
+    
+        $heureFin = $heureDebut->copy()->addHours($creneaux);
+        // dd($heureFin);
 
         $existingReservation = Reservation::where('terrain_id', $request->terrain_id)
                                             ->where('date_reservation', $request->date_reservation)
@@ -67,7 +69,7 @@ class ReservationController extends Controller
             'client_id' => auth()->id(),
             'date_reservation' => $request->date_reservation,
             'heure_debut' => $request->heure_debut,
-            'heure_fin' => $request->heure_fin,
+            'heure_fin' => $heureFin,
             'creneaux' => $creneaux,
         ]);
 
