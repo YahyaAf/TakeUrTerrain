@@ -29,8 +29,12 @@ class TerrainService
         if (isset($data['photo']) && $data['photo']->isValid()) {
             $data['photo'] = $data['photo']->store('terrains', 'public');
         }
+
+        $data['user_id'] = auth()->id(); 
+
         return $this->terrainRepository->create($data);
     }
+
 
     public function updateTerrain($terrain, array $data)
     {

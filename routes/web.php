@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\backOffice\TagController;
+use App\Http\Controllers\backOffice\GetReservation;
 use App\Http\Controllers\backOffice\RoleController;
 use App\Http\Controllers\auth\ResetPasswordController;
 use App\Http\Controllers\BackOffice\SponsorController;
@@ -95,6 +96,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard/mon-profil', [ProfilesController::class, 'index'])->name('backOffice.profile.index');
     Route::put('dashboard/profil/update', [ProfilesController::class, 'update'])->name('backOffice.profile.update');
 
+    Route::get('dashboard/reservations', [GetReservation::class, 'reservation'])->name('backOffice.reservations.index');
     
 });
 

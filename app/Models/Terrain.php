@@ -21,6 +21,7 @@ class Terrain extends Model
         'disponibility',
         'statut', 
         'adresse',
+        'user_id'
     ];
 
     public function tags()
@@ -47,6 +48,12 @@ class Terrain extends Model
     {
         return $this->hasMany(Feedback::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 
 }
