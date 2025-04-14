@@ -1,6 +1,4 @@
-<!-- Sidebar component - place this in backOffice/layouts/sidebar.blade.php -->
 <div class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 shadow-lg transition-transform duration-300 ease-in-out" id="sidebar">
-    <!-- Logo and toggle -->
     <div class="flex items-center justify-between p-4 border-b border-gray-100">
         <div class="flex items-center">
             <i class="fas fa-chart-line text-indigo-600 text-xl mr-2"></i>
@@ -11,7 +9,6 @@
         </button>
     </div>
 
-    <!-- User profile -->
     <div class="p-4 border-b border-gray-100">
         <div class="flex items-center space-x-3">
             <div class="h-10 w-10 rounded-full overflow-hidden shadow-md">
@@ -32,7 +29,6 @@
         </div>
     </div>
     
-    <!-- Navigation -->
     <div class="py-4 px-2">
         <div class="mb-2 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Main</div>
         
@@ -76,6 +72,13 @@
             </svg>
             <span>Terrains</span>
         </a>
+
+        <a href="{{ route('backOffice.reservations.index') }}" class="flex items-center px-4 py-2.5 mb-1 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            <span>Reservations</span>
+        </a>
         
         <div class="mb-2 mt-6 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Administration</div>
         
@@ -108,7 +111,6 @@
     </div>
 </div>
 
-<!-- Add this for mobile responsiveness -->
 <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
 
 <script>

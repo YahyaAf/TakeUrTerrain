@@ -28,10 +28,6 @@
                 <p class="text-sm text-gray-500 uppercase font-medium">Réservations Aujourd'hui</p>
                 <p class="text-2xl font-bold text-gray-800 mt-1">{{ $reservations->where('date_reservation', date('Y-m-d'))->count() }}</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
-                <p class="text-sm text-gray-500 uppercase font-medium">Terrains Actifs</p>
-                <p class="text-2xl font-bold text-gray-800 mt-1">{{ $reservations->pluck('terrain.id')->unique()->count() }}</p>
-            </div>
         </div>
         
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -44,7 +40,6 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Heure</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Créneaux</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -79,7 +74,7 @@
                                 {{ $reservation->heure_debut }} - {{ $reservation->heure_fin }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ $reservation->creneaux }}
+                                {{ $reservation->creneaux }}h
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @php
@@ -93,12 +88,6 @@
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $statusClass }}">
                                     {{ ucfirst($reservation->status) }}
                                 </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex space-x-2">
-                                    <a href="#" class="text-blue-600 hover:text-blue-900">Voir</a>
-                                    <a href="#" class="text-green-600 hover:text-green-900">Éditer</a>
-                                </div>
                             </td>
                         </tr>
                     @endforeach
