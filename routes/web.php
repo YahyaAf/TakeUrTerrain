@@ -19,6 +19,7 @@ use App\Http\Controllers\frontOffice\ProfileController;
 use App\Http\Controllers\backOffice\CategorieController;
 use App\Http\Controllers\frontOffice\FeedbackController;
 use App\Http\Controllers\backOffice\PermissionController;
+use App\Http\Controllers\backOffice\StatistiqueController;
 use App\Http\Controllers\backOffice\GestionUsersController;
 use App\Http\Controllers\frontOffice\ReservationController;
 use App\Http\Controllers\frontOffice\CategoryTerrainController;
@@ -29,9 +30,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('backOffice.dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('backOffice.dashboard');
+    // })->name('dashboard');
 
     Route::prefix('dashboard')->group(function () {
         Route::resource('/categories', CategorieController::class);
@@ -97,6 +98,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('dashboard/profil/update', [ProfilesController::class, 'update'])->name('backOffice.profile.update');
 
     Route::get('dashboard/reservations', [GetReservation::class, 'reservation'])->name('backOffice.reservations.index');
+    Route::get('/dashboard', [StatistiqueController::class, 'index'])->name('dashboard');
+
     
 });
 
