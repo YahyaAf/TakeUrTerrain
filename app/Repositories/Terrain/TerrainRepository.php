@@ -8,8 +8,12 @@ class TerrainRepository
 {
     public function all()
     {
-        return Terrain::with('categorie', 'tags', 'sponsors')->get();
+        return Terrain::with('categorie', 'tags', 'sponsors')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
     }
+
 
     public function findById($id)
     {
