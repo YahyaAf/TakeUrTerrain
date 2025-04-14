@@ -66,7 +66,6 @@
                     <div class="bg-white rounded-lg shadow p-4">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-lg font-medium">Worldwide Sales</h2>
-                            <a href="#" class="text-sm text-blue-500">Show All</a>
                         </div>
                         <canvas id="worldwideSalesChart" height="240"></canvas>
                     </div>
@@ -74,10 +73,60 @@
                     <div class="bg-white rounded-lg shadow p-4">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-lg font-medium">Sales & Revenue</h2>
-                            <a href="#" class="text-sm text-blue-500">Show All</a>
                         </div>
                         <canvas id="salesRevenueChart" height="240"></canvas>
                     </div>
                 </div>
             </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const reservationCtx = document.getElementById('worldwideSalesChart').getContext('2d');
+    const reservationsByMonth = @json($reservationsByMonth);
+    new Chart(reservationCtx, {
+        type: 'line',
+        data: {
+            labels: Object.keys(reservationsByMonth),
+            datasets: [{
+                label: 'Réservations',
+                data: Object.values(reservationsByMonth),
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                borderColor: 'rgba(59, 130, 246, 1)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    const categoryCtx = document.getElementById('salesRevenueChart').getContext('2d');
+    const terrainsByCategory = @json($terrainsByCategory);
+    new Chart(categoryCtx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(terrainsByCategory),
+            datasets: [{
+                label: 'Terrains par Catégorie',
+                data: Object.values(terrainsByCategory),
+                backgroundColor: 'rgba(34, 197, 94, 0.5)',
+                borderColor: 'rgba(34, 197, 94, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+
 @endsection
