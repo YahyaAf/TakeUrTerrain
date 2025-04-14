@@ -27,9 +27,9 @@
             </div>
         </div>
     </div>
-    @foreach ($reservations as $reservation)
+    {{-- @foreach ($reservations as $reservation)
     <p>{{ $reservation->date_reservation }} {{ $reservation->heure_debut }} -> {{ $reservation->date_reservation }}T{{ $reservation->heure_fin }}</p>
-    @endforeach
+    @endforeach --}}
 
     <div class="container mx-auto px-4 py-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
@@ -553,10 +553,18 @@
             height: 'auto',
             events: [
                 @foreach ($reservations as $reservation)
+                    @php
+                        $start = $reservation->date_reservation . 'T' . $reservation->heure_debut;
+                        $endDate = $reservation->date_reservation;
+                        if ($reservation->heure_fin < $reservation->heure_debut) {
+                            $endDate = \Carbon\Carbon::parse($reservation->date_reservation)->addDay()->toDateString();
+                        }
+                        $end = $endDate . 'T' . $reservation->heure_fin;
+                    @endphp
                     {
                         title: 'Réservé',
-                        start: '{{ $reservation->date_reservation }}T{{ $reservation->heure_debut }}',
-                        end: '{{ $reservation->date_reservation }}T{{ $reservation->heure_fin }}',
+                        start: '{{ $start }}',
+                        end: '{{ $end }}',
                         color: '#ef4444'
                     }@if (!$loop->last),@endif
                 @endforeach
@@ -583,6 +591,7 @@
         calendar.render();
     });
 </script>
+
 
 
 
