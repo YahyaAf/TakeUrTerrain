@@ -40,7 +40,19 @@ class ReservationController extends Controller
         }
     
         $heureFin = $heureDebut->copy()->addHours($creneaux);
-        // dd($heureFin);
+
+        $min = Carbon::createFromTimeString('23:00');
+        $max = Carbon::createFromTimeString('08:00');
+
+        $debutTime = $heureDebut->format('H:i');
+        $finTime = $heureFin->format('H:i');
+
+        if (
+            ($debutTime > '23:00' || $debutTime < '08:00') ||
+            ($finTime > '00:00' && $finTime < '08:00')
+        ) {
+            return redirect()->back()->with('error', 'Les réservations entre 23:01 et 07:59 ne sont pas autorisées. Seuls 23:00 et 08:00 sont valides.');
+        }
 
         $existingReservation = Reservation::where('terrain_id', $request->terrain_id)
                                             ->where('date_reservation', $request->date_reservation)

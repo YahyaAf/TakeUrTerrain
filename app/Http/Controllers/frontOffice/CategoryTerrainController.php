@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontOffice;
 
 use App\Models\Terrain;
 use App\Models\Category;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -50,8 +51,11 @@ class CategoryTerrainController extends Controller
     public function show($id)
     {
         $terrain = Terrain::with(['sponsors', 'tags', 'categorie'])->findOrFail($id);
+        $reservations = Reservation::where('terrain_id', $terrain->id)
+            ->where('status', 'confirmée')
+            ->get(['date_reservation', 'heure_debut', 'heure_fin']);
 
-        return view('frontOffice.terrains.show', compact('terrain'));
+        return view('frontOffice.terrains.show', compact('terrain','reservations'));
     }
 
 
