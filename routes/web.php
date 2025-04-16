@@ -23,6 +23,7 @@ use App\Http\Controllers\backOffice\StatistiqueController;
 use App\Http\Controllers\backOffice\GestionUsersController;
 use App\Http\Controllers\frontOffice\ReservationController;
 use App\Http\Controllers\frontOffice\CategoryTerrainController;
+use App\Http\Controllers\frontOffice\ReservationAdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -99,6 +100,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('dashboard/reservations', [GetReservation::class, 'reservation'])->name('backOffice.reservations.index');
     Route::get('/dashboard', [StatistiqueController::class, 'index'])->name('dashboard');
+
+
+    Route::post('admin/reservation/checkout', [ReservationAdminController::class, 'AdminCreateCheckoutSession'])
+        ->name('admin.reservation.checkout');
+    Route::get('admin/payment/success/{id}', [ReservationAdminController::class, 'AdminPaymentSuccess'])
+        ->name('admin.payment.success');
+    Route::get('admin/payment/cancel/{id}', [ReservationAdminController::class, 'AdminPaymentCancel'])
+        ->name('admin.payment.cancel');
 
     
 });

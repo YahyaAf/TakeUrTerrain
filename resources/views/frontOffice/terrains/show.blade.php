@@ -339,6 +339,53 @@
             
         </div>
     </div>
+    <form action="{{ route('admin.reservation.checkout') }}" method="POST" id="reservationForm">
+        @csrf
+        <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
+    
+        {{-- Sélection de l'utilisateur --}}
+        <div class="mb-4">
+            <label for="client_id" class="block text-gray-700 font-medium mb-1">Client</label>
+            <select name="client_id" id="client_id" class="w-full border border-gray-300 rounded-lg p-2" required>
+                <option value="">-- Sélectionner un utilisateur --</option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}">
+                        {{ $user->name }} ({{ $user->email }})
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    
+        {{-- Date de réservation --}}
+        <div class="mb-4">
+            <label for="date_reservation" class="block text-gray-700 font-medium mb-1">Date de réservation</label>
+            <input type="date" id="date_reservation" name="date_reservation" class="w-full border border-gray-300 rounded-lg p-2" required>
+        </div>
+    
+        {{-- Heure de début --}}
+        <div class="mb-4">
+            <label for="heure_debut" class="block text-gray-700 font-medium mb-1">Heure de début</label>
+            <input type="time" id="heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2" required>
+        </div>
+    
+        {{-- Durée (créneaux) --}}
+        <div class="mb-4">
+            <label for="creneaux" class="block text-gray-700 font-medium mb-1">Durée</label>
+            <select name="creneaux" id="creneaux" class="w-full border border-gray-300 rounded-lg p-2" required>
+                <option value="1">1 heure</option>
+                <option value="2">2 heures</option>
+            </select>
+        </div>
+    
+        {{-- Heure fin calculée (optionnelle pour affichage) --}}
+        <div class="mb-2 text-sm text-gray-500" id="calculated_end"></div>
+    
+        {{-- Bouton de réservation --}}
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+            Réserver et Payer
+        </button>
+    </form>
+    
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
