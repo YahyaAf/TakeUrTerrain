@@ -1,16 +1,16 @@
 @extends('frontOffice.layouts.app')
 
 @section('content')
-<div class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen py-12">
+<div class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen py-12">
     <div class="container mx-auto px-4">
         <div class="text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 inline-block mb-2">Mes Tickets</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-700 inline-block mb-2">Mes Tickets</h2>
             <p class="text-gray-600 max-w-lg mx-auto">Retrouvez tous vos tickets de réservation de terrains en un seul endroit</p>
         </div>
 
         <div class="flex justify-center mb-8">
             <div class="bg-white rounded-full shadow-md px-6 py-2 flex items-center space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 100 4v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 100-4V6z" />
                 </svg>
                 <span class="font-medium text-gray-700">{{ count($tickets) }} {{ count($tickets) > 1 ? 'tickets' : 'ticket' }}</span>
@@ -20,10 +20,10 @@
         @forelse($tickets as $ticket)
             <div class="mb-10 max-w-4xl mx-auto">
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform transition hover:scale-[1.01] relative">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100 to-transparent rounded-bl-full opacity-60"></div>
-                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-indigo-100 to-transparent rounded-tr-full opacity-60"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-gray-100 to-transparent rounded-bl-full opacity-60"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-gray-100 to-transparent rounded-tr-full opacity-60"></div>
 
-                    <div class="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-blue-500 to-indigo-600"></div>
+                    <div class="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-black to-gray-700"></div>
                     
                     <div class="relative">
                         <div class="flex flex-col md:flex-row">
@@ -50,7 +50,7 @@
                                         <h3 class="text-2xl font-bold text-gray-800">{{ $ticket->terrain->name ?? 'Nom terrain inconnu' }}</h3>
                                         <p class="text-sm text-gray-500">Ticket #{{ $ticket->id }}</p>
                                     </div>
-                                    <div class="bg-blue-100 text-blue-800 font-medium px-3 py-1 rounded-full text-sm">
+                                    <div class="bg-gray-100 text-black font-medium px-3 py-1 rounded-full text-sm">
                                         Confirmé
                                     </div>
                                 </div>
@@ -58,8 +58,8 @@
                               
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-6">
                                     <div class="flex items-center">
-                                        <div class="bg-blue-100 rounded-full p-2 mr-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                                        <div class="bg-gray-100 rounded-full p-2 mr-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -70,8 +70,8 @@
                                     </div>
 
                                     <div class="flex items-center">
-                                        <div class="bg-indigo-100 rounded-full p-2 mr-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                        <div class="bg-gray-100 rounded-full p-2 mr-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -82,8 +82,8 @@
                                     </div>
 
                                     <div class="flex items-center">
-                                        <div class="bg-green-100 rounded-full p-2 mr-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                        <div class="bg-gray-100 rounded-full p-2 mr-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -94,8 +94,8 @@
                                     </div>
 
                                     <div class="flex items-center">
-                                        <div class="bg-purple-100 rounded-full p-2 mr-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" viewBox="0 0 20 20" fill="currentColor">
+                                        <div class="bg-gray-100 rounded-full p-2 mr-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -110,11 +110,11 @@
                                 <div class="flex flex-col sm:flex-row justify-between items-center pt-4 border-t border-gray-100">
                                     <div class="mb-3 sm:mb-0">
                                         <div class="text-xs text-gray-500 mb-1">Prix total</div>
-                                        <div class="text-2xl font-bold text-blue-600">{{ $ticket->price }} €</div>
+                                        <div class="text-2xl font-bold text-black">{{ $ticket->price }} €</div>
                                     </div>
                                     
                                     <div class="flex space-x-3">
-                                        <a href="{{ route('ticket.pdf', $ticket->id) }}" class="flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2.5 rounded-xl shadow-md hover:from-blue-700 hover:to-indigo-700 transition transform hover:scale-105">
+                                        <a href="{{ route('ticket.pdf', $ticket->id) }}" class="flex items-center justify-center bg-gradient-to-r from-black to-gray-700 text-white px-5 py-2.5 rounded-xl shadow-md hover:from-gray-800 hover:to-black transition transform hover:scale-105">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd" />
                                             </svg>
@@ -153,8 +153,8 @@
            
             <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:max-w-2xl p-8 text-center">
                 <div class="mb-6">
-                    <div class="mx-auto w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="mx-auto w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                         </svg>
                     </div>
@@ -163,7 +163,7 @@
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Aucun ticket trouvé</h3>
                 <p class="text-gray-600 mb-6">Vous n'avez pas encore réservé de terrain. Explorez nos terrains disponibles et réservez dès maintenant.</p>
                 
-                <a href="{{ route('home') }}" class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-xl shadow-md hover:from-blue-700 hover:to-indigo-700 transition">
+                <a href="{{ route('home') }}" class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-black to-gray-700 text-white font-medium rounded-xl shadow-md hover:from-gray-800 hover:to-black transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                     </svg>
@@ -174,7 +174,7 @@
 
     
         <div class="text-center mt-8">
-            <a href="{{ route('home') }}" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+            <a href="{{ route('home') }}" class="inline-flex items-center text-black hover:text-gray-800 font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
