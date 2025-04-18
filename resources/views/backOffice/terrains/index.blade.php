@@ -9,6 +9,7 @@
             <div class="absolute -bottom-2 left-20 h-1 w-10 bg-blue-400 rounded-full"></div>
             
             <div class="mt-4 flex justify-end">
+                @permission('create-terrain')
                 <a href="{{ route('terrains.create') }}" 
                    class="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-300 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -16,6 +17,7 @@
                     </svg>
                     Ajouter un Terrain
                 </a>
+                @endpermission
             </div>
         </div>
 
@@ -84,6 +86,7 @@
                                 </td>
                                 <td class="px-4 py-3 text-center">
                                     <div class="flex justify-center space-x-2">
+                                        @permission('view-terrain')
                                         <a href="{{ route('terrains.show', $terrain->id) }}" 
                                            class="text-blue-500 hover:text-blue-700 transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -91,6 +94,8 @@
                                                 <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                                             </svg>
                                         </a>
+                                        @endpermission
+                                        @permission('update-terrain')
                                         <a href="{{ route('terrains.edit', $terrain->id) }}" 
                                            class="text-green-500 hover:text-green-700 transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -98,6 +103,8 @@
                                                 <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                             </svg>
                                         </a>
+                                        @endpermission
+                                        @permission('delete-terrain')
                                         <form action="{{ route('terrains.destroy', $terrain->id) }}" method="POST" class="inline" 
                                               onsubmit="return confirm('Voulez-vous vraiment supprimer ce terrain ?');">
                                             @csrf
@@ -108,6 +115,7 @@
                                                 </svg>
                                             </button>
                                         </form>
+                                        @endpermission
                                     </div>
                                 </td>
                             </tr>
