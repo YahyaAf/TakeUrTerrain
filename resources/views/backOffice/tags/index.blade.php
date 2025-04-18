@@ -3,7 +3,6 @@
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-50 p-4 sm:p-6 lg:p-8">
     <div class="max-w-6xl mx-auto">
-        <!-- Header Section with Creative Design -->
         <div class="relative mb-12">
             <div class="absolute inset-0 bg-blue-600 rounded-xl opacity-10 transform -rotate-1"></div>
             <div class="relative bg-white rounded-lg shadow-xl p-6 md:p-8 overflow-hidden">
@@ -18,16 +17,16 @@
                         </div>
                         <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">Liste des Tags</h1>
                     </div>
-                    
+                    @permission('create-tag')
                     <a href="{{ route('tags.create') }}" class="group mt-6 md:mt-0 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center">
                         <span class="mr-2 group-hover:rotate-90 transition-transform duration-300">+</span>
                         <span>Ajouter un Tag</span>
                     </a>
+                    @endpermission
                 </div>
             </div>
         </div>
 
-        <!-- Notification -->
         @if(session('success'))
             <div class="mb-8 transform transition-all duration-500 animate-fade-in-down">
                 <div class="bg-green-50 border-l-4 border-green-500 rounded-lg shadow-md p-5">
@@ -45,11 +44,9 @@
             </div>
         @endif
 
-        <!-- Tags Grid View -->
         <div class="bg-white rounded-xl shadow-xl overflow-hidden">
             <div class="p-6 md:p-8">
                 @if(count($tags) > 0)
-                    <!-- Desktop Table View -->
                     <div class="hidden md:block">
                         <table class="w-full">
                             <thead>
@@ -75,11 +72,14 @@
                                         </td>
                                         <td class="py-4">
                                             <div class="flex space-x-3">
+                                                @permission('update-tag')
                                                 <a href="{{ route('tags.edit', $tag) }}" class="text-green-500 hover:text-green-700 transition-colors">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                     </svg>
                                                 </a>
+                                                @endpermission
+                                                @permission('delete-tag')
                                                 <form action="{{ route('tags.destroy', $tag) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -89,6 +89,7 @@
                                                         </svg>
                                                     </button>
                                                 </form>
+                                                @endpermission
                                             </div>
                                         </td>
                                     </tr>
@@ -100,7 +101,6 @@
                         </table>
                     </div>
 
-                    <!-- Mobile Card View -->
                     <div class="grid grid-cols-1 gap-4 md:hidden">
                         @foreach($tags as $tag)
                             <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
