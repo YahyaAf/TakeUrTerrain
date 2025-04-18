@@ -68,9 +68,11 @@
                         <p class="text-xs text-gray-500">{{ Auth::user()->email ?? 'admin@example.com' }}</p>
                     </div>
                 </div>
+                @permission('view-profile-backOffice')
                 <a href="{{ route('backOffice.profile.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600">
                     <i class="fas fa-user mr-2 text-gray-400"></i> My Profile
                 </a>
+                @endpermission
                 <div class="border-t border-gray-100 mt-1"></div>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf

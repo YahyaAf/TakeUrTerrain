@@ -91,8 +91,14 @@
         </a>
         @endpermission
         
-        <div class="mb-2 mt-6 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Administration</div>
-        
+        @auth
+            @if (auth()->user()->hasRole('admin'))
+                <div class="mb-2 mt-6 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                    Administration
+                </div>
+            @endif
+        @endauth
+
         @permission('view-user')
         <a href="{{ route('backOffice.gestionUsers.index') }}" class="flex items-center px-4 py-2.5 mb-1 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
