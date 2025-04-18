@@ -13,6 +13,7 @@ use App\Repositories\Auth\RegisterRepository;
 use App\Repositories\Terrain\TerrainRepository;
 use App\Repositories\Auth\ResetPasswordRepository;
 use App\Repositories\Auth\ForgetPasswordRepository;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -67,6 +68,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Blade::if('permission', function ($permission) {
+            return auth()->check() && auth()->user()->hasPermission($permission);
+        });
     }
 }
