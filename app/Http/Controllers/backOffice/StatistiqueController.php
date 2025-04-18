@@ -9,9 +9,17 @@ use App\Models\Reservation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller as BaseController;
 
-class StatistiqueController extends Controller
+class StatistiqueController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:statistique-organizateur')->only(['index']);
+    }
+
+
     public function index()
     {
         $userId = Auth::id();

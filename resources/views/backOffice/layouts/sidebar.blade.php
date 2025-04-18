@@ -30,8 +30,14 @@
     </div>
     
     <div class="py-4 px-2">
-        <div class="mb-2 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Main</div>
+        @auth
+            @if (auth()->user()->hasRole('organisateur'))
+                <div class="mb-2 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Main</div>
+            @endif
+        @endauth
         
+        
+        @permission('statistique-organizateur')
         <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2.5 mb-1 rounded-lg text-indigo-600 bg-indigo-50 font-medium">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" />
@@ -41,6 +47,7 @@
             </svg>
             <span>Dashboard</span>
         </a>
+        @endpermission
         
         <div class="mb-2 mt-6 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Content</div>
 
