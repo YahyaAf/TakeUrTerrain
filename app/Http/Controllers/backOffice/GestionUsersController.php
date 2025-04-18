@@ -7,9 +7,19 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\backOffice\UpdateUserRequest;
+use Illuminate\Routing\Controller as BaseController;
 
-class GestionUsersController extends Controller
+class GestionUsersController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view-user')->only(['index']);
+        $this->middleware('permission:update-user')->only(['edit', 'update']);
+        $this->middleware('permission:delete-user')->only('destroy');
+    }
+
+
     public function index()
     {
         $users = User::with('roles')->get(); 
