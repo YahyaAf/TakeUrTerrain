@@ -6,12 +6,14 @@
         <h1 class="text-2xl font-bold text-gray-800">
             <span class="text-blue-500">#</span> Roles Management
         </h1>
+        @permission('create-role')
         <a href="{{ route('roles.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center transition-all duration-200 transform hover:scale-105">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
             Add Role
         </a>
+        @endpermission
     </div>
 
     <!-- Search and filter bar -->
@@ -74,12 +76,14 @@
                 @endif
             </div>
             <div class="col-span-2 flex justify-end items-center space-x-2">
+                @permission('update-role')
                 <a href="{{ route('roles.edit', $role->id) }}" class="p-2 bg-amber-100 text-amber-600 rounded-md hover:bg-amber-200 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                     </svg>
                 </a>
-                @if ($role->name !== 'admin')
+                @endpermission
+                @permission('delete-role')
                 <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -89,7 +93,7 @@
                         </svg>
                     </button>
                 </form>
-                @endif
+                @endpermission
             </div>
         </div>
         @endforeach
