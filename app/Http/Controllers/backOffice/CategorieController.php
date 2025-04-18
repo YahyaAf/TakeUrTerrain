@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\backOffice\CategoryRequest;
 use App\Http\Requests\backOffice\UpdateCategoryRequest;
+use Illuminate\Routing\Controller as BaseController;
 
-class CategorieController extends Controller
+class CategorieController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view-category')->only(['index', 'show']);
+        $this->middleware('permission:create-category')->only(['create', 'store']);
+        $this->middleware('permission:update-category')->only(['edit', 'update']);
+        $this->middleware('permission:delete-category')->only('destroy');
+    }
+
     public function index()
     {
         $categories = Category::all();
