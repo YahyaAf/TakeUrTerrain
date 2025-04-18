@@ -90,6 +90,7 @@
                             <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                         </svg>
                     </a>
+                    @permission('update-sponsor')
                     <a href="{{ route('sponsors.edit', $sponsor->id) }}" 
                        class="text-green-500 hover:text-green-700 transition-colors"
                        title="Modifier">
@@ -98,6 +99,9 @@
                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                         </svg>
                     </a>
+                    @endpermission
+
+                    @permission('delete-sponsor')
                     <form action="{{ route('sponsors.destroy', $sponsor->id) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
@@ -110,6 +114,7 @@
                             </svg>
                         </button>
                     </form>
+                    @endpermission
                 </div>
             </div>
         </div>
