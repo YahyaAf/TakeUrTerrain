@@ -88,7 +88,7 @@
                 form.reset();
                 setTimeout(function() {
                     window.location.href = "{{ route('categories.index') }}"; 
-                }, 2000);
+                }, 100);
             } else {
                 throw new Error(data.message);
             }

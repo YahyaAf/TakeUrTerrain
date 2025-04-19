@@ -67,8 +67,12 @@ class CategorieController extends BaseController
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
-        return redirect()->route('categories.index')->with('success', 'Catégorie mise à jour avec succès');
+        return response()->json([
+            'success' => true,
+            'message' => 'Catégorie mise à jour avec succès',
+        ]);
     }
+
 
     public function destroy(Category $category)
     {
