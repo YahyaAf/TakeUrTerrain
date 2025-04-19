@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\frontOffice\StoreFeedbackRequest;
+use Illuminate\Routing\Controller as BaseController;
 
-class FeedbackController extends Controller
+class FeedbackController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:create-feedback')->only(['store']);
+        $this->middleware('permission:show-feedback')->only(['show']);
+        // $this->middleware('permission:rating-publication')->only(['getAverageRating']);
+        $this->middleware('permission:delete-feedback')->only('delete');
+    }
+
     public function store(StoreFeedbackRequest $request)
     {
         Feedback::create([

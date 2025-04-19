@@ -136,7 +136,7 @@
                                 </div>
                             </div>
                         @endif
-
+                        @permission('create-feedback')
                         <form action="{{ route('feedback.store') }}" method="POST" class="bg-gray-50 p-6 rounded-xl mb-8">
                             @csrf
                             <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
@@ -177,6 +177,7 @@
                                 Publier mon avis
                             </button>
                         </form>
+                        @endpermission
                     @else
                         <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-lg">
                             <div class="flex">
