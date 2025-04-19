@@ -73,7 +73,12 @@ class CategorieController extends BaseController
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Catégorie supprimée avec succès'
+        ]);
     }
+
 
 }
