@@ -429,7 +429,7 @@
     </div>
 </div>
 
-@if(Auth::check() && Auth::user()->role === 'admin')
+@permission('reservation-admin')
 <div class="fixed bottom-6 right-6">
     <button id="openAdminReservationModal" class="bg-black hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-full shadow-lg transition duration-300 flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -438,7 +438,7 @@
         Réservation Admin
     </button>
 </div>
-@endif
+@endpermission
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
