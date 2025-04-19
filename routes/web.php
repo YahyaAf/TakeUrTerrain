@@ -28,6 +28,7 @@ use App\Http\Controllers\frontOffice\ReservationAdminController;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+Route::get('/terrains', [CategoryTerrainController::class, 'index'])->name('frontOffice.terrains.index');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -71,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('terrains', TerrainController::class);
     });
 
-    Route::get('/terrains', [CategoryTerrainController::class, 'index'])->name('frontOffice.terrains.index');
+    
     Route::get('/terrains/{id}', [CategoryTerrainController::class, 'show'])->name('frontOffice.terrains.show');
 
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');

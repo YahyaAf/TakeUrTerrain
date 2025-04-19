@@ -233,13 +233,14 @@
                         </div>
                     </div>
                 </div>
-                
+                @permission('detail-terrain')
                 <div class="px-6 pb-6 mt-auto">
                     <a href="{{ route('frontOffice.terrains.show',$terrain->id ) }}" 
                        class="block w-full py-3 px-4 text-center bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-800 hover:to-black text-gray-700 hover:text-white font-medium rounded-xl transition-colors duration-300 border border-gray-200 hover:border-transparent">
                         Voir les détails
                     </a>
                 </div>
+                @endpermission
             </div>
             @endforeach
         </div>
