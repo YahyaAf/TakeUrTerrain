@@ -32,11 +32,15 @@
                         Terrains
                     </a>
                 </li>
+                
+                @permission('view-ticket')
                 <li class="mr-3">
                     <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="{{ route('tickets.index') }}">
                         Tickets
                     </a>
                 </li>
+                @endpermission
+
                 @permission('contact-message')
                 <li class="mr-3">
                     <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="{{ route('contact.index') }}">
