@@ -3,7 +3,7 @@
         <div class="flex flex-wrap">
             <div class="w-full md:w-1/4 mb-10 md:mb-0">
                 <a class="text-2xl font-bold text-white flex items-center mb-6" href="#">
-                    <i class="fas fa-table-tennis-paddle-ball text-cyan-400 mr-2"></i>SportsPitch
+                    <i class="fas fa-table-tennis-paddle-ball text-cyan-400 mr-2"></i>TakeUrTerrain
                 </a>
                 <p class="text-gray-400 mb-6">The easiest way to book premium sports courts online. Play your favorite sports at top-rated facilities.</p>
                 <div class="flex space-x-4">
@@ -80,7 +80,7 @@
         
         <div class="border-t border-gray-800 mt-12 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 SportsPitch. All rights reserved.</p>
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 TakeUrTerrain. All rights reserved.</p>
                 <div class="flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition duration-300">Privacy Policy</a>
                     <a href="#" class="text-gray-400 hover:text-cyan-400 text-sm transition duration-300">Terms of Service</a>

@@ -102,178 +102,48 @@
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="py-20 bg-gradient-to-br from-cyan-50 to-blue-50 relative overflow-hidden">
-        <!-- Background decorations -->
-        <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-cyan-100 opacity-30 -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-blue-100 opacity-30 translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-          <!-- Section Header -->
-          <div class="flex flex-col items-center mb-16">
-            <span class="inline-block px-4 py-1 rounded-full bg-cyan-100 text-cyan-700 font-semibold text-sm tracking-wider uppercase mb-3">Simple Process</span>
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2 relative">
-              How It <span class="text-cyan-600">Works</span>
-              <div class="absolute h-1 w-20 bg-cyan-500 bottom-0 left-1/2 transform -translate-x-1/2 mt-4"></div>
-            </h2>
-            <p class="text-gray-600 max-w-2xl text-center mt-6">Reserve your favorite sports court in just three simple steps and get ready to play!</p>
-          </div>
-          
-          <!-- Process Steps -->
-          <div class="flex flex-col md:flex-row gap-8">
-            <!-- Step 1 -->
-            <div class="flex-1 group">
-              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
-                <!-- Background accent -->
-                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
-                
-                <!-- Icon & Number -->
-                <div class="flex items-center justify-between mb-6 relative">
-                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
-                    <i class="fas fa-search text-xl"></i>
-                  </div>
-                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">01</span>
-                </div>
-                
-                <!-- Content -->
-                <h3 class="text-xl font-bold text-gray-800 mb-3">Search & Discover</h3>
-                <p class="text-gray-600 mb-6">Find the perfect court by location, sport type, price range and available amenities.</p>
-                
-                <!-- Action Button -->
-                <div class="relative">
-                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
-                    Browse Courts
-                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Step 2 -->
-            <div class="flex-1 group">
-              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
-                <!-- Background accent -->
-                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
-                
-                <!-- Icon & Number -->
-                <div class="flex items-center justify-between mb-6 relative">
-                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
-                    <i class="fas fa-calendar-check text-xl"></i>
-                  </div>
-                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">02</span>
-                </div>
-                
-                <!-- Content -->
-                <h3 class="text-xl font-bold text-gray-800 mb-3">Book & Pay</h3>
-                <p class="text-gray-600 mb-6">Select your preferred date and time slot, then complete your booking with secure payment.</p>
-                
-                <!-- Action Button -->
-                <div class="relative">
-                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
-                    View Payment Options
-                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Step 3 -->
-            <div class="flex-1 group">
-              <div class="bg-white rounded-xl p-8 shadow-lg h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl relative overflow-hidden">
-                <!-- Background accent -->
-                <div class="absolute w-32 h-32 -top-10 -right-10 rounded-full bg-cyan-50 opacity-70 group-hover:bg-cyan-100 transition-all duration-300"></div>
-                
-                <!-- Icon & Number -->
-                <div class="flex items-center justify-between mb-6 relative">
-                  <div class="w-14 h-14 flex items-center justify-center rounded-full bg-cyan-100 text-cyan-700 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
-                    <i class="fas fa-basketball-ball text-xl"></i>
-                  </div>
-                  <span class="text-6xl font-bold text-gray-100 group-hover:text-cyan-50 transition-all duration-300">03</span>
-                </div>
-                
-                <!-- Content -->
-                <h3 class="text-xl font-bold text-gray-800 mb-3">Play & Enjoy</h3>
-                <p class="text-gray-600 mb-6">Receive instant confirmation and check-in details. Just show up and enjoy your game!</p>
-                
-                <!-- Action Button -->
-                <div class="relative">
-                  <a href="#" class="inline-flex items-center text-cyan-600 font-medium group-hover:text-cyan-700 transition-all duration-300">
-                    Read FAQs
-                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section class="bg-gradient-to-br from-slate-800 to-slate-900 py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="inline-block px-4 py-1.5 bg-cyan-700/50 rounded-full border border-cyan-600/50 text-black text-sm font-medium mb-4">
+            Notre valeur ajoutée
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold text-black mb-4">Pourquoi choisir notre plateforme</h2>
+            <p class="text-black max-w-2xl mx-auto">Découvrez les avantages qui font de notre service la solution idéale pour tous vos besoins de réservation de terrains sportifs.</p>
         </div>
-      </section>
-    <!-- Testimonials Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col text-center w-full mb-12">
-                <p class="font-medium text-cyan-600 uppercase tracking-wide mb-2">Customer Stories</p>
-                <h2 class="text-4xl font-bold mb-2 text-gray-800">What Athletes Say</h2>
-                <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-600">Read what sports enthusiasts think about our courts and services</p>
+    
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-cyan-800/30 hover:border-cyan-500/50 transition-all shadow-lg">
+            <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
             </div>
-            
-            <div class="flex flex-wrap -m-4">
-                <!-- Testimonial 1 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="h-full bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-8 h-8 text-cyan-400 mb-4" viewBox="0 0 975.036 975.036">
-                            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
-                        </svg>
-                        <p class="leading-relaxed mb-6 text-gray-600">SportsPitch has completely transformed how I book courts. No more waiting in lines or making phone calls. Their tennis courts are world-class and always well-maintained.</p>
-                        <div class="inline-flex items-center">
-                            <img alt="testimonial" src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                            <div class="flex-grow flex flex-col pl-4">
-                                <span class="title-font font-medium text-gray-900">Sarah Johnson</span>
-                                <span class="text-gray-500 text-sm">Tennis Enthusiast</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="h-full bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-8 h-8 text-cyan-400 mb-4" viewBox="0 0 975.036 975.036">
-                            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
-                        </svg>
-                        <p class="leading-relaxed mb-6 text-gray-600">Our basketball team uses SportsPitch for all our practices. The booking system is seamless, and we love the modern facilities. Highly recommended for any serious team!</p>
-                        <div class="inline-flex items-center">
-                            <img alt="testimonial" src="https://randomuser.me/api/portraits/women/45.jpg" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                            <div class="flex-grow flex flex-col pl-4">
-                                <span class="title-font font-medium text-gray-900">Michael Torres</span>
-                                <span class="text-gray-500 text-sm">Basketball Coach</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="p-4 md:w-1/3">
-                    <div class="h-full bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-8 h-8 text-cyan-400 mb-4" viewBox="0 0 975.036 975.036">
-                            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
-                        </svg>
-                        <p class="leading-relaxed mb-6 text-gray-600">The ease of booking on SportsPitch is unmatched. I love that I can see real-time availability and the football pitch conditions. Great value for the quality provided!</p>
-                        <div class="inline-flex items-center">
-                            <img alt="testimonial" src="https://randomuser.me/api/portraits/men/76.jpg" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                            <div class="flex-grow flex flex-col pl-4">
-                                <span class="title-font font-medium text-gray-900">Emma Liu</span>
-                                <span class="text-gray-500 text-sm">Football Player</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-2">Réservation facile</h3>
+            <p class="text-slate-700">Réservez votre terrain en quelques clics depuis notre application ou site web, à tout moment.</p>
             </div>
+    
+            <div class="bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-cyan-800/30 hover:border-cyan-500/50 transition-all shadow-lg">
+            <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-2">Terrains de qualité</h3>
+            <p class="text-slate-700">Accédez aux meilleurs terrains de football, basketball et tennis dans votre région.</p>
+            </div>
+    
+            <div class="bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-cyan-800/30 hover:border-cyan-500/50 transition-all shadow-lg">
+            <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 mb-2">Prix compétitifs</h3>
+            <p class="text-slate-700">Bénéficiez de tarifs avantageux et transparents pour toutes vos sessions sportives.</p>
+            </div>
+        </div>
         </div>
     </section>
 @endsection
