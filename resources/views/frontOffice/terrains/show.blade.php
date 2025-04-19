@@ -22,9 +22,11 @@
                         <span class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">{{ $terrain->disponibility }}</span>
                     </div>
                 </div>
+                @permission('reservation-client')
                 <button id="openReservationModal" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-lg transition duration-300 shadow-md">
                     Réserver maintenant
                 </button>
+                @endpermission
             </div>
         </div>
     </div>
@@ -299,13 +301,14 @@
                             @endforeach
                         </div>
                     </div>
-                    
+                    @permission('reservation-client')
                     <button id="openReservationModalSidebar" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                         Réserver maintenant
                     </button>
+                    @endpermission
                 </div>
             </div>
             
@@ -337,7 +340,7 @@
                 {{ session('error') }}
             </div>
         @endif
-
+        @permission('reservation-client')
         <form action="{{ route('checkout') }}" method="POST" id="reservationForm">
             @csrf
             <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
@@ -369,6 +372,7 @@
                 Réserver et Payer
             </button>
         </form>
+        @endpermission
     </div>
 </div>
 
@@ -382,7 +386,7 @@
                 </svg>
             </button>
         </div>
-
+        @permission('reservation-admin')
         <form action="{{ route('admin.reservation.checkout') }}" method="POST">
             @csrf
             <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
@@ -426,6 +430,7 @@
                 Réserver pour le client
             </button>
         </form>
+        @endpermission
     </div>
 </div>
 
