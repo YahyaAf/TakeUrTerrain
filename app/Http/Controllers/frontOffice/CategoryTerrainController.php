@@ -8,9 +8,18 @@ use App\Models\Category;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 
-class CategoryTerrainController extends Controller
+class CategoryTerrainController extends BaseController
 {
+
+    public function __construct()
+    {
+        // $this->middleware('permission:terrain-page')->only(['index']);
+        $this->middleware('permission:detail-terrain')->only(['show']);
+    }
+
+
     public function index(Request $request)
     {
         $categories = Category::all();

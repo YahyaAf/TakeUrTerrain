@@ -10,6 +10,7 @@
                 <div class="absolute -bottom-2 left-20 h-1 w-10 bg-blue-400 rounded-full"></div>
             </div>
             
+            @permission('create-category')
             <a href="{{ route('categories.create') }}" 
                class="group px-5 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white rounded-lg hover:from-indigo-700 hover:to-blue-600 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                 <span class="flex items-center">
@@ -19,6 +20,7 @@
                     Ajouter une Catégorie
                 </span>
             </a>
+            @endpermission
         </div>
 
         <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-indigo-50">
@@ -68,13 +70,16 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div class="flex items-center justify-end space-x-3">
+                                    @permission('update-category')
                                     <a href="{{ route('categories.edit', $category->id) }}" 
                                        class="w-8 h-8 flex items-center justify-center rounded-full bg-green-50 text-green-500 hover:bg-green-100 hover:text-green-600 transition-colors duration-200">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                             <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                         </svg>
                                     </a>
+                                    @endpermission
                                     
+                                    @permission('delete-category')
                                     <form action="{{ route('categories.destroy', $category->id) }}" method="POST" 
                                           onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?');">
                                         @csrf
@@ -86,6 +91,7 @@
                                             </svg>
                                         </button>
                                     </form>
+                                    @endpermission
                                 </div>
                             </td>
                         </tr>

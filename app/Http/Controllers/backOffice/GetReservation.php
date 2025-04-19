@@ -5,9 +5,16 @@ namespace App\Http\Controllers\backOffice;
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller as BaseController;
 
-class GetReservation extends Controller
+class GetReservation extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:check-reservation')->only(['reservation']);
+    }
+
     public function reservation()
     {
         $reservations = Reservation::with(['client', 'terrain'])

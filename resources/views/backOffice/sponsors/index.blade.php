@@ -27,6 +27,7 @@
 
         <!-- Add Button -->
         <div class="mb-6 flex justify-end">
+            @permission('create-sponsor')
             <a href="{{ route('sponsors.create') }}" 
                class="group px-5 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white rounded-lg hover:from-indigo-700 hover:to-blue-600 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 group-hover:animate-pulse" viewBox="0 0 20 20" fill="currentColor">
@@ -34,6 +35,7 @@
                 </svg>
                 Ajouter un Sponsor
             </a>
+            @endpermission
         </div>
 
         <!-- Table Card -->
@@ -73,6 +75,7 @@
                                             <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                                         </svg>
                                     </a>
+                                    @permission('update-sponsor')
                                     <a href="{{ route('sponsors.edit', $sponsor) }}" 
                                        class="text-green-500 hover:text-green-700 transition-colors">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -80,6 +83,9 @@
                                             <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                         </svg>
                                     </a>
+                                    @endpermission
+
+                                    @permission('delete-sponsor')
                                     <form action="{{ route('sponsors.destroy', $sponsor) }}" method="POST" class="inline" 
                                           onsubmit="return confirm('Voulez-vous vraiment supprimer ce sponsor ?');">
                                         @csrf
@@ -90,6 +96,7 @@
                                             </svg>
                                         </button>
                                     </form>
+                                    @endpermission
                                 </div>
                             </td>
                         </tr>

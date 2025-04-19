@@ -8,9 +8,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\backOffice\SponsorRequest;
 use App\Http\Requests\backOffice\UpdateSponsorRequest;
+use Illuminate\Routing\Controller as BaseController;
 
-class SponsorController extends Controller
+class SponsorController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-sponsor')->only(['index', 'show']);
+        $this->middleware('permission:create-sponsor')->only(['create', 'store']);
+        $this->middleware('permission:update-sponsor')->only(['edit', 'update']);
+        $this->middleware('permission:delete-sponsor')->only('destroy');
+    }
+
     public function index()
     {
         $sponsors = Sponsor::latest()->paginate(10);

@@ -32,16 +32,22 @@
                         Terrains
                     </a>
                 </li>
+                
+                @permission('view-ticket')
                 <li class="mr-3">
                     <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="{{ route('tickets.index') }}">
                         Tickets
                     </a>
                 </li>
+                @endpermission
+
+                @permission('contact-message')
                 <li class="mr-3">
                     <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="{{ route('contact.index') }}">
                         Contact
                     </a>
                 </li>
+                @endpermission
                 
                 @guest
                     <li class="mr-3">
@@ -72,6 +78,7 @@
                                 <p class="text-sm font-bold text-gray-800">{{ Auth::user()->email }}</p>
                             </div>
                             <div class="py-1">
+                                @permission('view-profile-frontOffice')
                                 <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition duration-150">
                                     <div class="flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -80,6 +87,7 @@
                                         Profile
                                     </div>
                                 </a>
+                                @endpermission
                                 <div class="border-t border-gray-100 my-1"></div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

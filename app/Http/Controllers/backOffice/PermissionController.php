@@ -5,9 +5,20 @@ namespace App\Http\Controllers\backOffice;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 
-class PermissionController extends Controller
+class PermissionController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view-permission')->only(['index', 'show']);
+        $this->middleware('permission:create-permission')->only(['create', 'store']);
+        $this->middleware('permission:update-permission')->only(['edit', 'update']);
+        $this->middleware('permission:delete-permission')->only('destroy');
+    }
+
+
     public function index()
     {
         $permissions = Permission::all();

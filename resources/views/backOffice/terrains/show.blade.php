@@ -3,7 +3,6 @@
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <div class="bg-white shadow-2xl rounded-xl overflow-hidden">
-        <!-- Hero Section with Gradient Overlay on Image -->
         <div class="relative h-64 md:h-96">
             <img 
                 src="{{ asset('storage/' . $terrain->photo) }}" 
@@ -25,7 +24,6 @@
             </div>
         </div>
 
-        <!-- Main Content Grid -->
         <div class="grid md:grid-cols-12 gap-8 p-6">
             <!-- Left Column - Map and Price Info -->
             <div class="md:col-span-5 space-y-6">
@@ -144,7 +142,6 @@
             </div>
         </div>
 
-        <!-- Footer Action Bar -->
         <div class="bg-gray-50 p-6 flex justify-between items-center border-t border-gray-100">
             <a 
                 href="{{ route('terrains.index') }}" 
@@ -244,7 +241,6 @@
 </script>
 
 <style>
-    /* Custom marker styling */
     .custom-map-marker {
         position: relative;
     }

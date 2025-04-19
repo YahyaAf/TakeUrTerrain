@@ -6,9 +6,19 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\backOffice\TagRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 
-class TagController extends Controller
+class TagController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view-tag')->only(['index', 'show']);
+        $this->middleware('permission:create-tag')->only(['create', 'store']);
+        $this->middleware('permission:update-tag')->only(['edit', 'update']);
+        $this->middleware('permission:delete-tag')->only('destroy');
+    }
+
     public function index()
     {
         $tags = Tag::all();

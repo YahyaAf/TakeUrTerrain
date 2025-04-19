@@ -11,14 +11,22 @@ use App\Http\Controllers\Controller;
 use App\Services\Terrain\TerrainService;
 use App\Http\Requests\backOffice\TerrainRequest;
 use App\Http\Requests\backOffice\UpdateTerrainRequest;
+use Illuminate\Routing\Controller as BaseController;
 
-class TerrainController extends Controller
+class TerrainController extends BaseController
 {
     protected $terrainService;
 
     public function __construct(TerrainService $terrainService)
     {
         $this->terrainService = $terrainService;
+        $this->middleware('permission:view-terrain')->only(['index', 'show']);
+        $this->middleware('permission:create-terrain')->only(['create', 'store']);
+        $this->middleware('permission:update-terrain')->only(['edit', 'update']);
+        $this->middleware('permission:delete-terrain')->only('destroy');
+        $this->middleware('permission:view-publication')->only('publication');
+        $this->middleware('permission:accept-publication')->only('accept');
+        $this->middleware('permission:refuse-publication')->only('refuse');
     }
 
     public function index()
@@ -52,16 +60,25 @@ class TerrainController extends Controller
     public function show($id)
     {
         $terrain = $this->terrainService->getTerrainById($id);
+        if (auth()->id() !== $terrain->user_id) {
+            abort(403, 'Vous n\'avez pas la permission.');
+        }
         return view('backOffice.terrains.show', compact('terrain'));
     }
 
     public function edit(Terrain $terrain)
     {
+        if (auth()->id() !== $terrain->user_id) {
+            abort(403, 'Vous n\'avez pas la permission.');
+        }
+
         $tags = Tag::all();
         $sponsors = Sponsor::all();
         $categories = Category::all();
+
         return view('backOffice.terrains.edit', compact('terrain', 'tags', 'sponsors', 'categories'));
     }
+
 
     public function update(UpdateTerrainRequest $request, Terrain $terrain)
     {
@@ -85,7 +102,10 @@ class TerrainController extends Controller
 
     public function publication()
     {
-        $terrains = $this->terrainService->getAllTerrains()->sortByDesc('created_at');
+        $terrains =Terrain::with(['tags', 'categorie', 'sponsors'])
+            ->orderByDesc('created_at')
+            ->get();
+
         return view('backOffice.publications.index', compact('terrains'));
     }
 

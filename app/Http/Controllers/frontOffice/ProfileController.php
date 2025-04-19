@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Controller as BaseController;
 
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view-profile-frontOffice')->only(['index']);
+        $this->middleware('permission:update-profile-frontOffice')->only(['update']);
+    }
+
     public function index()
     {
         $user = auth()->user(); 

@@ -62,8 +62,13 @@ class User extends Authenticatable
 
     public function hasPermission($permission)
     {
-        return $this->roles->flatMap->permissions->contains('name', $permission);
+        return $this->roles
+            ->flatMap(function ($role) {
+                return $role->permissions;
+            })
+            ->contains('name', $permission);
     }
+
 
     public function reservations()
     {

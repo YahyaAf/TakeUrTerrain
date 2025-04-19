@@ -6,9 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\ContactMessage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Routing\Controller as BaseController;
 
-class ContactController extends Controller
+class ContactController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:contact-message')->only(['index', 'send']);
+    }
+
     public function index()
     {
         return view('frontOffice.contacts.index');

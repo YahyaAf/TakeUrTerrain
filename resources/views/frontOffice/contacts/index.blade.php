@@ -29,7 +29,7 @@
                         <p>{{ session('success') }}</p>
                     </div>
                 @endif
-
+                @permission('contact-message')
                 <form method="POST" action="{{ route('contact.send') }}" class="space-y-6">
                     @csrf
                     @if ($errors->any())
@@ -101,7 +101,8 @@
                             Envoyer
                         </button>
                     </div>
-                </form>                
+                </form>   
+                @endpermission             
             </div>
         </div>
         

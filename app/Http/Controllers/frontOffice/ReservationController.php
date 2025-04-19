@@ -14,10 +14,16 @@ use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\URL;
 use Stripe\Exception\CardException;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 
 
-class ReservationController extends Controller
+class ReservationController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:reservation-client')->only(['createCheckoutSession', 'paymentSuccess','paymentCancel']);
+    }
 
     public function createCheckoutSession(Request $request)
     {
