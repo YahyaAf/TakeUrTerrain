@@ -37,11 +37,13 @@
                         Tickets
                     </a>
                 </li>
+                @permission('contact-message')
                 <li class="mr-3">
                     <a class="inline-block py-2 px-4 text-white font-medium no-underline hover:bg-white/20 rounded-lg transition-all duration-300" href="{{ route('contact.index') }}">
                         Contact
                     </a>
                 </li>
+                @endpermission
                 
                 @guest
                     <li class="mr-3">
