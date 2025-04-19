@@ -60,16 +60,25 @@ class TerrainController extends BaseController
     public function show($id)
     {
         $terrain = $this->terrainService->getTerrainById($id);
+        if (auth()->id() !== $terrain->user_id) {
+            abort(403, 'Vous n\'avez pas la permission.');
+        }
         return view('backOffice.terrains.show', compact('terrain'));
     }
 
     public function edit(Terrain $terrain)
     {
+        if (auth()->id() !== $terrain->user_id) {
+            abort(403, 'Vous n\'avez pas la permission.');
+        }
+
         $tags = Tag::all();
         $sponsors = Sponsor::all();
         $categories = Category::all();
+
         return view('backOffice.terrains.edit', compact('terrain', 'tags', 'sponsors', 'categories'));
     }
+
 
     public function update(UpdateTerrainRequest $request, Terrain $terrain)
     {

@@ -3,7 +3,7 @@
 @section('content')
 <section class="relative">
 
-    <div class="relative bg-gradient-to-r from-gray-800 to-black py-16">
+    <div class="relative bg-gradient-to-r bg-black to-black py-16">
         <div class="absolute inset-0 bg-black/40"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-6">
