@@ -9,10 +9,13 @@
             <div class="absolute -bottom-2 left-16 h-1 w-8 bg-blue-400 rounded-full"></div>
         </div>
 
-        <div class="bg-white shadow-lg rounded-xl p-8 border border-indigo-100 transform transition-all duration-300 hover:shadow-xl">
-            <form action="{{ route('categories.store') }}" method="POST">
+        <div class="bg-white shadow-lg rounded-xl p-8 border border-indigo-100 transition-all duration-300 hover:shadow-xl">
+            <div id="successMsg" class="hidden mb-4 text-green-600 font-semibold">Catégorie ajoutée avec succès !</div>
+            <div id="errorMsg" class="hidden mb-4 text-red-600 font-semibold"></div>
+
+            <form id="categoryForm">
                 @csrf
-            
+
                 <div class="mb-6">
                     <label for="name" class="block text-indigo-700 font-medium mb-2">Nom de la catégorie</label>
                     <div class="relative">
@@ -23,9 +26,6 @@
                             <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
                         </svg>
                     </div>
-                    @error('name')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
                 </div>
                 
                 <div class="flex justify-end space-x-3">
@@ -46,7 +46,7 @@
                 </div>
             </form>
         </div>
-        
+
         <div class="mt-8 flex justify-end">
             <div class="h-2 w-24 bg-blue-400 rounded-full"></div>
             <div class="h-2 w-12 bg-indigo-500 ml-2 rounded-full"></div>
@@ -54,3 +54,52 @@
     </div>
 </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('categoryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const successMsg = document.getElementById('successMsg');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // Reset messages
+        successMsg.classList.add('hidden');
+        errorMsg.classList.add('hidden');
+
+        fetch("{{ route('categories.store') }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                'Accept': 'application/json'
+            },
+            body: formData
+        })
+        .then(async response => {
+            if (!response.ok) {
+                throw new Error('Erreur dans la requête');
+            }
+            const data = await response.json();
+            if (data.success) {
+                successMsg.textContent = data.message;
+                successMsg.classList.remove('hidden');
+                form.reset();
+                setTimeout(function() {
+                    window.location.href = "{{ route('categories.index') }}"; 
+                }, 2000);
+            } else {
+                throw new Error(data.message);
+            }
+        })
+        .catch(error => {
+            console.log("Erreur AJAX:", error);
+            errorMsg.textContent = error.message || 'Une erreur est survenue.';
+            errorMsg.classList.remove('hidden');
+        });
+    });
+});
+
+
+</script>

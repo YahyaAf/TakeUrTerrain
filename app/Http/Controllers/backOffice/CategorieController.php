@@ -31,10 +31,27 @@ class CategorieController extends BaseController
         return view('BackOffice.Categories.create');
     }
 
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
-        Category::create($request->validated());
-        return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès');
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        try {
+            $category = Category::create($validated);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Catégorie ajoutée avec succès !',
+                'category' => $category
+            ], 201); 
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Une erreur est survenue.',
+                'error' => $e->getMessage()
+            ], 500); 
+        }
     }
 
     public function edit(Category $category)
