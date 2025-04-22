@@ -335,11 +335,22 @@
             </button>
         </div>
 
-        @if(session('error'))
-            <div class="bg-red-100 text-red-500 border border-red-500 rounded-lg p-3 mb-4">
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 border border-red-500 rounded-lg p-4 mb-4">
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="bg-red-100 text-red-700 border border-red-500 rounded-lg p-4 mb-4">
                 {{ session('error') }}
             </div>
         @endif
+
         @permission('reservation-client')
         <form action="{{ route('checkout') }}" method="POST" id="reservationForm">
             @csrf
@@ -389,6 +400,21 @@
         @permission('reservation-admin')
         <form action="{{ route('admin.reservation') }}" method="POST">
             @csrf
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-700 border border-red-500 rounded-lg p-4 mb-4">
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="bg-red-100 text-red-700 border border-red-500 rounded-lg p-4 mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
             <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
         
             <div class="mb-4">
@@ -679,6 +705,14 @@
         
         @if(session('error'))
             document.getElementById('openReservationModal').click();
+        @endif
+
+        @if(session('error'))
+            document.getElementById('openAdminReservationModal').click();
+        @endif
+
+        @if($errors->any())
+            document.getElementById('openAdminReservationModal').click();
         @endif
     });
 </script>

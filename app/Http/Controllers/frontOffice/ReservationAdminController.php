@@ -78,6 +78,10 @@ class ReservationAdminController extends BaseController
 
         $amount = $prix * $creneaux;
 
+        if ($request->price_deposit > $amount) {
+            return redirect()->back()->with('error', 'Le montant de l\'acompte ne peut pas dépasser le prix total de la réservation.');
+        }
+
         $reservation = Reservation::create([
             'terrain_id' => $request->terrain_id,
             'client_id' => $request->client_id,
@@ -85,13 +89,13 @@ class ReservationAdminController extends BaseController
             'heure_debut' => $heureDebut,
             'heure_fin' => $heureFin,
             'creneaux' => $creneaux,
-            'status' => 'en attente', // ← statut manuel
+            'status' => 'en attente', 
         ]);
 
         Payment::create([
             'reservation_id' => $reservation->id,
             'amount' => $request->price_deposit,
-            'status' => 'en attente', // ← paiement non encore fait
+            'status' => 'en attente', 
         ]);
 
         $payment = Payment::where('reservation_id', $reservation->id)->first();
