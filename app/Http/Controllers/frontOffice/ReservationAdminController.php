@@ -58,7 +58,7 @@ class ReservationAdminController extends BaseController
 
         $existingReservation = Reservation::where('terrain_id', $request->terrain_id)
             ->where('date_reservation', $request->date_reservation)
-            ->where('status', 'confirmée')
+            ->whereIn('status', ['confirmée', 'en attente'])
             ->where(function ($query) use ($heureDebut, $heureFin) {
                 $query->whereBetween('heure_debut', [$heureDebut, $heureFin])
                     ->orWhereBetween('heure_fin', [$heureDebut, $heureFin])
