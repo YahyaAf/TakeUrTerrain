@@ -11,7 +11,9 @@ class Ticket extends Model
         'terrain_id',
         'payment_id',
         'price',
-        'user_id'
+        'user_id',
+        'status',
+        'code_unique'
     ];
 
     public function reservation()

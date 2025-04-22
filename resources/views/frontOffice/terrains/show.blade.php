@@ -387,7 +387,7 @@
             </button>
         </div>
         @permission('reservation-admin')
-        <form action="{{ route('admin.reservation.checkout') }}" method="POST">
+        <form action="{{ route('admin.reservation') }}" method="POST">
             @csrf
             <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
         
@@ -421,6 +421,11 @@
                 </select>
             </div>
         
+            <div class="mb-4">
+                <label for="price_deposit" class="block text-gray-700 font-medium mb-1">Montant du acompte</label>
+                <input type="number" min="0" step="0.01" id="price_deposit" name="price_deposit" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" placeholder="Ex: 100.00" required>
+            </div>
+        
             <div class="mb-4 text-sm text-gray-500" id="admin_calculated_end"></div>
         
             <button type="submit" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md flex items-center justify-center">
@@ -430,6 +435,7 @@
                 Réserver pour le client
             </button>
         </form>
+        
         @endpermission
     </div>
 </div>
