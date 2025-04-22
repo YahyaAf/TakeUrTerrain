@@ -9,6 +9,7 @@ use App\Models\Ticket;
 use App\Models\Payment;
 use App\Models\Terrain;
 use App\Models\Reservation;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\URL;
@@ -143,6 +144,8 @@ class ReservationController extends BaseController
                 'payment_id'       => $payment->id,
                 'user_id'          => $reservation->client_id, 
                 'price'            => $payment->amount,
+                'status'         => 'confirme',
+                'code_unique' => strtoupper(Str::random(10)),
             ]);
             
         }
