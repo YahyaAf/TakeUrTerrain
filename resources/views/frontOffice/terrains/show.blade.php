@@ -699,7 +699,6 @@
             });
         });
         
-        // Function to calculate and display end time for both modals
         function updateEndTime(startTimeElement, creneauxElement, displayElement) {
             if (!startTimeElement || !creneauxElement || !displayElement) return;
             
@@ -715,8 +714,7 @@
                 displayElement.textContent = '';
             }
         }
-        
-        // Set up time calculators for client modal
+
         const heureDebut = document.getElementById('heure_debut');
         const creneaux = document.getElementById('creneaux');
         const calculatedEnd = document.getElementById('calculated_end');
@@ -726,7 +724,6 @@
             creneaux.addEventListener('change', () => updateEndTime(heureDebut, creneaux, calculatedEnd));
         }
         
-        // Set up time calculators for admin modal
         const adminHeureDebut = document.getElementById('admin_heure_debut');
         const adminCreneaux = document.getElementById('admin_creneaux');
         const adminCalculatedEnd = document.getElementById('admin_calculated_end');
@@ -736,29 +733,30 @@
             adminCreneaux.addEventListener('change', () => updateEndTime(adminHeureDebut, adminCreneaux, adminCalculatedEnd));
         }
         
-        // Show modals if there are errors
-        // Check for admin reservation errors first (using the price_deposit field as a marker)
         @if($errors->any())
             @if(old('price_deposit') !== null)
-                if (document.getElementById('openAdminReservationModal')) {
-                    document.getElementById('openAdminReservationModal').click();
+                if (document.getElementById('adminReservationModal')) {
+                    adminReservationModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
                 }
             @else
-                if (document.getElementById('openReservationModal')) {
-                    document.getElementById('openReservationModal').click();
+                if (document.getElementById('reservationModal')) {
+                    reservationModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
                 }
             @endif
         @endif
-        
-        // Handle session errors
+ 
         @if(session('error'))
             @if(session('form_type') === 'admin')
-                if (document.getElementById('openAdminReservationModal')) {
-                    document.getElementById('openAdminReservationModal').click();
+                if (document.getElementById('adminReservationModal')) {
+                    adminReservationModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
                 }
             @else
-                if (document.getElementById('openReservationModal')) {
-                    document.getElementById('openReservationModal').click();
+                if (document.getElementById('reservationModal')) {
+                    reservationModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
                 }
             @endif
         @endif
