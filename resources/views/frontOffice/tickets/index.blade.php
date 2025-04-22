@@ -48,10 +48,29 @@
                                 <div class="flex justify-between items-start mb-6">
                                     <div>
                                         <h3 class="text-2xl font-bold text-gray-800">{{ $ticket->terrain->name ?? 'Nom terrain inconnu' }}</h3>
-                                        <p class="text-sm text-gray-500">Ticket #{{ $ticket->id }}</p>
+                                        <div class="flex items-center space-x-3">
+                                            <p class="text-sm text-gray-500">Ticket #{{ $ticket->id }}</p>
+                                            <div class="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700">
+                                                Code: {{ $ticket->code_unique ?? 'N/A' }}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="bg-green-100 text-green-700 font-medium px-3 py-1 rounded-full text-sm">
-                                        Confirmé
+                                    
+                                    @php
+                                        $statusColors = [
+                                            'confirmé' => 'bg-green-100 text-green-700',
+                                            'en attente' => 'bg-yellow-100 text-yellow-700',
+                                            'annulé' => 'bg-red-100 text-red-700',
+                                            'terminé' => 'bg-blue-100 text-blue-700',
+                                            'default' => 'bg-gray-100 text-gray-700'
+                                        ];
+                                        
+                                        $status = strtolower($ticket->status ?? 'confirmé');
+                                        $statusColor = $statusColors[$status] ?? $statusColors['default'];
+                                    @endphp
+                                    
+                                    <div class="{{ $statusColor }} font-medium px-3 py-1 rounded-full text-sm">
+                                        {{ ucfirst($ticket->status ?? 'Confirmé') }}
                                     </div>
                                 </div>
 
