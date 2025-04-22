@@ -699,20 +699,68 @@
             });
         });
         
+        // Function to calculate and display end time for both modals
+        function updateEndTime(startTimeElement, creneauxElement, displayElement) {
+            if (!startTimeElement || !creneauxElement || !displayElement) return;
+            
+            const startTime = startTimeElement.value;
+            const creneaux = parseInt(creneauxElement.value, 10);
+            
+            if (startTime && !isNaN(creneaux)) {
+                const startDate = new Date(`2000-01-01T${startTime}`);
+                const endDate = new Date(startDate.getTime() + (creneaux * 60 * 60 * 1000));
+                const formattedEndTime = endDate.toTimeString().substr(0, 5);
+                displayElement.textContent = `Fin prévue à: ${formattedEndTime}`;
+            } else {
+                displayElement.textContent = '';
+            }
+        }
+        
+        // Set up time calculators for client modal
+        const heureDebut = document.getElementById('heure_debut');
+        const creneaux = document.getElementById('creneaux');
+        const calculatedEnd = document.getElementById('calculated_end');
+        
+        if (heureDebut && creneaux && calculatedEnd) {
+            heureDebut.addEventListener('input', () => updateEndTime(heureDebut, creneaux, calculatedEnd));
+            creneaux.addEventListener('change', () => updateEndTime(heureDebut, creneaux, calculatedEnd));
+        }
+        
+        // Set up time calculators for admin modal
+        const adminHeureDebut = document.getElementById('admin_heure_debut');
+        const adminCreneaux = document.getElementById('admin_creneaux');
+        const adminCalculatedEnd = document.getElementById('admin_calculated_end');
+        
+        if (adminHeureDebut && adminCreneaux && adminCalculatedEnd) {
+            adminHeureDebut.addEventListener('input', () => updateEndTime(adminHeureDebut, adminCreneaux, adminCalculatedEnd));
+            adminCreneaux.addEventListener('change', () => updateEndTime(adminHeureDebut, adminCreneaux, adminCalculatedEnd));
+        }
+        
+        // Show modals if there are errors
+        // Check for admin reservation errors first (using the price_deposit field as a marker)
         @if($errors->any())
-            document.getElementById('openReservationModal').click();
+            @if(old('price_deposit') !== null)
+                if (document.getElementById('openAdminReservationModal')) {
+                    document.getElementById('openAdminReservationModal').click();
+                }
+            @else
+                if (document.getElementById('openReservationModal')) {
+                    document.getElementById('openReservationModal').click();
+                }
+            @endif
         @endif
         
+        // Handle session errors
         @if(session('error'))
-            document.getElementById('openReservationModal').click();
-        @endif
-
-        @if(session('error'))
-            document.getElementById('openAdminReservationModal').click();
-        @endif
-
-        @if($errors->any())
-            document.getElementById('openAdminReservationModal').click();
+            @if(session('form_type') === 'admin')
+                if (document.getElementById('openAdminReservationModal')) {
+                    document.getElementById('openAdminReservationModal').click();
+                }
+            @else
+                if (document.getElementById('openReservationModal')) {
+                    document.getElementById('openReservationModal').click();
+                }
+            @endif
         @endif
     });
 </script>
