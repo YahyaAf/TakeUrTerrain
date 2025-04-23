@@ -5,7 +5,7 @@ namespace App\Http\Controllers\backOffice;
 use App\Models\Tag;
 use App\Models\Sponsor;
 use App\Models\Category;
-use App\Models\Terrain;
+// use App\Models\Terrain;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Terrain\TerrainService;
@@ -66,8 +66,10 @@ class TerrainController extends BaseController
         return view('backOffice.terrains.show', compact('terrain'));
     }
 
-    public function edit(Terrain $terrain)
+    public function edit($id)
     {
+        $terrain = $this->terrainService->getTerrainById($id);
+
         if (auth()->id() !== $terrain->user_id) {
             abort(403, 'Vous n\'avez pas la permission.');
         }
@@ -79,9 +81,10 @@ class TerrainController extends BaseController
         return view('backOffice.terrains.edit', compact('terrain', 'tags', 'sponsors', 'categories'));
     }
 
-
-    public function update(UpdateTerrainRequest $request, Terrain $terrain)
+    public function update(UpdateTerrainRequest $request, $id)
     {
+        $terrain = $this->terrainService->getTerrainById($id);
+
         $this->terrainService->updateTerrain($terrain, $request->all());
 
         $terrain->tags()->sync($request->tags ?? []);
@@ -90,43 +93,34 @@ class TerrainController extends BaseController
         return redirect()->route('terrains.index')->with('success', 'Terrain mis à jour avec succès!');
     }
 
-    public function destroy(Terrain $terrain)
+    public function destroy($id)
     {
-        $this->terrainService->deleteTerrain($terrain);
+        $terrain = $this->terrainService->getTerrainById($id);
 
         $terrain->tags()->detach();
         $terrain->sponsors()->detach();
+        $this->terrainService->deleteTerrain($terrain);
 
         return redirect()->route('terrains.index')->with('success', 'Terrain supprimé avec succès!');
     }
 
+
     public function publication()
     {
-        $terrains =Terrain::with(['tags', 'categorie', 'sponsors'])
-            ->orderByDesc('created_at')
-            ->get();
-
+        $terrains = $this->terrainService->getAllWithRelations();
         return view('backOffice.publications.index', compact('terrains'));
     }
 
-
     public function accept($id)
     {
-        $terrain = Terrain::findOrFail($id);
-
-        $terrain->statut = 'accepted';
-        $terrain->save();
-
+        $this->terrainService->updateStatus($id, 'accepted');
         return redirect()->route('publications.index')->with('message', 'Terrain has been accepted successfully.');
     }
 
     public function refuse($id)
     {
-        $terrain = Terrain::findOrFail($id);
-
-        $terrain->statut = 'refuse';
-        $terrain->save();
-
+        $this->terrainService->updateStatus($id, 'refuse');
         return redirect()->route('publications.index')->with('message', 'Terrain has been refused.');
     }
+
 }

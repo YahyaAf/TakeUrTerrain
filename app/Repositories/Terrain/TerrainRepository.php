@@ -14,7 +14,6 @@ class TerrainRepository
             ->get();
     }
 
-
     public function findById($id)
     {
         return Terrain::with('categorie', 'tags', 'sponsors')->findOrFail($id);
@@ -33,5 +32,20 @@ class TerrainRepository
     public function delete(Terrain $terrain)
     {
         return $terrain->delete();
+    }
+
+    public function getAllWithRelations()
+    {
+        return Terrain::with(['tags', 'categorie', 'sponsors'])
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    public function updateStatus($id, $status)
+    {
+        $terrain = Terrain::findOrFail($id);
+        $terrain->statut = $status;
+        $terrain->save();
+        return $terrain;
     }
 }
