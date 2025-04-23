@@ -335,11 +335,22 @@
             </button>
         </div>
 
-        @if(session('error'))
-            <div class="bg-red-100 text-red-500 border border-red-500 rounded-lg p-3 mb-4">
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 border border-red-500 rounded-lg p-4 mb-4">
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="bg-red-100 text-red-700 border border-red-500 rounded-lg p-4 mb-4">
                 {{ session('error') }}
             </div>
         @endif
+
         @permission('reservation-client')
         <form action="{{ route('checkout') }}" method="POST" id="reservationForm">
             @csrf
@@ -352,8 +363,13 @@
         
             <div class="mb-4">
                 <label for="heure_debut" class="block text-gray-700 font-medium mb-1">Heure de début</label>
-                <input type="time" id="heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                <select id="heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                    @for ($hour = 8; $hour <= 23; $hour++)
+                        <option value="{{ sprintf('%02d:00', $hour) }}">{{ sprintf('%02d:00', $hour) }}</option>
+                    @endfor
+                </select>
             </div>
+            
         
             <div class="mb-4">
                 <label for="creneaux" class="block text-gray-700 font-medium mb-1">Durée</label>
@@ -387,8 +403,23 @@
             </button>
         </div>
         @permission('reservation-admin')
-        <form action="{{ route('admin.reservation.checkout') }}" method="POST">
+        <form action="{{ route('admin.reservation') }}" method="POST">
             @csrf
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-700 border border-red-500 rounded-lg p-4 mb-4">
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="bg-red-100 text-red-700 border border-red-500 rounded-lg p-4 mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
             <input type="hidden" name="terrain_id" value="{{ $terrain->id }}">
         
             <div class="mb-4">
@@ -410,8 +441,13 @@
         
             <div class="mb-4">
                 <label for="admin_heure_debut" class="block text-gray-700 font-medium mb-1">Heure de début</label>
-                <input type="time" id="admin_heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                <select id="admin_heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                    @for ($hour = 8; $hour <= 23; $hour++)
+                        <option value="{{ sprintf('%02d:00', $hour) }}">{{ sprintf('%02d:00', $hour) }}</option>
+                    @endfor
+                </select>
             </div>
+            
         
             <div class="mb-4">
                 <label for="admin_creneaux" class="block text-gray-700 font-medium mb-1">Durée</label>
@@ -419,6 +455,11 @@
                     <option value="1">1 heure</option>
                     <option value="2">2 heures</option>
                 </select>
+            </div>
+        
+            <div class="mb-4">
+                <label for="price_deposit" class="block text-gray-700 font-medium mb-1">Montant du acompte</label>
+                <input type="number" min="0" step="0.01" id="price_deposit" name="price_deposit" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" placeholder="Ex: 100.00" required>
             </div>
         
             <div class="mb-4 text-sm text-gray-500" id="admin_calculated_end"></div>
@@ -430,6 +471,7 @@
                 Réserver pour le client
             </button>
         </form>
+        
         @endpermission
     </div>
 </div>
@@ -667,12 +709,66 @@
             });
         });
         
-        @if($errors->any())
-            document.getElementById('openReservationModal').click();
-        @endif
+        function updateEndTime(startTimeElement, creneauxElement, displayElement) {
+            if (!startTimeElement || !creneauxElement || !displayElement) return;
+            
+            const startTime = startTimeElement.value;
+            const creneaux = parseInt(creneauxElement.value, 10);
+            
+            if (startTime && !isNaN(creneaux)) {
+                const startDate = new Date(`2000-01-01T${startTime}`);
+                const endDate = new Date(startDate.getTime() + (creneaux * 60 * 60 * 1000));
+                const formattedEndTime = endDate.toTimeString().substr(0, 5);
+                displayElement.textContent = `Fin prévue à: ${formattedEndTime}`;
+            } else {
+                displayElement.textContent = '';
+            }
+        }
+
+        const heureDebut = document.getElementById('heure_debut');
+        const creneaux = document.getElementById('creneaux');
+        const calculatedEnd = document.getElementById('calculated_end');
         
+        if (heureDebut && creneaux && calculatedEnd) {
+            heureDebut.addEventListener('input', () => updateEndTime(heureDebut, creneaux, calculatedEnd));
+            creneaux.addEventListener('change', () => updateEndTime(heureDebut, creneaux, calculatedEnd));
+        }
+        
+        const adminHeureDebut = document.getElementById('admin_heure_debut');
+        const adminCreneaux = document.getElementById('admin_creneaux');
+        const adminCalculatedEnd = document.getElementById('admin_calculated_end');
+        
+        if (adminHeureDebut && adminCreneaux && adminCalculatedEnd) {
+            adminHeureDebut.addEventListener('input', () => updateEndTime(adminHeureDebut, adminCreneaux, adminCalculatedEnd));
+            adminCreneaux.addEventListener('change', () => updateEndTime(adminHeureDebut, adminCreneaux, adminCalculatedEnd));
+        }
+        
+        @if($errors->any())
+            @if(old('price_deposit') !== null)
+                if (document.getElementById('adminReservationModal')) {
+                    adminReservationModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            @else
+                if (document.getElementById('reservationModal')) {
+                    reservationModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            @endif
+        @endif
+ 
         @if(session('error'))
-            document.getElementById('openReservationModal').click();
+            @if(session('form_type') === 'admin')
+                if (document.getElementById('adminReservationModal')) {
+                    adminReservationModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            @else
+                if (document.getElementById('reservationModal')) {
+                    reservationModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            @endif
         @endif
     });
 </script>

@@ -103,8 +103,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [StatistiqueController::class, 'index'])->name('dashboard');
 
 
-    Route::post('admin/reservation/checkout', [ReservationAdminController::class, 'AdminCreateCheckoutSession'])
-        ->name('admin.reservation.checkout');
+    Route::post('admin/reservation/checkout', [ReservationAdminController::class, 'adminStoreReservation'])
+        ->name('admin.reservation');
     Route::get('admin/payment/success/{id}', [ReservationAdminController::class, 'AdminPaymentSuccess'])
         ->name('admin.payment.success');
     Route::get('admin/payment/cancel/{id}', [ReservationAdminController::class, 'AdminPaymentCancel'])

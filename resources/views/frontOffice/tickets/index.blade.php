@@ -48,24 +48,43 @@
                                 <div class="flex justify-between items-start mb-6">
                                     <div>
                                         <h3 class="text-2xl font-bold text-gray-800">{{ $ticket->terrain->name ?? 'Nom terrain inconnu' }}</h3>
-                                        <p class="text-sm text-gray-500">Ticket #{{ $ticket->id }}</p>
+                                        <div class="flex items-center space-x-3">
+                                            <p class="text-sm text-gray-500">Ticket #{{ $ticket->id }}</p>
+                                            <div class="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium text-gray-700">
+                                                Code: {{ $ticket->code_unique ?? 'N/A' }}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="bg-gray-100 text-black font-medium px-3 py-1 rounded-full text-sm">
-                                        Confirmé
+                                    
+                                    @php
+                                        $statusColors = [
+                                            'confirmé' => 'bg-green-100 text-green-700',
+                                            'en attente' => 'bg-yellow-100 text-yellow-700',
+                                            'annulé' => 'bg-red-100 text-red-700',
+                                            'terminé' => 'bg-blue-100 text-blue-700',
+                                            'default' => 'bg-gray-100 text-gray-700'
+                                        ];
+                                        
+                                        $status = strtolower($ticket->status ?? 'confirmé');
+                                        $statusColor = $statusColors[$status] ?? $statusColors['default'];
+                                    @endphp
+                                    
+                                    <div class="{{ $statusColor }} font-medium px-3 py-1 rounded-full text-sm">
+                                        {{ ucfirst($ticket->status ?? 'Confirmé') }}
                                     </div>
                                 </div>
 
                               
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-6">
                                     <div class="flex items-center">
-                                        <div class="bg-gray-100 rounded-full p-2 mr-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" viewBox="0 0 20 20" fill="currentColor">
+                                        <div class="bg-emerald-100 rounded-full p-2 mr-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-600" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
                                         <div>
                                             <div class="text-xs font-medium text-gray-500">Localisation</div>
-                                            <div class="text-sm">{{ $ticket->terrain->adresse ?? 'Non définie' }}</div>
+                                            <div class="text-sm text-emerald-700">{{ $ticket->terrain->adresse ?? 'Non définie' }}</div>
                                         </div>
                                     </div>
 
@@ -122,12 +141,6 @@
                                             Télécharger
                                         </a>
                                         @endpermission
-                                        
-                                        <button class="flex items-center justify-center bg-gray-100 text-gray-700 px-4 py-2.5 rounded-xl hover:bg-gray-200 transition">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
-                                            </svg>
-                                        </button>
                                     </div>
                                 </div>
                             </div>

@@ -9,6 +9,7 @@ use App\Models\Ticket;
 use App\Models\Payment;
 use App\Models\Terrain;
 use App\Models\Reservation;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\URL;
@@ -61,17 +62,13 @@ class ReservationController extends BaseController
         }
 
         $existingReservation = Reservation::where('terrain_id', $request->terrain_id)
-                                            ->where('date_reservation', $request->date_reservation)
-                                            ->where('status', 'confirmée')
-                                            ->where(function ($query) use ($heureDebut, $heureFin) {
-                                                $query->whereBetween('heure_debut', [$heureDebut, $heureFin])
-                                                    ->orWhereBetween('heure_fin', [$heureDebut, $heureFin])
-                                                    ->orWhere(function($query) use ($heureDebut, $heureFin) {
-                                                        $query->where('heure_debut', '<', $heureDebut)
-                                                                ->where('heure_fin', '>', $heureFin);
-                                                    });
-                                            })
-                                            ->first(); 
+                                ->where('date_reservation', $request->date_reservation)
+                                ->whereIn('status', ['confirmée', 'en attente'])
+                                ->where(function ($query) use ($heureDebut, $heureFin) {
+                                    $query->where('heure_debut', '<', $heureFin)
+                                        ->where('heure_fin', '>', $heureDebut);
+                                })
+                                ->first(); 
 
         if ($existingReservation) {
             $start = Carbon::parse($existingReservation->heure_debut)->format('H:i');
@@ -143,6 +140,8 @@ class ReservationController extends BaseController
                 'payment_id'       => $payment->id,
                 'user_id'          => $reservation->client_id, 
                 'price'            => $payment->amount,
+                'status'         => 'confirme',
+                'code_unique' => strtoupper(Str::random(10)),
             ]);
             
         }

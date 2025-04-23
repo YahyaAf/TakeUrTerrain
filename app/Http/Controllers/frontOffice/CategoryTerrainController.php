@@ -65,7 +65,7 @@ class CategoryTerrainController extends BaseController
         })->with('roles')->get();
         $terrain = Terrain::with(['sponsors', 'tags', 'categorie'])->findOrFail($id);
         $reservations = Reservation::where('terrain_id', $terrain->id)
-            ->where('status', 'confirmée')
+            ->whereIn('status', ['confirmée', 'en attente'])
             ->get(['date_reservation', 'heure_debut', 'heure_fin']);
 
         return view('frontOffice.terrains.show', compact('terrain','reservations','users'));
