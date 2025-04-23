@@ -363,8 +363,13 @@
         
             <div class="mb-4">
                 <label for="heure_debut" class="block text-gray-700 font-medium mb-1">Heure de début</label>
-                <input type="time" id="heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                <select id="heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                    @for ($hour = 8; $hour <= 23; $hour++)
+                        <option value="{{ sprintf('%02d:00', $hour) }}">{{ sprintf('%02d:00', $hour) }}</option>
+                    @endfor
+                </select>
             </div>
+            
         
             <div class="mb-4">
                 <label for="creneaux" class="block text-gray-700 font-medium mb-1">Durée</label>
@@ -436,8 +441,13 @@
         
             <div class="mb-4">
                 <label for="admin_heure_debut" class="block text-gray-700 font-medium mb-1">Heure de début</label>
-                <input type="time" id="admin_heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                <select id="admin_heure_debut" name="heure_debut" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-gray-500 focus:border-gray-500" required>
+                    @for ($hour = 8; $hour <= 23; $hour++)
+                        <option value="{{ sprintf('%02d:00', $hour) }}">{{ sprintf('%02d:00', $hour) }}</option>
+                    @endfor
+                </select>
             </div>
+            
         
             <div class="mb-4">
                 <label for="admin_creneaux" class="block text-gray-700 font-medium mb-1">Durée</label>
