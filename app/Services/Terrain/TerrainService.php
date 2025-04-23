@@ -30,11 +30,10 @@ class TerrainService
             $data['photo'] = $data['photo']->store('terrains', 'public');
         }
 
-        $data['user_id'] = auth()->id(); 
+        $data['user_id'] = auth()->id();
 
         return $this->terrainRepository->create($data);
     }
-
 
     public function updateTerrain($terrain, array $data)
     {
@@ -44,6 +43,7 @@ class TerrainService
             }
             $data['photo'] = $data['photo']->store('terrains', 'public');
         }
+
         return $this->terrainRepository->update($terrain, $data);
     }
 
@@ -52,6 +52,17 @@ class TerrainService
         if ($terrain->photo) {
             Storage::disk('public')->delete($terrain->photo);
         }
+
         return $this->terrainRepository->delete($terrain);
+    }
+
+    public function getAllWithRelations()
+    {
+        return $this->terrainRepository->getAllWithRelations();
+    }
+
+    public function updateStatus($id, $status)
+    {
+        return $this->terrainRepository->updateStatus($id, $status);
     }
 }
