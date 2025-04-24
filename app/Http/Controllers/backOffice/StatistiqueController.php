@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backOffice;
 
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\Terrain;
 use App\Models\Category;
 use App\Models\Reservation;
@@ -28,6 +29,14 @@ class StatistiqueController extends BaseController
         $categorieCount = Category::count();
         $tagCount = Tag::count();
 
+        $organisateur = User::whereHas('roles', function ($query) {
+            $query->where('name', 'organisateur');
+        })->count();
+
+        $client = User::whereHas('roles', function ($query) {
+            $query->where('name', 'client');
+        })->count();
+
         $reservationCount = Reservation::whereHas('terrain', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })->count();
@@ -52,7 +61,9 @@ class StatistiqueController extends BaseController
             'tagCount',
             'reservationCount',
             'reservationsByMonth',
-            'terrainsByCategory'
+            'terrainsByCategory',
+            'organisateur',
+            'client'
         ));
     }
 }
