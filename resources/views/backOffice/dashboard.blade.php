@@ -2,6 +2,7 @@
 @section('content')
 @auth
 @if(auth()->user()->hasRole('organisateur'))
+<div class="my-10 mx-auto max-w-6xl bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-xl p-8 border border-blue-100">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <div class="bg-white rounded-lg shadow p-4">
             <div class="flex justify-between">
@@ -75,7 +76,7 @@
             <canvas id="salesRevenueChart" height="240"></canvas>
         </div>
     </div>
-
+</div>
 @elseif(auth()->user()->hasRole('admin'))
     <div class="my-10 mx-auto max-w-6xl bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-xl p-8 border border-blue-100">
         <div class="flex items-center mb-6">
