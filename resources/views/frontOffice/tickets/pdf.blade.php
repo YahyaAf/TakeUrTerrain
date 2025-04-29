@@ -94,10 +94,10 @@
         @endif
 
         <div class="info">
-            <p><strong>Terrain :</strong> {{ $ticket->terrain->name ?? 'N/A' }}</p>
-            <p><strong>Adresse :</strong> {{ $ticket->terrain->adresse ?? 'N/A' }}</p>
+            <p><strong>Terrain :</strong> {{ $ticket->reservation->terrain->name ?? 'N/A' }}</p>
+            <p><strong>Adresse :</strong> {{ $ticket->reservation->terrain->adresse ?? 'N/A' }}</p>
             <p><strong>Utilisateur :</strong> {{ $ticket->reservation->client->name ?? 'N/A' }}</p>
-            <p><strong>Date de réservation :</strong> {{ $ticket->reservation->date_reservation ?? $ticket->reservation_date }}</p>
+            <p><strong>Date de réservation :</strong> {{ $ticket->reservation->date_reservation ?? 'N/A' }}</p>
             <p><strong>Heure de début:</strong> {{ \Carbon\Carbon::parse($ticket->reservation->heure_debut)->format('H:i') }}</p>
             <p><strong>Heure de fin:</strong> {{ \Carbon\Carbon::parse($ticket->reservation->heure_fin)->format('H:i') }}</p>
             <p><strong>Prix :</strong> {{ $ticket->price }} €</p>

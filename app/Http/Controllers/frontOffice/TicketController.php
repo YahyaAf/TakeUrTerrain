@@ -30,10 +30,12 @@ class TicketController extends BaseController
 
     public function downloadPDF($id)
     {
-        $ticket = Ticket::with(['terrain', 'reservation.client'])->findOrFail($id);
+        $ticket = Ticket::with(['reservation.client', 'reservation.terrain', 'reservation.payment'])
+                        ->findOrFail($id);
 
         $pdf = Pdf::loadView('frontOffice.tickets.pdf', compact('ticket'));
         
         return $pdf->download('ticket_' . $ticket->id . '.pdf');
     }
+
 }
