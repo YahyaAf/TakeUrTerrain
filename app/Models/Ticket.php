@@ -20,20 +20,4 @@ class Ticket extends Model
     {
         return $this->belongsTo(Reservation::class);
     }
-
-    public function terrain()
-    {
-        return $this->belongsTo(Terrain::class);
-    }
-
-    public function payment()
-    {
-        return $this->belongsTo(Payment::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
 }

@@ -19,12 +19,14 @@ class TicketController extends BaseController
     public function index()
     {
         $tickets = Ticket::where('user_id', auth()->id())
-                        ->with('reservation', 'terrain', 'payment') 
+                        ->with('reservation.client', 'reservation.terrain', 'reservation.payment')
                         ->latest()
                         ->get();
 
         return view('frontOffice.tickets.index', compact('tickets'));
     }
+
+
 
     public function downloadPDF($id)
     {
