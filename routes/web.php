@@ -30,7 +30,7 @@ Route::get('/', function () {
 })->name('home');
 Route::get('/terrains', [CategoryTerrainController::class, 'index'])->name('frontOffice.terrains.index');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','banned'])->group(function () {
 
     // Route::get('/dashboard', function () {
     //     return view('backOffice.dashboard');
