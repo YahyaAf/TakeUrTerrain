@@ -16,8 +16,16 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $this->registerService->register($request->validated());
+        $data = $request->validated();
+        
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo');
+        }
 
-        return redirect()->route('dashboard')->with('success', 'Compte créé avec succès, en attente de validation.');
+        $this->registerService->register($data);
+
+        return redirect()->route('home')->with('success', 'Compte créé avec succès, en attente de validation.');
     }
+
+
 }

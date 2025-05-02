@@ -5,12 +5,15 @@ namespace App\Providers;
 use App\Services\Auth\LoginService;
 use App\Services\Auth\RegisterService;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Terrain\TerrainService;
 use App\Repositories\Auth\LoginRepository;
 use App\Services\Auth\ResetPasswordService;
 use App\Services\Auth\ForgetPasswordService;
 use App\Repositories\Auth\RegisterRepository;
+use App\Repositories\Terrain\TerrainRepository;
 use App\Repositories\Auth\ResetPasswordRepository;
 use App\Repositories\Auth\ForgetPasswordRepository;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -50,6 +53,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ResetPasswordService::class, function ($app) {
             return new ResetPasswordService($app->make(ResetPasswordRepository::class));
         });
+
+        $this->app->bind(TerrainRepository::class, function ($app) {
+            return new TerrainRepository();
+        });
+    
+        $this->app->bind(TerrainService::class, function ($app) {
+            return new TerrainService($app->make(TerrainRepository::class));
+        });
     }
 
     /**
@@ -57,6 +68,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Blade::if('permission', function ($permission) {
+            return auth()->check() && auth()->user()->hasPermission($permission);
+        });
     }
 }

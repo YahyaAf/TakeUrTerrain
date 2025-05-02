@@ -23,6 +23,8 @@ class User extends Authenticatable
         'email',
         'password',
         'statut',
+        'photo',
+        'banned'
     ];
 
     /**
@@ -60,6 +62,29 @@ class User extends Authenticatable
 
     public function hasPermission($permission)
     {
-        return $this->roles->flatMap->permissions->contains('name', $permission);
+        return $this->roles
+            ->flatMap(function ($role) {
+                return $role->permissions;
+            })
+            ->contains('name', $permission);
     }
+
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'client_id');
+    }
+
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+    public function terrains()
+    {
+        return $this->hasMany(Terrain::class);
+    }
+
+
+
 }
